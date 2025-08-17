@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 15:14:16 by eduribei          #+#    #+#             */
-/*   Updated: 2025/08/17 16:37:17 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/08/17 16:52:18 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,17 @@
 # define PHONEBOOK_HPP
 
 # include <string>
+# include "Contact.hpp"
 
 class PhoneBook
 {
 	private:
-		int a;
+		Contact contaclist[8];
 
 	public:
-		void get();	
+		void addcontact(Contact input);
+		void getcontact(Contact input);
+		
 };
 
 #endif
