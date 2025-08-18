@@ -28,8 +28,8 @@ CFLAGS  =   -std=c++98 -Wall -Wextra -Werror -g -O0 -fno-omit-frame-pointer -I.
 RM      =   rm -rf
 
 # Dir and file names
-NAME    =   phonebook
-SRCS    =   phonebook.cpp
+NAME    =   agenda
+SRCS    =   agenda.cpp Contact.cpp
 OBJS    =   $(SRCS:.cpp=.o)
 INC     =   $(wildcard *.hpp)
 

@@ -2,3 +2,7 @@
 *.vscode
 *.json
 *.out
+agenda
+phonebook
+megaphone
+/.vscode

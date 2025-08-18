@@ -14,14 +14,18 @@
 #include <iomanip>
 #include <cctype>
 #include "Contact.hpp"
+#include "PhoneBook.hpp"
 
 void clear_screen(void);
-
+std::string mytolower(std::string& input);
 
 int main(void)
 {
+	//PhoneBook mycontacts;
+
 	while (1)
 	{
+		clear_screen();
 		std::cout << "My Phonebook\n";
 		std::cout << "1. ADD\n";
 		std::cout << "2. SEARCH\n";
@@ -30,24 +34,24 @@ int main(void)
 
 		std::string input;
 		std::cin >> input;
-
-		if (input == "EXIT")
-			break;
-
 		std::string lowered = mytolower(input);
 
 		if (lowered == "add" || lowered == "1")
-		//caput
+		{
+			Contact newcontact;
+			newcontact.read_firstname(std::cin);
+			newcontact.read_lastname(std::cin);
+			newcontact.read_phonenumber(std::cin);
+			newcontact.read_secret(std::cin);
+		//	mycontacts.addcontact(newcontact);
+			continue;
+		}
 
-
-		clear_screen();
+		else if (lowered == "search" || lowered == "2")
+			continue;
+		else if (lowered == "exit" || lowered == "3")
+			return 0;
 	}
-
- 
-
-
-
-
 
 }
 
@@ -60,6 +64,7 @@ std::string mytolower(std::string& input)
 {
 	for (int a = 0; input[a]; a++)
 		input[a] = tolower(input[a]);
+	return input;	
 }
 
 

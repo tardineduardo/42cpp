@@ -18,40 +18,26 @@
 class Contact
 {
 	private:
-		std::string firstname;
-		std::string lastname;
-		std::string phonenumber;
-		std::string secret;
+		std::string firstname_;
+		std::string lastname_;
+		std::string phonenumber_;
+		std::string secret_;
 
 	public:
-		int	age;
+		void set_firstname(const std::string& input);
+		void set_lastname(const std::string& input);
+		void set_phonenumber(const std::string& input);
+		void set_secret(const std::string& input);
 
-		void set_firstname(std::string input) {
-			firstname = input;
-		}
-		std::string get_firstname() {
-			return firstname;
-		}
-		void set_lastname(std::string input) {
-			lastname = input;
-		}
-		std::string get_lastname() {
-			return lastname;
-		}
-		void set_phonenumber(std::string input) {
-			phonenumber = input;
-		}
-		std::string get_phonenumber() {
-			return phonenumber;
-		}
-		void set_secret(std::string input) {
-			secret = input;
-		}
-		std::string get_secret() {
-			return secret;
-		}
+		const std::string& firstname() const;
+		const std::string& lastname() const;
+		const std::string& phonenumber() const;
+		const std::string& secret() const;
 
-
+		void read_firstname(std::istream& in);
+		void read_lastname(std::istream& in);
+		void read_phonenumber(std::istream& in);
+		void read_secret(std::istream& in);		
 
 };
 
