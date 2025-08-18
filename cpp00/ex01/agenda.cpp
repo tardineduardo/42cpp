@@ -63,7 +63,7 @@ void clear_screen(void)
 std::string mytolower(std::string& input)
 {
 	for (int a = 0; input[a]; a++)
-		input[a] = tolower(input[a]);
+		input[a] = std::tolower(static_cast<unsigned char>(input[a]));
 	return input;	
 }
 

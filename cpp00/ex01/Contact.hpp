@@ -22,6 +22,7 @@ class Contact
 		std::string lastname_;
 		std::string phonenumber_;
 		std::string secret_;
+		int			order;
 
 	public:
 		void set_firstname(const std::string& input);

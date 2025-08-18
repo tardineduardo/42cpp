@@ -19,12 +19,12 @@
 class PhoneBook
 {
 	private:
-		Contact contaclist[8];
+		Contact contactlist[8];
 
 	public:
 		void addcontact(Contact input);
 		void getcontact(Contact input);
-		
+	
 };
 
 #endif
