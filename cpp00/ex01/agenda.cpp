@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*   agenda.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 14:21:42 by eduribei          #+#    #+#             */
-/*   Updated: 2025/08/17 18:55:24 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/08/23 14:58:54 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,15 @@ int main(void)
 	while (1)
 	{
 		clear_screen();
-		std::cout << "My Phonebook\n";
+		std::cout << "My Phonebook" << std::endl;
 		std::cout << "1. ADD\n";
 		std::cout << "2. SEARCH\n";
 		std::cout << "3. EXIT\n";
 		std::cout << ">> ";
 
 		std::string input;
+
+		//std::getline(cin, input);
 		std::cin >> input;
 		std::string lowered = mytolower(input);
 
