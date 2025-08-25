@@ -1,17 +1,15 @@
 #include "Contact.hpp"
 #include <iostream>
 
-void Contact::set_firstname(const std::string& s)	{ firstname_ = s;	}
-void Contact::set_lastname(const std::string& s)	{ lastname_ = s;	}
-void Contact::set_phonenumber(const std::string& s)	{ phonenumber_ = s;	}
-void Contact::set_secret(const std::string& s)		{ secret_ = s;		}
+void Contact::set_firstname(std::string s)     {firstname_ = s;  }
+void Contact::set_lastname(std::string s)      {lastname_ = s;   }
+void Contact::set_phonenumber(std::string s)   {phonenumber_ = s;}
+void Contact::set_secret(std::string s)        {secret_ = s;     }
 
-const std::string& Contact::firstname()	const { return firstname_;	}
-const std::string& Contact::lastname() const { return lastname_; }
-const std::string& Contact::phonenumber() const { return phonenumber_; }
-const std::string& Contact::secret() const { return secret_; }
-
-
+ std::string Contact::firstname()    {return firstname_;   }
+ std::string Contact::lastname()     {return lastname_;    }
+ std::string Contact::phonenumber()  {return phonenumber_; }
+ std::string Contact::secret()       {return secret_;      }
 
 void Contact::read_firstname(std::istream& in) {
   std::cout << "First name: ";

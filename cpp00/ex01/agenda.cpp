@@ -17,7 +17,8 @@
 #include "PhoneBook.hpp"
 
 void clear_screen(void);
-std::string mytolower(std::string& input);
+
+std::string mytolower(std::string input);
 
 int main(void)
 {
@@ -27,15 +28,15 @@ int main(void)
 	{
 		clear_screen();
 		std::cout << "My Phonebook" << std::endl;
-		std::cout << "1. ADD\n";
-		std::cout << "2. SEARCH\n";
-		std::cout << "3. EXIT\n";
+		std::cout << "1. ADD" << std::endl;
+		std::cout << "2. SEARCH" << std::endl;
+		std::cout << "3. EXIT" << std::endl;
 		std::cout << ">> ";
 
 		std::string input;
 
-		//std::getline(cin, input);
-		std::cin >> input;
+		std::getline(std::cin, input);
+
 		std::string lowered = mytolower(input);
 
 		if (lowered == "add" || lowered == "1")
@@ -62,7 +63,7 @@ void clear_screen(void)
     std::cout << "\033[2J\033[1;1H";
 }
 
-std::string mytolower(std::string& input)
+std::string mytolower(std::string input)
 {
 	for (int a = 0; input[a]; a++)
 		input[a] = std::tolower(static_cast<unsigned char>(input[a]));

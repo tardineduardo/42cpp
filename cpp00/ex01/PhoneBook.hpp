@@ -23,8 +23,7 @@ class PhoneBook
 
 	public:
 		void addcontact(Contact input);
-		void getcontact(Contact input);
-	
+		void getcontact(Contact input);	
 };
 
 #endif
