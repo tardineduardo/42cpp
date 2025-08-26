@@ -9,7 +9,7 @@
       "stopAtEntry": false,
       "externalConsole": false,
       "cwd": "/nfs/homes/eduribei/Documentos/repos/42cpp/cpp00/ex01",
-      "program": "/nfs/homes/eduribei/Documentos/repos/42cpp/cpp00/ex01/phonebook",
+      "program": "/nfs/homes/eduribei/Documentos/repos/42cpp/cpp00/ex01/agenda",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

@@ -29,7 +29,10 @@ RM      =   rm -rf
 
 # Dir and file names
 NAME    =   agenda
-SRCS    =   agenda.cpp Contact.cpp
+SRCS    =   agenda.cpp \
+			Contact.cpp \
+			PhoneBook.cpp
+			
 OBJS    =   $(SRCS:.cpp=.o)
 INC     =   $(wildcard *.hpp)
 

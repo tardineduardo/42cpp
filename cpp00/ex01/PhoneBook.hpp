@@ -3,7 +3,7 @@
 
 # include <string>
 # include "Contact.hpp"
-# define SIZE 8
+# define SIZE 2
 
 class PhoneBook
 {
@@ -13,6 +13,9 @@ class PhoneBook
 	public:
 		void addcontact(Contact& input);
 		void getcontact();
-};
+		int findlowest();
+		void zerotimes();
+
+	};
 
 #endif
