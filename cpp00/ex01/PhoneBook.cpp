@@ -19,7 +19,7 @@ void PhoneBook::addcontact(Contact& input)
 	}
 	else {
 		a = findlowest();
-		//store
+		PhoneBook::contactlist_[a] = input;
 	}	
 
 }
