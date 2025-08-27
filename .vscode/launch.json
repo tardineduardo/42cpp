@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/nfs/homes/eduribei/Documentos/repos/42cpp/cpp00/ex01",
-      "program": "/nfs/homes/eduribei/Documentos/repos/42cpp/cpp00/ex01/agenda",
+      "cwd": "/home/eduardo/Documents/repos/42cpp/cpp00/ex01",
+      "program": "/home/eduardo/Documents/repos/42cpp/cpp00/ex01/agenda",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [

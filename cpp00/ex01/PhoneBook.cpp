@@ -1,9 +1,7 @@
-# include <string>
-# include "Contact.hpp"
-# include "PhoneBook.hpp"
-
-// int PhoneBook::find_lowest();
-
+#include <string>
+#include <iostream>
+#include "Contact.hpp"
+#include "PhoneBook.hpp"
 
 void PhoneBook::addcontact(Contact& input)
 {
@@ -49,18 +47,34 @@ void PhoneBook::zerotimes()
 		PhoneBook::contactlist_[a].set_time(0);	
 }
 
-void PhoneBook::printlist()
+int PhoneBook::printlist()
 {
-	for (int a = 0; a < SIZE; a++)
-	{
-		
+	std::string pause;
 
-
-
+	if (PhoneBook::isempty()) {
+		std::cout << "The phonebook is empty ";
+		//usar getline
+		std::cout << "(press enter to continue...) " ;
+		std::cin >> pause;
+		return (0);
 	}
 
+	for (int a = 0; a < SIZE; a++)
+	{
+		if (PhoneBook::contactlist_[a].firstname().empty() == false) {
+			std::cout << PhoneBook::contactlist_[a].firstname() << "|" <<
+			PhoneBook::contactlist_[a].lastname() << "|" <<
+			PhoneBook::contactlist_[a].phone() << "|" <<
+			PhoneBook::contactlist_[a].secret() << std::endl;
+		}
+	}
+	return (0);
+}
 
-
-
-	
+bool PhoneBook::isempty()
+{
+	for (int a = 0; a < SIZE; a++)
+		if (contactlist_[a].firstname().empty() == false)
+			return (false);
+	return (true);
 }

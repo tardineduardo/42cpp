@@ -13,6 +13,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cctype>
+#include <time.h>
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
@@ -22,7 +23,6 @@ void input_lastname(Contact& contact);
 void input_phone(Contact& contact);
 void input_secret(Contact& contact);
 void store_time(Contact& contact);
-void zerotimes(PhoneBook contactlist[]);
 std::string	mytolower(std::string input);
 
 int main(void)
@@ -42,7 +42,7 @@ int main(void)
 
 		std::string input;
 
-		//std::getline(cin, input);
+		std::cout << "Choose an option: ";
 		std::cin >> input;
 		std::string lowered = mytolower(input);
 
@@ -55,8 +55,13 @@ int main(void)
 			input_secret(newcontact);
 			mycontacts.addcontact(newcontact);
 		}
-		else if (lowered == "search" || lowered == "2")
-			continue;
+		else if (lowered == "search" || lowered == "2") {
+			if (!mycontacts.printlist())
+				continue;
+			std::cout << "Select a contact: ";
+			std::string input;
+			std::cin >> input;
+		}
 		else if (lowered == "exit" || lowered == "3")
 			return 0;
 	}
@@ -70,12 +75,14 @@ void store_time(Contact& contact) {
 
 void input_firstname(Contact& contact) {
 	std::string firstname;
+	std::cout << "First name: ";
 	std::cin >> firstname;
 	contact.set_firstname(firstname);
 }
 
 void input_lastname(Contact& contact) {
 	std::string lastname;
+	std::cout << "Last name: ";
 	std::cin >> lastname;
 	contact.set_lastname(lastname);
 }
@@ -83,12 +90,14 @@ void input_lastname(Contact& contact) {
 void input_phone(Contact& contact) {
 	//Validate number
 	std::string phone;
+	std::cout << "Phone number: ";
 	std::cin >> phone;
 	contact.set_phone(phone);
 }
 
 void input_secret(Contact& contact) {
 	std::string secret;
+	std::cout << "Darkest secret: ";
 	std::cin >> secret;
 	contact.set_secret(secret);
 }

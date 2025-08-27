@@ -11,11 +11,12 @@ class PhoneBook
 		Contact contactlist_[SIZE];
 
 	public:
-		void addcontact(Contact& input);
-		void getcontact();
-		void printlist();
-		int findlowest();
-		void zerotimes();
+		void	addcontact(Contact& input);
+		void	getcontact();
+		int		printlist();
+		int		findlowest();
+		void	zerotimes();
+		bool	isempty();
 
 	};
 
