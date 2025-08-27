@@ -24,7 +24,6 @@ void PhoneBook::addcontact(Contact& input)
 
 }
 
-
 int PhoneBook::findlowest()
 {
 	int		a;
@@ -41,11 +40,27 @@ int PhoneBook::findlowest()
 		}
 	}
 	return lowindex;
-}
 
+}
 
 void PhoneBook::zerotimes()
 {
 	for(int a = 0; a < SIZE; a++)
 		PhoneBook::contactlist_[a].set_time(0);	
+}
+
+void PhoneBook::printlist()
+{
+	for (int a = 0; a < SIZE; a++)
+	{
+		
+
+
+
+	}
+
+
+
+
+	
 }
