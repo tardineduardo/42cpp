@@ -9,6 +9,7 @@ class PhoneBook
 {
 	private:
 		Contact contactlist_[SIZE];
+		void	redux(const std::string& original);
 
 	public:
 		void	addcontact(Contact& input);

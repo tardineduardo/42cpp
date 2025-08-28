@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 14:21:42 by eduribei          #+#    #+#             */
-/*   Updated: 2025/08/26 20:52:33 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/08/27 21:51:53 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int main(void)
 		std::string input;
 
 		std::cout << "Choose an option: ";
-		std::cin >> input;
+		getline(std::cin, input);
 		std::string lowered = mytolower(input);
 
 		if (lowered == "add" || lowered == "1") {
@@ -60,7 +60,8 @@ int main(void)
 				continue;
 			std::cout << "Select a contact: ";
 			std::string input;
-			std::cin >> input;
+			getline(std::cin, input);
+
 		}
 		else if (lowered == "exit" || lowered == "3")
 			return 0;
@@ -76,14 +77,14 @@ void store_time(Contact& contact) {
 void input_firstname(Contact& contact) {
 	std::string firstname;
 	std::cout << "First name: ";
-	std::cin >> firstname;
+	getline(std::cin, firstname);
 	contact.set_firstname(firstname);
 }
 
 void input_lastname(Contact& contact) {
 	std::string lastname;
 	std::cout << "Last name: ";
-	std::cin >> lastname;
+	getline(std::cin, lastname);
 	contact.set_lastname(lastname);
 }
 
@@ -91,14 +92,14 @@ void input_phone(Contact& contact) {
 	//Validate number
 	std::string phone;
 	std::cout << "Phone number: ";
-	std::cin >> phone;
+	getline(std::cin, phone);
 	contact.set_phone(phone);
 }
 
 void input_secret(Contact& contact) {
 	std::string secret;
 	std::cout << "Darkest secret: ";
-	std::cin >> secret;
+	getline(std::cin, secret);
 	contact.set_secret(secret);
 }
 

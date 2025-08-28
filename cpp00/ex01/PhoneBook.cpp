@@ -1,5 +1,7 @@
 #include <string>
 #include <iostream>
+#include <sstream>
+#include <iomanip>
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
@@ -38,7 +40,6 @@ int PhoneBook::findlowest()
 		}
 	}
 	return lowindex;
-
 }
 
 void PhoneBook::zerotimes()
@@ -52,20 +53,30 @@ int PhoneBook::printlist()
 	std::string pause;
 
 	if (PhoneBook::isempty()) {
-		std::cout << "The phonebook is empty ";
-		//usar getline
-		std::cout << "(press enter to continue...) " ;
-		std::cin >> pause;
+		std::cout << "The phonebook is empty " << std::endl;
+		std::cout << "(press enter to continue...) " << std::endl;
+		std::cin.ignore(10000, '\n');
+		getline(std::cin, pause);
 		return (0);
 	}
 
 	for (int a = 0; a < SIZE; a++)
 	{
+		std::ostringstream index;
+
+		index << "Contact #" << a + 1;
+
 		if (PhoneBook::contactlist_[a].firstname().empty() == false) {
-			std::cout << PhoneBook::contactlist_[a].firstname() << "|" <<
-			PhoneBook::contactlist_[a].lastname() << "|" <<
-			PhoneBook::contactlist_[a].phone() << "|" <<
-			PhoneBook::contactlist_[a].secret() << std::endl;
+			redux(index.str());
+			std::cout << "|";
+			redux((PhoneBook::contactlist_[a].firstname()));
+			std::cout << "|";
+			redux((PhoneBook::contactlist_[a].lastname()));
+			std::cout << "|";
+			redux((PhoneBook::contactlist_[a].phone()));
+			std::cout << "|";
+			redux((PhoneBook::contactlist_[a].secret()));
+			std::cout << "\n";
 		}
 	}
 	return (0);
@@ -77,4 +88,12 @@ bool PhoneBook::isempty()
 		if (contactlist_[a].firstname().empty() == false)
 			return (false);
 	return (true);
+}
+
+void PhoneBook::redux(const std::string& original)
+{
+	if (original.length() <= 10)
+		std::cout << std::setw(10) << std::right << original;
+	else
+		std::cout << original.substr(0, 9) << ".";
 }
