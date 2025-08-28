@@ -5,7 +5,7 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
-void PhoneBook::addcontact(Contact& input)
+void PhoneBook::SaveContact(Contact& input)
 {
 	int a;
 
@@ -54,7 +54,7 @@ int PhoneBook::printlist()
 
 	if (PhoneBook::isempty()) {
 		std::cout << "The phonebook is empty " << std::endl;
-		std::cout << "(press enter to continue...) " << std::endl;
+		std::cout << "(press enter to continue...) ";
 		std::cin.ignore(10000, '\n');
 		getline(std::cin, pause);
 		return (0);
@@ -79,6 +79,10 @@ int PhoneBook::printlist()
 			std::cout << "\n";
 		}
 	}
+	std::cout << "\n Choose a contact index: ";
+	std::cin.ignore(10000, '\n');
+	getline(std::cin, pause);
+
 	return (0);
 }
 

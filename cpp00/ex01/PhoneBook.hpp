@@ -12,7 +12,7 @@ class PhoneBook
 		void	redux(const std::string& original);
 
 	public:
-		void	addcontact(Contact& input);
+		void	SaveContact(Contact& input);
 		void	getcontact();
 		int		printlist();
 		int		findlowest();
