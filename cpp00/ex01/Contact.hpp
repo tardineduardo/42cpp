@@ -25,6 +25,8 @@ class Contact
 		const std::string& phone() const;
 		const std::string& secret() const;
 		const std::time_t& time() const;		
+
+		void PrintContact();
 };
 
 #endif

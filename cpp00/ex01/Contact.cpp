@@ -22,3 +22,13 @@ const std::string& Contact::secret() const {
 	return secret_;}
 const std::time_t& Contact::time() const {
 	return time_;}
+
+void Contact::PrintContact() {
+	std::cout << Contact::firstname() << std::endl;
+	std::cout << Contact::lastname() << std::endl;
+	std::cout << Contact::phone() << std::endl;
+	std::cout << Contact::secret() << std::endl;			
+}
+
+
+

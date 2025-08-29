@@ -13,7 +13,7 @@ class PhoneBook
 
 	public:
 		void	SaveContact(Contact& input);
-		void	getcontact();
+		Contact& getcontact(int index);
 		int		printlist();
 		int		findlowest();
 		void	zerotimes();

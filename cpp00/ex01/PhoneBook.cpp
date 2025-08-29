@@ -5,6 +5,10 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
+
+void printbottom(void);
+void printtop(void);
+
 void PhoneBook::SaveContact(Contact& input)
 {
 	int a;
@@ -60,13 +64,15 @@ int PhoneBook::printlist()
 		return (0);
 	}
 
+	printtop();
 	for (int a = 0; a < SIZE; a++)
 	{
 		std::ostringstream index;
 
-		index << "Contact #" << a + 1;
+		index << a + 1;
 
 		if (PhoneBook::contactlist_[a].firstname().empty() == false) {
+			std::cout << "|";
 			redux(index.str());
 			std::cout << "|";
 			redux((PhoneBook::contactlist_[a].firstname()));
@@ -76,12 +82,11 @@ int PhoneBook::printlist()
 			redux((PhoneBook::contactlist_[a].phone()));
 			std::cout << "|";
 			redux((PhoneBook::contactlist_[a].secret()));
-			std::cout << "\n";
+			
+			std::cout << "|\n";
 		}
 	}
-	std::cout << "\n Choose a contact index: ";
-	std::cin.ignore(10000, '\n');
-	getline(std::cin, pause);
+	printbottom();
 
 	return (0);
 }
@@ -100,4 +105,27 @@ void PhoneBook::redux(const std::string& original)
 		std::cout << std::setw(10) << std::right << original;
 	else
 		std::cout << original.substr(0, 9) << ".";
+}
+
+
+void printtop(void) {
+    std::cout << "\n";
+	std::cout << "        ___     ___ \n";
+    std::cout << "       (o o)   (o o)\n";
+    std::cout << "      (  V  ) (  V  )\n";
+    std::cout << "+-------m-m-----m-m------------------------------------+\n";
+    std::cout << "|                                                      |\n";
+    std::cout << "|                         List                         |\n";
+    std::cout << "+------------------------------------------------------+\n";
+}
+
+void printbottom(void) {
+    std::cout << "+------------------------------------------------------+\n";
+}
+
+
+
+Contact& PhoneBook::getcontact(int index)
+{
+	return contactlist_[index];
 }

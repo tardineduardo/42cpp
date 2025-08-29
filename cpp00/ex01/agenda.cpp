@@ -13,6 +13,7 @@
 #include <iostream>
 #include <iomanip>
 #include <cctype>
+#include <sstream> 
 #include <time.h>
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
@@ -47,7 +48,10 @@ int main(void)
 			add_contact(mycontacts);
 
 		else if (option == "search" || option == "2")
+		{
+			clear_screen();
 			search_contact(mycontacts);
+		}
 
 		else if (option == "exit" || option == "3")
 			return 0;
@@ -101,23 +105,31 @@ std::string mytolower(std::string input)
 	return input;
 }
 
-
+int my_atoi(const std::string& str) {
+    std::istringstream iss(str);
+    int value = 0;
+    iss >> value;
+    return value;
+}
 
 void print_menu(void)
 {
     std::cout << "\n";
-    std::cout << "                    |\\__/,|   (`\\   \n";
-    std::cout << "                  _.|o o  |_   ) )  \n";
-    std::cout << "+----------------(((---(((---------+\n";
-    std::cout << "|                                  |\n";
-    std::cout << "|            PhoneBook             |\n";
-    std::cout << "+----------------------------------+\n";
-    std::cout << "|                                  |\n";
-    std::cout << "|            [1] Add               |\n";
-    std::cout << "|            [2] Search            |\n";
-    std::cout << "|            [3] Exit              |\n";
-    std::cout << "|                                  |\n";
-    std::cout << "+----------------------------------+\n";
+    std::cout << "                                  |\\__/,|   (`\\   \n";
+    std::cout << "                                _.|o o  |_   ) )  \n";
+    std::cout << "+------------------------------(((---(((---------------+\n";
+    std::cout << "|                                                      |\n";
+    std::cout << "|                       PhoneBook                      |\n";
+    std::cout << "|                                                      |\n";
+    std::cout << "+------------------------------------------------------+\n";
+    std::cout << "|                                                      |\n";
+    std::cout << "|                        [1] Add                       |\n";
+    std::cout << "|                                                      |\n";
+    std::cout << "|                        [2] Search                    |\n";
+    std::cout << "|                                                      |\n";
+    std::cout << "|                        [3] Exit                      |\n";
+    std::cout << "|                                                      |\n";
+    std::cout << "+------------------------------------------------------+\n";
 }
 
 std::string get_option()
@@ -132,6 +144,7 @@ void add_contact(PhoneBook& mycontacts)
 {
 	Contact newcontact;
 	store_time(newcontact);
+	std::cout << std::endl;
 	input_firstname(newcontact);
 	input_lastname(newcontact);
 	input_phone(newcontact);
@@ -146,7 +159,10 @@ void search_contact(PhoneBook& mycontacts)
 	mycontacts.printlist();
 	std::cout << "\nSelect a contact: ";
 	std::string input;
+
 	getline(std::cin, input);
+	Contact selected = mycontacts.getcontact(my_atoi(input));
+	selected.PrintContact();
 }
 
 
