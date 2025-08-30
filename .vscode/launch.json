@@ -8,8 +8,8 @@
       "args": [],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/eduardo/Documents/repos/42cpp/cpp00",
-      "program": "/home/eduardo/Documents/repos/42cpp/cpp00/build/Debug/outDebug",
+      "cwd": "/home/eduardo/Documents/repos/42cpp/cpp00/ex01",
+      "program": "/home/eduardo/Documents/repos/42cpp/cpp00/ex01/agenda",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
