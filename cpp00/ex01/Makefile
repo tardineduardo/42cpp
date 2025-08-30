@@ -1,63 +1,30 @@
-#------------------------------------------------------------------------------#
-#                                  GENERICS                                    #
-#------------------------------------------------------------------------------#
+NAME	= myphonebook
 
-# Special variables
-.DEFAULT_GOAL := all
-.DELETE_ON_ERROR:
-.PHONY: all bonus clean fclean re
+CC		= g++
+CFLAGS= -std=c++98 -Wall -Wextra -Werror -g -I.
 
-# Hide calls
-VERBOSE ?= TRUE
-ifeq ($(VERBOSE),TRUE)
-    HIDE =
-else
-    HIDE = @
-endif
+SRCS	= main.cpp \
+		  Contact.cpp \
+		  PhoneBook.cpp
 
-#------------------------------------------------------------------------------#
-#                                VARIABLES                                     #
-#------------------------------------------------------------------------------#
+OBJS	= $(SRCS:.cpp=.o)
 
-# Compiler and flags
-CC      =   g++
-
-
-
-CFLAGS  =   -std=c++98 -Wall -Wextra -Werror -g -O0 -fno-omit-frame-pointer -I.
-RM      =   rm -rf
-
-# Dir and file names
-NAME    =   agenda
-SRCS    =   agenda.cpp \
-			Contact.cpp \
-			PhoneBook.cpp
-			
-OBJS    =   $(SRCS:.cpp=.o)
-INC     =   $(wildcard *.hpp)
-
-#------------------------------------------------------------------------------#
-#                                 TARGETS                                      #
-#------------------------------------------------------------------------------#
+RM		= rm -f
 
 all: $(NAME)
 
-# Generates output file
 $(NAME): $(OBJS)
-	$(HIDE)$(CC) $(CFLAGS) $(OBJS) -o $@
+	$(CC) $(CFLAGS) -o $@ $^
 
-# Compiles sources into objects
-%.o: %.cpp $(INC)
-	$(HIDE)$(CC) $(CFLAGS) -c $< -o $@
+%.o: %.cpp
+	$(CC) $(CFLAGS) -c $< -o $@
 
-# Removes objects
 clean:
-	$(HIDE)$(RM) $(OBJS)
+	$(RM) $(OBJS)
 
-# Removes objects and executables
 fclean: clean
-	$(HIDE)$(RM) $(NAME)
+	$(RM) $(NAME)
 
-# Removes objects and executables and remakes
 re: fclean all
 
+.PHONY: all clean fclean re

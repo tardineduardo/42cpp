@@ -24,10 +24,10 @@ const std::time_t& Contact::time() const {
 	return time_;}
 
 void Contact::PrintContact() {
-	std::cout << Contact::firstname() << std::endl;
-	std::cout << Contact::lastname() << std::endl;
-	std::cout << Contact::phone() << std::endl;
-	std::cout << Contact::secret() << std::endl;			
+	std::cout << "First name: " << Contact::firstname() << std::endl;
+	std::cout << "Last name: " << Contact::lastname() << std::endl;
+	std::cout << "Phone number: " << Contact::phone() << std::endl;
+	std::cout << "Darkest secret: " << Contact::secret() << std::endl;			
 }
 
 
