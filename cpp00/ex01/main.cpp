@@ -47,12 +47,8 @@ int main(void)
 
 		if (option == "add" || option == "1")
 			add_contact(mycontacts);
-
-		else if (option == "search" || option == "2") {
-			clear_screen();
+		else if (option == "search" || option == "2")
 			search_contact(mycontacts);
-		}
-
 		else if (option == "exit" || option == "3")
 			return 0;
 	}
@@ -66,7 +62,7 @@ void store_time(Contact& contact) {
 
 void input_firstname(Contact& contact) {
 	std::string firstname;
-	std::cout << "First name: ";
+	std::cout << "first name: ";
 	while(1){
 		getline(std::cin, firstname);
 		if (is_empty(firstname))
@@ -79,7 +75,7 @@ void input_firstname(Contact& contact) {
 
 void input_lastname(Contact& contact) {
 	std::string lastname;
-	std::cout << "Last name: ";
+	std::cout << "last name: ";
 	while(1){
 		getline(std::cin, lastname);
 		if (is_empty(lastname))
@@ -90,12 +86,26 @@ void input_lastname(Contact& contact) {
 	contact.set_lastname(lastname);
 }
 
+void input_nickname(Contact& contact) {
+	std::string nickname;
+	std::cout << "nick name: ";
+	while(1){
+		getline(std::cin, nickname);
+		if (is_empty(nickname))
+			continue;
+		else
+			break;	
+	}
+	contact.set_nickname(nickname);
+}
+
+
 void input_phone(Contact& contact) {
 	std::string phone;
-	std::cout << "Phone number: ";
+	std::cout << "phone number: ";
 	while(1) {
 		getline(std::cin, phone);
-		if (!is_valid(phone))
+		if (is_empty(phone) || !is_valid(phone))
 			continue;
 		else
 			break;
@@ -105,7 +115,7 @@ void input_phone(Contact& contact) {
 
 void input_secret(Contact& contact) {
 	std::string secret;
-	std::cout << "Darkest secret: ";
+	std::cout << "darkest secret: ";
 	while(1){
 		getline(std::cin, secret);
 		if (is_empty(secret))
@@ -143,22 +153,22 @@ void print_menu(void)
     std::cout << "                     _.|o o  |_   ) )  \n";
     std::cout << "+-------------------(((---(((---------------+\n";
     std::cout << "|                                           |\n";
-    std::cout << "|                 PhoneBook                 |\n";
+    std::cout << "|                myphonebook                |\n";
     std::cout << "|                                           |\n";
     std::cout << "+-------------------------------------------+\n";                    
     std::cout << "|                                           |\n";
-    std::cout << "|                  [1] Add                  |\n";
+    std::cout << "|                  [1] add                  |\n";
     std::cout << "|                                           |\n";
-    std::cout << "|                  [2] Search               |\n";
+    std::cout << "|                  [2] search               |\n";
     std::cout << "|                                           |\n";
-    std::cout << "|                  [3] Exit                 |\n";
+    std::cout << "|                  [3] exit                 |\n";
     std::cout << "|                                           |\n";
     std::cout << "+-------------------------------------------+\n";
 }
 
 std::string get_option()
 {
-	std::cout << "Choose an option: ";
+	std::cout << "\nchoose an option: ";
 	std::string input;
 	getline(std::cin, input);
 	return (mytolower(input));
@@ -171,6 +181,7 @@ void add_contact(PhoneBook& mycontacts)
 	std::cout << std::endl;
 	input_firstname(newcontact);
 	input_lastname(newcontact);
+	input_nickname(newcontact);
 	input_phone(newcontact);
 	input_secret(newcontact);
 	mycontacts.SaveContact(newcontact);
@@ -178,10 +189,12 @@ void add_contact(PhoneBook& mycontacts)
 
 void search_contact(PhoneBook& mycontacts)
 {
-	if (mycontacts.isempty())
-		return;
+	clear_screen();
+	// if (mycontacts.isempty())
+	// 	return;
 
-	mycontacts.printlist();
+	if (!mycontacts.printlist())
+		return ;
 	std::cout << "\nSelect an index: ";
 	std::string input;
 
@@ -200,7 +213,7 @@ void search_contact(PhoneBook& mycontacts)
 		selected = mycontacts.getcontact((my_atoi(input)) - 1);
 
 		if(selected.firstname() == "") {
-			std::cout << "Invalid index, try again: (or \"exit\"): ";
+			std::cout << "invalid index, try again: (or \"exit\"): ";
 			continue;
 		}
 		else {
@@ -210,7 +223,7 @@ void search_contact(PhoneBook& mycontacts)
 	}	
 	selected.PrintContact();
 	std::string pause;
-	std::cout << "\n(Press enter to continue...) ";
+	std::cout << "\n(press enter to continue...) ";
 	getline(std::cin, pause);
 }
 

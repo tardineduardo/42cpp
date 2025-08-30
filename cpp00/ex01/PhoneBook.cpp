@@ -5,6 +5,7 @@
 #include "Contact.hpp"
 #include "PhoneBook.hpp"
 
+void print_menu_empty_list(void);
 void printbottom(void);
 void printtop(void);
 
@@ -56,9 +57,9 @@ int PhoneBook::printlist()
 	std::string pause;
 
 	if (PhoneBook::isempty()) {
-		std::cout << "The phonebook is empty " << std::endl;
-		std::cout << "(press enter to continue...) ";
-		std::cin.ignore(10000, '\n');
+		print_menu_empty_list();
+		std::string pause;
+		std::cout << "\n(press enter to continue...) ";
 		getline(std::cin, pause);
 		return (0);
 	}
@@ -77,13 +78,13 @@ int PhoneBook::printlist()
 			std::cout << "|";
 			redux((PhoneBook::contactlist_[a].lastname()));
 			std::cout << "|";
-			redux((PhoneBook::contactlist_[a].phone()));
+			redux((PhoneBook::contactlist_[a].nickname()));
 			std::cout << "|\n";
 		}
 	}
 	printbottom();
 
-	return (0);
+	return (1);
 }
 
 bool PhoneBook::isempty()
@@ -109,7 +110,7 @@ void printtop(void) {
     std::cout << "      (  V  ) (  V  )\n";
     std::cout << "+-------m-m-----m-m-------------------------+\n";
     std::cout << "|                                           |\n";
-    std::cout << "|                    List                   |\n";
+    std::cout << "|                    list                   |\n";
     std::cout << "+-------------------------------------------+\n";
     std::cout << "|     index|first name| last name|  nickname|\n";
 
@@ -122,4 +123,24 @@ void printbottom(void) {
 Contact& PhoneBook::getcontact(int index)
 {
 	return contactlist_[index];
+}
+
+void print_menu_empty_list(void)
+{
+    std::cout << "\n";
+    std::cout << "                       |\\__/,|   (`\\   \n";
+    std::cout << "                     _.|o o  |_   ) )  \n";
+    std::cout << "+-------------------(((---(((---------------+\n";
+    std::cout << "|                                           |\n";
+    std::cout << "|                myphonebook                |\n";
+    std::cout << "|                                           |\n";
+    std::cout << "+-------------------------------------------+\n";                    
+    std::cout << "|                                           |\n";
+    std::cout << "|                                           |\n";
+    std::cout << "|                                           |\n";
+    std::cout << "|                no contacts :(             |\n";
+    std::cout << "|                                           |\n";
+    std::cout << "|                                           |\n";
+    std::cout << "|                                           |\n";
+    std::cout << "+-------------------------------------------+\n";
 }
