@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   agenda.cpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/08/17 14:21:42 by eduribei          #+#    #+#             */
-/*   Updated: 2025/08/29 21:22:05 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/08/29 21:56:37 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,7 @@ std::string mytolower(std::string input)
 	return input;
 }
 
+//not safe, just like original atoi
 int my_atoi(const std::string& str) {
     std::istringstream iss(str);
     int value = 0;
