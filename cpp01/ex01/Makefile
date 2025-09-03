@@ -3,7 +3,7 @@ NAME      = horde
 CXX       = g++
 CXXFLAGS  = -std=c++98 -Wall -Wextra -Werror -g -I.
 
-SRCS      = main.cpp Zombie.cpp
+SRCS      = main.cpp Zombie.cpp zombieHorde.cpp
 OBJS      = $(SRCS:.cpp=.o)
 
 # Auto header dependencies
