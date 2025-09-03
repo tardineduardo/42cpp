@@ -8,21 +8,22 @@
 # include <sstream>
 # include <iostream>
 # include <iomanip>
+# include <cstdlib>
 
 class Zombie {
 	private:
 		std::string	name_;
-		static int	zombies_alive;
 
 	public:
 		Zombie();
 		~Zombie();
 		std::string name();
+		void set_name(std::string name);
 		Zombie(std::string name);
 		void announce(void);
 };
 
-void	randomChump(std::string name);
-Zombie* newZombie(std::string name);
+Zombie* zombieHorde(int N, std::string name);
+
 
 #endif

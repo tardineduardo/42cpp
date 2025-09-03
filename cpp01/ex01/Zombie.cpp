@@ -28,3 +28,8 @@ std::string Zombie::name()
 {	
 	return Zombie::name_;
 }
+
+void Zombie::set_name(std::string name)
+{
+	this->name_ = name;
+}
