@@ -1,23 +1,27 @@
 #ifndef ZOMBIE_HPP
 # define ZOMBIE_HPP
 
-# include <string>   // include only what is necessary
+# define RED         "\001\033[31m\002"
+# define RESET       "\001\033[0m\002"
+
+# include <string>
+# include <sstream>
+# include <iostream>
+# include <iomanip>
 
 class Zombie {
 	private:
-		std::string name_;
-		void announce(void);
-
+		std::string	name_;
+		static int	zombies_alive;
 
 	public:
-		Zombie();								// Default constructor
-		Zombie(const Zombie& other);			// Copy constructor
-		Zombie& operator=(const Zombie& rhs);	// Copy assignment operator
-		~Zombie();								// Destructor
+		Zombie();
+		~Zombie();
+		std::string name();
+		Zombie(std::string name);
+		void announce(void);
 
-	// Other public methods
-	Zombie* newZombie(std::string name);
-	void randomChump(std::string name);
+		//Zombie& operator=(const Zombie& other);
 };
 
 #endif

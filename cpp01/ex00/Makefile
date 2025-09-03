@@ -1,24 +1,25 @@
-NAME	= xxxxxxxxxxxx
+NAME      = zombies
 
-CC		= g++
-CFLAGS= -std=c++98 -Wall -Wextra -Werror -g -I.
+CXX       = g++
+CXXFLAGS  = -std=c++98 -Wall -Wextra -Werror -g -I.
 
-SRCS	= xxxxxxxxxxx.cpp
+SRCS      = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
+OBJS      = $(SRCS:.cpp=.o)
 
-OBJS	= $(SRCS:.cpp=.o)
-
-RM		= rm -f
+# Auto header dependencies
+CXXFLAGS += -MMD -MP
+DEPS      = $(OBJS:.o=.d)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) -o $@ $^
+	$(CXX) $(CXXFLAGS) -o $@ $^
 
 %.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+	$(CXX) $(CXXFLAGS) -c $< -o $@
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(DEPS)
 
 fclean: clean
 	$(RM) $(NAME)
@@ -26,3 +27,5 @@ fclean: clean
 re: fclean all
 
 .PHONY: all clean fclean re
+
+-include $(DEPS)
