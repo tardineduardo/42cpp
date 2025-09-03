@@ -170,7 +170,8 @@ std::string get_option()
 {
 	std::cout << "\nchoose an option: ";
 	std::string input;
-	getline(std::cin, input);
+	if(!getline(std::cin, input))
+		return("EOF");
 	return (mytolower(input));
 }
 

@@ -24,8 +24,7 @@ void PhoneBook::SaveContact(Contact& input)
 	else {
 		a = findlowest();
 		PhoneBook::contactlist_[a] = input;
-	}	
-
+	}
 }
 
 int PhoneBook::findlowest()
@@ -69,7 +68,6 @@ int PhoneBook::printlist()
 		std::ostringstream index;
 
 		index << a + 1;
-
 		if (PhoneBook::contactlist_[a].firstname().empty() == false) {
 			std::cout << "|";
 			redux(index.str());
@@ -83,7 +81,6 @@ int PhoneBook::printlist()
 		}
 	}
 	printbottom();
-
 	return (1);
 }
 
