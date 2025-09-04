@@ -1,9 +1,9 @@
-NAME	= xxxxxxxxxxxx
+NAME	= thisisbrain
 
 CC		= g++
-CFLAGS= -std=c++98 -Wall -Wextra -Werror -g -I.
+CFLAGS= -std=c++98 -Wall -Wextra -Werror -I.
 
-SRCS	= xxxxxxxxxxx.cpp
+SRCS	= main.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 
