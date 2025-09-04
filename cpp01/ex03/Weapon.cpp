@@ -10,21 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef WEAPON_HPP
-# define WEAPON_HPP
-
-# include <string>
-
-class Weapon {
-	private:
-		std::string type_;
-
-	public:
-		const std::string& getType() const;
-		std::string setType(const std::string type);
-};
-
-#endif
+#include <string>
+#include "Weapon.hpp"
 
 const std::string& Weapon::getType() const {
     return type_;
