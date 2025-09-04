@@ -6,7 +6,6 @@ CXXFLAGS  = -std=c++98 -Wall -Wextra -Werror -g -I.
 SRCS      = main.cpp Zombie.cpp newZombie.cpp randomChump.cpp
 OBJS      = $(SRCS:.cpp=.o)
 
-# Auto header dependencies
 CXXFLAGS += -MMD -MP
 DEPS      = $(OBJS:.o=.d)
 
