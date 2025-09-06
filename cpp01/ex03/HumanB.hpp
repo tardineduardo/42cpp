@@ -2,17 +2,18 @@
 # define HUMANB_HPP
 
 # include "Weapon.hpp"
+# include <iostream>
+# include <string>
+
 class HumanB {
 	private:
 		Weapon		weapon_;
 		std::string	name_;
 
 	public:
-		HumanB();
+		HumanB(std::string name);
 		void	attack();
-
+		void	setWeapon(const Weapon& weapon);
 };
-
-//While HumanA takes the Weapon in its constructor, HumanB does not.
 
 #endif
