@@ -2,18 +2,18 @@
 # define HUMANA_HPP
 
 # include "Weapon.hpp"
-# include <iostream>
 # include <string>
+# include <iostream>
 
 class HumanA {
 	private:
-		Weapon		*weapon_;
 		std::string	name_;
+		Weapon		&weapon_;
 
 	public:
-		HumanA(std::string name, Weapon& w);
+		HumanA(std::string name, Weapon &weapon);
 		void	attack();
-		void	setWeapon(const Weapon& weapon);
+
 };
 
 #endif
