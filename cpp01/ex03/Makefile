@@ -1,9 +1,12 @@
-NAME	= xxxxxxxxxxxx
+NAME	= violence
 
 CC		= g++
 CFLAGS= -std=c++98 -Wall -Wextra -Werror -g -I.
 
-SRCS	= xxxxxxxxxxx.cpp
+SRCS	=	HumanA.cpp \
+			HumanB.cpp \
+			main.cpp \
+			Weapon.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 
