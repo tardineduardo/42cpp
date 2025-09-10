@@ -15,8 +15,7 @@ int	main(int argc, char **argv)
 	//checking number of args
 	if (argc != 3) {
 		std::cout << "invalid number of arguments" << std::endl;
-		return (1);
-	}
+		return (1);}
 
 	//setting variable values
 	std::string	str1(argv[2]);
@@ -28,13 +27,12 @@ int	main(int argc, char **argv)
 	//validating file open
 	if (inFile.fail()) {
 		std::cout << "error opening file" << std::endl;
-		return (1);
-	}
+		return (1);}
 
-
+	//read from file
 	while (getline(inFile, line)) {
-		content += line + "\n";
-	}
+		content += line + "\n";}
+	inFile.close();
 
 	while (true) {
 		size_t pos = content.find(str1, startpos);
@@ -42,8 +40,7 @@ int	main(int argc, char **argv)
 			break;
 		newstr += content.substr(startpos, pos - startpos);
 		newstr += str2;
-		startpos = pos + len1;
-	}
+		startpos = pos + len1; }
 	newstr += content.substr(startpos);
 
 	std::cout << newstr << std::endl;
