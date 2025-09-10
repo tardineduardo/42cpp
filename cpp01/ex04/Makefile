@@ -1,9 +1,9 @@
-NAME	= xxxxxxxxxxxx
+NAME	= sed
 
 CC		= g++
 CFLAGS= -std=c++98 -Wall -Wextra -Werror -g -I.
 
-SRCS	= xxxxxxxxxxx.cpp
+SRCS	= main.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 

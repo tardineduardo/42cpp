@@ -110,6 +110,7 @@
     "charconv": "cpp",
     "format": "cpp",
     "text_encoding": "cpp",
-    "variant": "cpp"
+    "variant": "cpp",
+    "fstream": "cpp"
   }
 }
