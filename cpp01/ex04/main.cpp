@@ -34,6 +34,7 @@ int	main(int argc, char **argv)
 		content += line + "\n";}
 	inFile.close();
 
+	//substituition loop
 	while (true) {
 		size_t pos = content.find(str1, startpos);
 		if (pos == std::string::npos)
