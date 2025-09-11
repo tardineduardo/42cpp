@@ -1,9 +1,9 @@
-NAME	= xxxxxxxxxxxx
+NAME	= harl
 
 CC		= g++
 CFLAGS= -std=c++98 -Wall -Wextra -Werror -g -I.
 
-SRCS	= xxxxxxxxxxx.cpp
+SRCS	= Harl.cpp main.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 
