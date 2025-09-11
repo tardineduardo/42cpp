@@ -2,15 +2,17 @@
 #include <fstream>
 #include <string>
 #include <cstdlib>
+#include <cerrno>
+#include <cstring>
 
 int	main(int argc, char **argv)
 {
-	std::string		contentsrc;
-	std::string		contentdst;
+	std::string		input_text;
+	std::string		output_text;
 
-	//checking number of args
+	//validating number of args
 	if (argc != 4) {
-		std::cout << "invalid number of arguments" << std::endl;
+		std::cout << "error: invalid number of arguments" << std::endl;
 		return (1);}
 
 	//setting variable values
@@ -19,42 +21,59 @@ int	main(int argc, char **argv)
 	size_t len1 = str1.length();
 	size_t startpos = 0;
 
-	//validating file open
-	std::ifstream inflile;
-	inflile.open(argv[1]);
-	if (inflile.fail()) {
-		std::cout << "error reading from file" << std::endl;
+	//validating search string
+	if (str1.empty()) {
+  		std::cerr << "sed: error: empty search string" << std::endl;
+  	return (1);}
+
+	//opening source file
+	std::ifstream infile;
+	infile.open(argv[1]);
+	if (!infile.is_open()) {
+		std::cerr << "sed: error opening " << argv[1] << ": "
+		<< std::strerror(errno) << std::endl;
 		return (1);}
 
-	//read from file
+	//reading from source file
 	std::string line;
-	while (getline(inflile, line)) {
-		contentsrc += line + "\n";}
-	inflile.close();
+	while (getline(infile, line)) {
+		input_text += line + "\n";}
+
+	//check success of reading
+	if (infile.bad()) {
+    	std::cerr << "sed: I/O error while reading file: "
+		<< std::strerror(errno) << std::endl;
+		return (1);}
+	else if (infile.fail() && !infile.eof()) {
+    	std::cerr << "sed: undefined error while reading file" << std::endl;
+		return (1);}
+	infile.close();
 
 	//substituition loop
 	while (true) {
-		size_t pos = contentsrc.find(str1, startpos);
+		size_t pos = input_text.find(str1, startpos);
 		if (pos == std::string::npos)
 			break;
-		contentdst += contentsrc.substr(startpos, pos - startpos);
-		contentdst += str2;
+		output_text += input_text.substr(startpos, pos - startpos);
+		output_text += str2;
 		startpos = pos + len1; }
-	contentdst += contentsrc.substr(startpos);
+	output_text += input_text.substr(startpos);
 
-	//open outfile
-	std::ofstream outflile;
-	outflile.open(argv[1]);
-	if (outflile.fail()) {
-		std::cout << "error writing to file" << std::endl;
+	//opening target file
+	std::string filename = argv[1];
+	filename += ".replace";
+	std::ofstream outfile;
+	outfile.open(filename.c_str());
+	if (!outfile) {
+		std::cerr << "sed: error writing to file" << std::endl;
 		return (1);}	
 
-	//write to outfile
-	outflile << contentdst;
-	if (outflile.fail()) {
-		std::cout << "error writing to file" << std::endl;
+	//writing to target file
+	outfile << output_text;
+	if (!outfile) {
+		std::cerr << "sed: error writing to file" << std::endl;
 		return (1);}
 	
-	outflile.close();
+	outfile.close();
 	return (0);	
 }
