@@ -1,5 +1,7 @@
 #include "Fixed.hpp"
 
+const int Fixed::bits_ = 8;
+
 Fixed::Fixed() : value_(0) {
 	std::cout << "Constructor #1 called (default)" << std::endl;
 }
@@ -23,7 +25,7 @@ Fixed& Fixed::operator=(const Fixed& other) {
 
 int Fixed::getRawBits(void) const {
 	std::cout << "getRawBits member function called" << std::endl;
-	return (0);
+	return (value_);
 }
 
 void Fixed::setRawBits(int const raw) {

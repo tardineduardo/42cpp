@@ -6,7 +6,7 @@
 class Fixed {
 	private:
 		int					value_;
-		static const int	bits_ = 8;
+		static const int	bits_;
 
 	public:
 		//canonicals
