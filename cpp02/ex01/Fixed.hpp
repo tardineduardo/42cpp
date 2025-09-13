@@ -15,13 +15,6 @@ class Fixed {
 		Fixed(const Fixed& fixed);				//default copy constr
 		Fixed& operator=(const Fixed& other);	//copy assignment op.
 		
-		//new to ex01
-		Fixed(const int value);
-		Fixed(const float value);
-		float toFloat(void) const;
-		int toInt(void) const;
-		float operator<<(const Fixed& other);
-
 		//from subject
 		int getRawBits(void) const;
 		void setRawBits(int const raw);
