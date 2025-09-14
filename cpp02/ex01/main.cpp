@@ -22,10 +22,7 @@ int main( void )
 	return 0;
 }
 
-
-
-
-/*Int constructor called
+/*
 
 $> ./a.out
 Default constructor called
