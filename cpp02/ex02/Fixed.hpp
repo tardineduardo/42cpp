@@ -28,6 +28,11 @@ class Fixed {
 		Fixed(const float value);				//ctor from float
 		float toFloat(void) const;
 		int toInt(void) const;
+
+		//ex02
+		
+
+
 };
 
 //ex01
