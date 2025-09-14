@@ -6,6 +6,7 @@
 # endif
 
 # include <iostream>
+# include <cmath>
 
 class Fixed {
 	private:
@@ -16,7 +17,7 @@ class Fixed {
 		//ex00 - canonicals
 		Fixed();								//default constructor
 		~Fixed();								//destructor
-		Fixed(const Fixed& fixed);				//default copy constr
+		Fixed(const Fixed& other);				//default copy constr
 		Fixed& operator=(const Fixed& other);	//copy assignment op.
 
 		//ex00 - from subject

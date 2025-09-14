@@ -1,58 +1,64 @@
 #include "Fixed.hpp"
-#include <iostream>
-#include <cmath>
 
 const int Fixed::bits_ = FRACTIONAL_BITS;
 
+/* --------------------------------- ex00 ----------------------------------- */
+
 Fixed::Fixed() : value_(0) {
-  std::cout << "Default constructor called" << std::endl;
-}
-
-Fixed::Fixed(int value) : value_(value << bits_) {
-  std::cout << "Int constructor called" << std::endl;
-}
-
-Fixed::Fixed(float f)
-    : value_(static_cast<int>(roundf(f * (1 << bits_)))) {
-  std::cout << "Float constructor called" << std::endl;
-}
-
-Fixed::Fixed(const Fixed& other) : value_(other.value_) {
-  std::cout << "Copy constructor called" << std::endl;
+	std::cout << "Default constructor called\n";
 }
 
 Fixed::~Fixed() {
-  std::cout << "Destructor called" << std::endl;
+	std::cout << "Destructor called\n";
+}
+
+Fixed::Fixed(const Fixed& other) {
+	std::cout << "Copy constructor called\n";
+	value_ = other.value_;
 }
 
 Fixed& Fixed::operator=(const Fixed& other) {
-  std::cout << "Copy assignment operator called" << std::endl;
-  if (this != &other) {
-    value_ = other.value_;
-  }
-  return *this;
+	std::cout << "Copy assignment operator called\n";
+	if (this != &other) {
+		value_ = other.value_;
+	}
+	return *this;
 }
 
 int Fixed::getRawBits(void) const {
-  std::cout << "getRawBits member function called" << std::endl;
-  return value_;
+	std::cout << "getRawBits member function called\n";
+	return (value_);
 }
 
 void Fixed::setRawBits(int const raw) {
-  std::cout << "setRawBits member function called" << std::endl;
-  value_ = raw;
+	std::cout << "setRawBits member function called\n";
+	value_ = raw;
 }
 
-float Fixed::toFloat(void) const {
-  return static_cast<float>(value_) / static_cast<float>(1 << bits_);
+/* --------------------------------- ex01 ----------------------------------- */
+
+Fixed::Fixed(int value) {
+	std::cout << "Int constructor called\n";
+	const int shift = bits_;						// number of fractional bits
+	const int scale = 1 << shift;					// compute 2^bits_
+	const int scaled = value * scale;				// multiply integer by scale
+	value_ = scaled;								// store raw fixed-point representation
+}
+
+Fixed::Fixed(float f) {
+  std::cout << "Float constructor called\n";
+  const int   scale   = 1 << bits_;					// 2^bits_  (fixed-point scale)
+  const float scaled  = f * scale;					// move the binary point left
+  const float rounded = roundf(scaled);				// nearest integer (half away from 0)
+  const int   raw     = static_cast<int>(rounded);	// convert to raw fixed format
+  value_ = raw;										// store internal representation
 }
 
 int Fixed::toInt(void) const {
-  return value_ >> bits_;
+	return value_ >> bits_;
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed& x) {
-  os << x.toFloat();
-  return os;
+	os << x.toFloat();
+	return os;
 }
-
