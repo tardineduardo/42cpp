@@ -27,8 +27,8 @@ class Fixed {
 		//ex01
 		Fixed(const int value);					//ctor from int
 		Fixed(const float value);				//ctor from float
-		float toFloat(void) const;
 		int toInt(void) const;
+		float toFloat(void) const;
 };
 
 //ex01

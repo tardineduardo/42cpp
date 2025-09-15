@@ -45,10 +45,10 @@ Fixed::Fixed(int value) {
 	value_ = scaled;								// store raw fixed-point representation
 }
 
-Fixed::Fixed(float f) {
+Fixed::Fixed(float value) {
   std::cout << "Float constructor called\n";
   const int   scale   = 1 << bits_;					// 2^bits_  (fixed-point scale)
-  const float scaled  = f * scale;					// move the binary point left
+  const float scaled  = value * scale;				// move the binary point left
   const float rounded = roundf(scaled);				// nearest integer (half away from 0)
   const int   raw     = static_cast<int>(rounded);	// convert to raw fixed format
   value_ = raw;										// store internal representation
@@ -56,6 +56,12 @@ Fixed::Fixed(float f) {
 
 int Fixed::toInt(void) const {
 	return value_ >> bits_;
+}
+
+float Fixed::toFloat(void) const {
+  const int scale = 1 << bits_;       // 2^fractional_bits
+  float result = static_cast<float>(value_) / scale;
+  return result;
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed& x) {
