@@ -120,6 +120,10 @@ Fixed& Fixed::operator/(const Fixed& other) const {
 }
 
 Fixed& Fixed::operator++() {	//pre
+	0,00390625
+	
+
+
 }
 
 Fixed  Fixed::operator++(int) {	//post
