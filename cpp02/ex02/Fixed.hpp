@@ -31,30 +31,27 @@ class Fixed {
 		int		toInt(void) const;
 
 		//ex02
-		bool	operator>(const Fixed& other);
-		bool	operator<(const Fixed& other);
-		bool	operator>=(const Fixed& other);		
-		bool	operator<=(const Fixed& other);
-		bool	operator==(const Fixed& other);	
-		bool	operator!=(const Fixed& other);
-		Fixed&	operator+(const Fixed& other) const;
-		Fixed&	operator-(const Fixed& other) const;
-		Fixed&	operator*(const Fixed& other) const;
-		Fixed&	operator/(const Fixed& other) const;				
-		Fixed	operator++(int); // post
-		Fixed	operator--(int); // post
-		Fixed&	operator++();    // pre
-		Fixed&	operator--();    // pre
-
+		bool	operator>(const Fixed& other) const;
+		bool	operator<(const Fixed& other) const;
+		bool	operator>=(const Fixed& other) const;		
+		bool	operator<=(const Fixed& other) const;
+		bool	operator==(const Fixed& other) const;	
+		bool	operator!=(const Fixed& other) const;
+		Fixed	operator+(const Fixed& other) const;
+		Fixed	operator-(const Fixed& other) const;
+		Fixed	operator*(const Fixed& other) const;
+		Fixed	operator/(const Fixed& other) const;				
+		Fixed	operator++(int);						//post
+		Fixed	operator--(int);						//post
+		Fixed&	operator++(); 							//pre
+		Fixed&	operator--();							//pre
+		static Fixed& max(Fixed& a, Fixed& b);
+		static const Fixed& max(const Fixed& a, const Fixed& b);
+		static Fixed& min(Fixed& a, Fixed& b);
+		static const Fixed& min(const Fixed& a, const Fixed& b);
 };
 
 //ex01
 std::ostream& operator<<(std::ostream& os, const Fixed& x);
-
-//ex02
-Fixed& min(Fixed& val1, Fixed& val2);
-Fixed& min(const Fixed& val1, const Fixed& val2);
-Fixed& max(Fixed& val1, Fixed& val2);
-Fixed& max(const Fixed& val1, const Fixed& val2);
 
 #endif

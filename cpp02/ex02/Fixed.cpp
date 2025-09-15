@@ -69,68 +69,98 @@ std::ostream& operator<<(std::ostream& os, const Fixed& x) {
 	return os;
 }
 
-/* --------------------------------- ex03 ----------------------------------- */
+/* --------------------------------- ex02 ----------------------------------- */
 
-bool Fixed::operator>(const Fixed& other) {
+bool Fixed::operator>(const Fixed& other) const {
 	return (this->value_ > other.value_);	
 }
 
-bool Fixed::operator<(const Fixed& other) {
+bool Fixed::operator<(const Fixed& other) const {
 	return (this->value_ < other.value_);	
 }
 
-bool Fixed::operator>=(const Fixed& other) {
+bool Fixed::operator>=(const Fixed& other) const {
 	return (this->value_ >= other.value_);	
 }	
 
-bool Fixed::operator<=(const Fixed& other) {
+bool Fixed::operator<=(const Fixed& other) const {
 	return (this->value_ <= other.value_);	
 }
 
-bool Fixed::operator==(const Fixed& other) {
+bool Fixed::operator==(const Fixed& other) const {
 	return (this->value_ == other.value_);	
 }
 
-bool Fixed::operator!=(const Fixed& other) {
+bool Fixed::operator!=(const Fixed& other) const {
 	return (this->value_ != other.value_);	
 }
 
-Fixed& Fixed::operator+(const Fixed& other) const {
-	Fixed sum;
-	sum.setRawBits(this->value_ + other.value_);	
-	return sum;
+Fixed Fixed::operator+(const Fixed& other) const {
+    Fixed result;
+    result.setRawBits(this->value_ + other.value_);
+    return result;  // return by value (safe copy, no leak)
 }
 
-Fixed& Fixed::operator-(const Fixed& other) const {
-	Fixed difference;
-	difference.setRawBits(this->value_ + other.value_);	
-	return difference;
+Fixed Fixed::operator-(const Fixed& other) const {
+    Fixed result;
+    result.setRawBits(this->value_ - other.value_);
+    return result;
 }
 
-Fixed& Fixed::operator*(const Fixed& other) const {
-	Fixed product;
-	product.setRawBits(this->value_ + other.value_);	
-	return product;
+Fixed Fixed::operator*(const Fixed& other) const {
+    Fixed result;
+    result.setRawBits((this->value_ * other.value_) >> bits_);
+    return result;
 }
 
-Fixed& Fixed::operator/(const Fixed& other) const {
-	Fixed division;
-	division.setRawBits(this->value_ + other.value_);	
-	return division;
+Fixed Fixed::operator/(const Fixed& other) const {
+    Fixed result;
+    result.setRawBits((this->value_ << bits_) / other.value_);
+    return result;
 }
 
-Fixed& Fixed::operator++() {	//pre
-	0,00390625
-	
-
-
+Fixed& Fixed::operator++() {
+	++value_;
+	return *this;
 }
 
-Fixed  Fixed::operator++(int) {	//post
+Fixed  Fixed::operator++(int) {
+	Fixed temp = *this;
+	value_++;
+	return (temp);
 }
 
-Fixed& Fixed::operator--() {	//pre
+Fixed& Fixed::operator--() {
+	--value_;
+	return *this;
 }
 
-Fixed  Fixed::operator--(int) {	//post
+Fixed  Fixed::operator--(int) {
+	Fixed temp = *this;
+	value_--;
+	return (temp);
+}
+
+Fixed& Fixed::max(Fixed& val1, Fixed& val2){
+	if (val1 <= val2)
+		return val1;
+	return val2;
+}
+
+Fixed& Fixed::min(Fixed& val1, Fixed& val2){
+	if (val1 <= val2)
+		return val1;
+	return val2;
+}
+
+const Fixed& Fixed::max(const Fixed& val1, const Fixed& val2) {
+	if (val1 >= val2)
+		return val1;
+	return val2;
+}
+
+const Fixed& Fixed::min(const Fixed& val1, const Fixed& val2) {
+	if (val1 <= val2)
+		return val1;
+	return val2;
 }
