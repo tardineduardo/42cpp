@@ -4,8 +4,11 @@
 
 class ClapTrap
 {
+    private:
+std::string 
+
     public:
-        ClapTrap(void);
+        ClapTrap(std::string name);
         ClapTrap(const ClapTrap& other);
         ClapTrap &operator=(const ClapTrap &other);
         ~ClapTrap();
