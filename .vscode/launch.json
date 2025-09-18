@@ -8,8 +8,8 @@
       "args": ["sed", "rolou"],
       "stopAtEntry": false,
       "externalConsole": false,
-      "cwd": "/home/eduardo/Documents/repos/42cpp/cpp02/ex01",
-      "program": "/home/eduardo/Documents/repos/42cpp/cpp02/ex01/fixed01",
+      "cwd": "/nfs/homes/eduribei/Documentos/repos/42cpp/cpp03/ex00",
+      "program": "/nfs/homes/eduribei/Documentos/repos/42cpp/cpp03/ex00/clap",
       "MIMode": "gdb",
       "miDebuggerPath": "gdb",
       "setupCommands": [
