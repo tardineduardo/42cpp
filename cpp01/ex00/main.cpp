@@ -15,6 +15,9 @@
 
 int	main(void)
 {
+	Zombie test;
+	test.announce();
+
 	randomChump("Ben");
 	Zombie *madonna = newZombie("madonna");
 	madonna->announce();

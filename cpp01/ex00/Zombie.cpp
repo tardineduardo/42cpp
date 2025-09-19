@@ -19,7 +19,7 @@ Zombie::Zombie() {
 	name_ = name.str();
 }
 
-Zombie::Zombie(std::string name) {
+Zombie::Zombie(const std::string& name) {
 	name_ = name;
 }
 
@@ -32,6 +32,6 @@ void Zombie::announce(void) {
 	std::cout << "BraiiiiiiinnnzzzZ..." << std::endl;
 }
 
-std::string Zombie::name() {	
-	return Zombie::name_;
+std::string Zombie::name() const {	
+	return (name_);
 }

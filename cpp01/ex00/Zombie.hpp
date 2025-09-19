@@ -29,12 +29,12 @@ class Zombie {
 	public:
 		Zombie();
 		~Zombie();
-		std::string name();
-		Zombie(std::string name);
+		std::string name() const;
+		Zombie(const std::string& name);
 		void announce(void);
 };
 
-void	randomChump(std::string name);
-Zombie* newZombie(std::string name);
+void	randomChump(const std::string& name);
+Zombie* newZombie(const std::string& name);
 
 #endif
