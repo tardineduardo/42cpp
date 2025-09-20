@@ -1,7 +1,7 @@
 NAME	= violence
 
 CC		= g++
-CFLAGS= -std=c++98 -Wall -Wextra -Werror -g -I.
+CFLAGS= -std=c++98 -Wall -Wextra -Werror -I.
 
 SRCS	=	HumanA.cpp \
 			HumanB.cpp \

@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 21:01:41 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/03 21:01:48 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/09/20 12:37:18 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,8 @@
 # include <iostream>
 # include <iomanip>
 
-class Zombie {
+class Zombie
+{
 	private:
 		std::string	name_;
 		static int	zombies_alive;
