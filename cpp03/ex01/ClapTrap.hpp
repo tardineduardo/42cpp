@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:52:09 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/21 17:03:40 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/09/21 17:32:56 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,10 +16,8 @@
 
 class ClapTrap
 {
-	private:
-		static std::string	_type;
-
-    protected:
+	protected:
+		std::string		_type;	
 		std::string		_name;
 		unsigned int	_hitpoints;
 		unsigned int	_maxhitpoints;

@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:52:02 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/21 17:08:33 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/09/21 17:31:05 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ ClapTrap::ClapTrap()
 ClapTrap::ClapTrap(std::string name)
 {
 	std::cout << "[base name constructor called]\n";
+	_type = "ClapTrap";
 	_name = name;
 	_hitpoints = 10;
 	_maxhitpoints = 10;

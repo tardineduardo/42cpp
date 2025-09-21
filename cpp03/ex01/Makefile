@@ -1,4 +1,4 @@
-NAME	= clap
+NAME	= scav
 
 CC		= g++
 CFLAGS= -std=c++98 -Wall -Wextra -Werror -I.
