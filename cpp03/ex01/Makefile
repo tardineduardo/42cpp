@@ -3,7 +3,7 @@ NAME	= clap
 CC		= g++
 CFLAGS= -std=c++98 -Wall -Wextra -Werror -I.
 
-SRCS	= main.cpp ClapTrap.cpp
+SRCS	= main.cpp ClapTrap.cpp ScavTrap.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 
