@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 17:04:14 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/21 18:01:32 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:53:21 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ ScavTrap::ScavTrap() : ClapTrap()
 	_type = "ScavTrap";
 	_hitpoints = 100;
 	_maxhitpoints = 100;
+	_energy_points = 50; 	
 	_attack_damage = 20;
 	_guard_mode = false;	
 }
@@ -28,6 +29,7 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 	_type = "ScavTrap";
 	_name = name;
 	_hitpoints = 100;
+	_energy_points = 50; 	
 	_maxhitpoints = 100;
 	_attack_damage = 20;
 	_guard_mode = false;	
@@ -47,6 +49,7 @@ ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other)
 	_energy_points = other._energy_points;
 	_attack_damage = other._attack_damage;
 	_isdead = other._isdead;
+    _guard_mode = other._guard_mode;	
 	if (_isdead)
 		print_message_born_dead(other);
 }
@@ -55,11 +58,14 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 {
 	if (this != &other) {
 		std::cout << "[base default assigment operator called]\n";
+	    ClapTrap::operator=(other);
+		_type = "ScavTrap";
 		_hitpoints = other._hitpoints;
 		_maxhitpoints = other._maxhitpoints;
 		_energy_points = other._energy_points;
 		_attack_damage = other._attack_damage;
 		_isdead = other._isdead;
+	    _guard_mode = other._guard_mode;		
 		if (_isdead)
 			print_message_copied_dead(other);
 	}

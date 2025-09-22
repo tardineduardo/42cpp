@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:52:02 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/21 18:51:49 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/09/22 19:44:36 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ ClapTrap::ClapTrap(const ClapTrap& other)
 ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 {
 	std::cout << "[base default assigment operator called]\n";
+	_name = other._name;
 	_hitpoints = other._hitpoints;
 	_maxhitpoints = other._maxhitpoints;
 	_energy_points = other._energy_points;
@@ -144,7 +145,7 @@ void ClapTrap::print_message_no_energy() const {
 						std::cout << _type
 								  << " "
 								  << _name
-								  << " has no energy to repair itself.\n";
+								  << " has no energy points left.\n";
 }
 void ClapTrap::print_message_attack(const std::string& target) const {
 						std::cout << _type
