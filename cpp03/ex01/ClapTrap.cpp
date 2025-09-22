@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:52:02 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/21 17:31:05 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/09/21 18:51:49 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,19 +129,27 @@ void ClapTrap::beRepaired(unsigned int amount)
 /* ------------------------------ messages ---------------------------------- */
 
 void ClapTrap::print_message_dead() const {
-						std::cout << _name
+						std::cout << _type
+								  << " "
+								  << _name
 								  << " is dead.\n";
 }
 void ClapTrap::print_message_died() const {
-						std::cout << _name
+						std::cout << _type
+								  << " "
+								  << _name
 			  					  << " died\n";
 }
 void ClapTrap::print_message_no_energy() const {
-						std::cout << _name
+						std::cout << _type
+								  << " "
+								  << _name
 								  << " has no energy to repair itself.\n";
 }
 void ClapTrap::print_message_attack(const std::string& target) const {
-						std::cout << _name
+						std::cout << _type
+								  << " "
+								  << _name
 								  << " attacks "
 								  << target
 								  << ", causing "
@@ -149,25 +157,33 @@ void ClapTrap::print_message_attack(const std::string& target) const {
 								  << " points of damage.\n";
 }
 void ClapTrap::print_message_damage(const int points) const {
-						std::cout << _name
+						std::cout << _type
+								  << " "
+								  << _name
 								  << " took "
 								  << points
 								  << " hit points.\n";
 }
 void ClapTrap::print_message_repair() const {
-						std::cout << _name
+						std::cout << _type
+								  << " "
+								  << _name
 								  << " repaired itself. Hit points back to "
 								  << _hitpoints
 								  << ".\n";
 }
 void ClapTrap::print_message_born_dead(const ClapTrap& other) const {
-						std::cout << _name
+						std::cout << _type
+								  << " "
+								  << _name
 								  << " was born dead because "
 								  << other._name
 								  << " is dead.\n";
 }
 void ClapTrap::print_message_copied_dead(const ClapTrap& other) const {
-						std::cout << _name
+						std::cout << _type
+								  << " "
+								  << _name
 								  << " is dead because copied from dead "
 								  << other._name
 								  << ".\n";
