@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:52:02 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/22 19:44:36 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/09/22 21:42:23 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 ClapTrap::ClapTrap()
 {
-	std::cout << "[base default constructor called]\n";
+	std::cout << YEL "[CT base default constructor called]\n" RESET;
 	_type = "ClapTrap";
 	_name = "Unnamed";
 	_hitpoints = 10;
@@ -26,7 +26,7 @@ ClapTrap::ClapTrap()
 
 ClapTrap::ClapTrap(std::string name)
 {
-	std::cout << "[base name constructor called]\n";
+	std::cout << YEL "[CT base name constructor called]\n" RESET;
 	_type = "ClapTrap";
 	_name = name;
 	_hitpoints = 10;
@@ -37,12 +37,12 @@ ClapTrap::ClapTrap(std::string name)
 }
 
 ClapTrap::~ClapTrap() {
-	std::cout << "[base destructor called]\n";
+	std::cout << YEL "[CT base destructor called]\n" RESET;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other)
 {
-	std::cout << "[base default copy constructor called]\n";
+	std::cout << YEL "[CT base default copy constructor called]\n" RESET;
 	_name = other._name;
 	_hitpoints = other._hitpoints;
 	_maxhitpoints = other._maxhitpoints;
@@ -55,7 +55,7 @@ ClapTrap::ClapTrap(const ClapTrap& other)
 
 ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 {
-	std::cout << "[base default assigment operator called]\n";
+	std::cout << YEL "[CT base default assigment operator called]\n" RESET;
 	_name = other._name;
 	_hitpoints = other._hitpoints;
 	_maxhitpoints = other._maxhitpoints;
@@ -133,7 +133,7 @@ void ClapTrap::print_message_dead() const {
 						std::cout << _type
 								  << " "
 								  << _name
-								  << " is dead.\n";
+								  << " is dead. 💀\n";
 }
 void ClapTrap::print_message_died() const {
 						std::cout << _type
@@ -145,7 +145,7 @@ void ClapTrap::print_message_no_energy() const {
 						std::cout << _type
 								  << " "
 								  << _name
-								  << " has no energy points left.\n";
+								  << " has no energy points left. 🪫\n";
 }
 void ClapTrap::print_message_attack(const std::string& target) const {
 						std::cout << _type

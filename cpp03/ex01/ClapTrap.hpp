@@ -6,13 +6,17 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:52:09 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/21 17:32:56 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/09/22 21:40:30 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLAPTRAP_HPP
 # define CLAPTRAP_HPP
 # include <iostream>
+
+# define RED        "\001\033[31m\002"
+# define YEL        "\001\033[33m\002"
+# define RESET		"\001\033[0m\002"
 
 class ClapTrap
 {

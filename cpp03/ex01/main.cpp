@@ -6,11 +6,12 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:52:13 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/21 15:12:58 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/09/22 21:13:49 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ClapTrap.hpp"
+#include "ScavTrap.hpp"
 
 # include <string>
 
@@ -30,5 +31,8 @@ int main(void)
 	ClapTrap pedro(eduardo);
 	ClapTrap andre = eduardo;
 	ClapTrap ana("Ana");
+	ScavTrap one;
+
+	
 	ana = eduardo;
 }

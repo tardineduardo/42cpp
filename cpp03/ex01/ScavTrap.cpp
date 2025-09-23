@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 17:04:14 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/22 19:53:21 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/09/22 21:19:46 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 ScavTrap::ScavTrap() : ClapTrap()
 {
-	std::cout << "[derived default constructor called]\n";
+	std::cout << GRN "[ST derived default constructor called]\n" RESET;
 	_type = "ScavTrap";
 	_hitpoints = 100;
 	_maxhitpoints = 100;
@@ -25,7 +25,7 @@ ScavTrap::ScavTrap() : ClapTrap()
 
 ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 {
-	std::cout << "[derived name constructor called]\n";
+	std::cout << GRN "[ST derived name constructor called]\n" RESET;
 	_type = "ScavTrap";
 	_name = name;
 	_hitpoints = 100;
@@ -36,12 +36,12 @@ ScavTrap::ScavTrap(std::string name) : ClapTrap(name)
 }
 
 ScavTrap::~ScavTrap() {
-	std::cout << "[derived destructor called]\n";
+	std::cout << GRN "[ST derived destructor called]\n" RESET;
 }
 
 ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other)  
 {
-	std::cout << "[derived default copy constructor called]\n";
+	std::cout << GRN "[ST derived default copy constructor called]\n" RESET;
 	_type = "ScavTrap";
 	_name = other._name;
 	_hitpoints = other._hitpoints;
@@ -49,7 +49,7 @@ ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other)
 	_energy_points = other._energy_points;
 	_attack_damage = other._attack_damage;
 	_isdead = other._isdead;
-    _guard_mode = other._guard_mode;	
+    _guard_mode = false;	
 	if (_isdead)
 		print_message_born_dead(other);
 }
@@ -57,8 +57,7 @@ ScavTrap::ScavTrap(const ScavTrap& other) : ClapTrap(other)
 ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 {
 	if (this != &other) {
-		std::cout << "[base default assigment operator called]\n";
-	    ClapTrap::operator=(other);
+		std::cout << GRN "[ST derived default assigment operator called]\n" RESET;
 		_type = "ScavTrap";
 		_hitpoints = other._hitpoints;
 		_maxhitpoints = other._maxhitpoints;

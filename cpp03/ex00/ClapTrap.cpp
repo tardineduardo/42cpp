@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:52:02 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/22 19:43:27 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/09/22 22:26:08 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 ClapTrap::ClapTrap()
 {
-	std::cout << "[default constructor called]\n";
+	std::cout << YEL "[CT default constructor called for Unnamed]\n" RESET;
 	_name = "Unnamed";
 	_hitpoints = 10;
 	_maxhitpoints = 10;
@@ -25,7 +25,7 @@ ClapTrap::ClapTrap()
 
 ClapTrap::ClapTrap(std::string name)
 {
-	std::cout << "[name constructor called]\n";
+	std::cout << YEL "[CT name constructor called for " << name << "]\n" RESET;
 	_name = name;
 	_hitpoints = 10;
 	_maxhitpoints = 10;
@@ -35,12 +35,12 @@ ClapTrap::ClapTrap(std::string name)
 }
 
 ClapTrap::~ClapTrap() {
-	std::cout << "[destructor called]\n";
+	std::cout << RED "🗑️ [CT destructor called for " << _name << "]\n" RESET;
 }
 
 ClapTrap::ClapTrap(const ClapTrap& other)
 {
-	std::cout << "[default copy constructor called]\n";
+	std::cout << YEL "[default copy constructor called]\n" RESET;
 	_name = other._name;
 	_hitpoints = other._hitpoints;
 	_maxhitpoints = other._maxhitpoints;
@@ -54,7 +54,7 @@ ClapTrap::ClapTrap(const ClapTrap& other)
 ClapTrap& ClapTrap::operator=(const ClapTrap& other)
 {
 	if (this != &other) {
-		std::cout << "[default assigment operator called]\n";
+		std::cout << YEL "[default assigment operator called]\n" RESET;
 		_name = other._name;
 		_hitpoints = other._hitpoints;
 		_maxhitpoints = other._maxhitpoints;
@@ -130,22 +130,22 @@ void ClapTrap::beRepaired(unsigned int amount)
 /* ------------------------------ messages ---------------------------------- */
 
 void ClapTrap::print_message_dead() const {
-						std::cout << "ClapTrap " 
+						std::cout << "⚰️  ClapTrap " 
 								  << _name
-								  << " is dead.\n";
+								  << " is dead\n";
 }
 void ClapTrap::print_message_died() const {
-						std::cout << "ClapTrap " 
+						std::cout << "💀 ClapTrap " 
 								  << _name
-			  					  << " died\n";
+			  					  << " died \n";
 }
 void ClapTrap::print_message_no_energy() const {
-						std::cout << "ClapTrap "
+						std::cout << "🪫 ClapTrap "
 								  << _name
-								  << " has no energy points left.\n";
+								  << " has no energy points left\n";
 }
 void ClapTrap::print_message_attack(const std::string& target) const {
-						std::cout << "ClapTrap " 
+						std::cout << "🔪 ClapTrap " 
 								  << _name
 								  << " attacks "
 								  << target
@@ -154,28 +154,28 @@ void ClapTrap::print_message_attack(const std::string& target) const {
 								  << " points of damage.\n";
 }
 void ClapTrap::print_message_damage(const int points) const {
-						std::cout << "ClapTrap " 
+						std::cout << "💥 ClapTrap " 
 								  << _name
 								  << " took "
 								  << points
-								  << " hit points.\n";
+								  << " hit point(s)\n";
 }
 void ClapTrap::print_message_repair() const {
-						std::cout << "ClapTrap " 
+						std::cout << "❤️‍🩹 ClapTrap " 
 								  << _name
-								  << " repaired itself. Hit points back to "
+								  << " repaired itself Hit points back to "
 								  << _hitpoints
 								  << ".\n";
 }
 void ClapTrap::print_message_born_dead(const ClapTrap& other) const {
-						std::cout << "ClapTrap " 
+						std::cout << "⚰️  ClapTrap " 
 								  << _name
 								  << " was born dead because "
 								  << other._name
 								  << " is dead.\n";
 }
 void ClapTrap::print_message_copied_dead(const ClapTrap& other) const {
-						std::cout << "ClapTrap "
+						std::cout << "⚰️  ClapTrap "
 								  << _name
 								  << " is dead because copied from dead "
 								  << other._name
