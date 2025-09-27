@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   FragTrap.cpp                                       :+:      :+:    :+:   */
+/*   FlagTrap.cpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,37 +10,36 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "FragTrap.hpp"
+#include "FlagTrap.hpp"
 
-FragTrap::FragTrap() : ClapTrap()
+FlagTrap::FlagTrap() : ClapTrap()
 {
-	std::cout << "[FT derived default constructor called]\n";
-	_type = "FragTrap";
-	_hitpoints = 100;
-	_maxhitpoints = 100;
-	_attack_damage = 30;
-	_guard_mode = false;	
+	_type			= "FlagTrap";
+	_hitpoints		= 100;
+	_maxhitpoints	= 100;
+	_energy_points	= 100;
+	_attack_damage	= 30;
+	std::cout << BLU "[FT default constructor called for Unnamed]\n" RESET;
 }
 
-FragTrap::FragTrap(std::string name) : ClapTrap(name)
+FlagTrap::FlagTrap(const std::string& name) : ClapTrap(name)
 {
-	std::cout << "[FT derived name constructor called]\n";
-	_type = "FragTrap";
-	_name = name;
-	_hitpoints = 100;
-	_maxhitpoints = 100;
-	_attack_damage = 30;
-	_guard_mode = false;	
+	_type			= "FlagTrap";
+	_hitpoints		= 100;
+	_maxhitpoints	= 100;
+	_energy_points	= 100;
+	_attack_damage	= 30;
+	std::cout << BLU "[FT name constructor called for " << _type << " " << name << "]\n" RESET;
 }
 
-FragTrap::~FragTrap() {
-	std::cout << "[FT derived destructor called]\n";
+FlagTrap::~FlagTrap() {
+	std::cout << RED "🗑️  [FT destructor called for " << _type << " " << _name << "]\n" RESET;
 }
 
-FragTrap::FragTrap(const FragTrap& other) : ClapTrap(other)  
+FlagTrap::FlagTrap(const FlagTrap& other) : ClapTrap(other)  
 {
-	std::cout << "[FT derived default copy constructor called]\n";
-	_type 			= "FragTrap";
+	std::cout << BLU "[FT default copy constructor called]\n" RESET;
+	_type 			= "FlagTrap";
 	_name 			= other._name;
 	_hitpoints 		= other._hitpoints;
 	_maxhitpoints	= other._maxhitpoints;
@@ -51,30 +50,26 @@ FragTrap::FragTrap(const FragTrap& other) : ClapTrap(other)
 		print_message_born_dead(other);
 }
 
-FragTrap& FragTrap::operator=(const FragTrap& other)
+FlagTrap& FlagTrap::operator=(const FlagTrap& other)
 {
+	std::cout << BLU "[FT default assignment operator called]\n" RESET;
 	if (this != &other) {
-		std::cout << "[FT derived default assigment operator called]\n";
-		_hitpoints = other._hitpoints;
-		_maxhitpoints = other._maxhitpoints;
-		_energy_points = other._energy_points;
-		_attack_damage = other._attack_damage;
-		_isdead = other._isdead;
+		ClapTrap::operator=(other);
+		_type = "FlagTrap";
 		if (_isdead)
 			print_message_copied_dead(other);
 	}
 	return (*this);
 }
 
-void FragTrap::highFivesGuys(void) {
+void FlagTrap::highFivesGuys(void) {
 	print_message_high_five();
 }
 
 /* ------------------------------ messages ---------------------------------- */
 
-void FragTrap::print_message_high_five() const {
+void FlagTrap::print_message_high_five() const {
 						std::cout << "FlagTrap " 
 								  << _name
 								  << " gives a high five.\n";
 }
-

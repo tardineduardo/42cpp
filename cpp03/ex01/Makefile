@@ -1,7 +1,7 @@
 NAME	= scav
 
 CC		= g++
-CFLAGS= -std=c++98 -Wall -Wextra -Werror -I.
+CFLAGS= -std=c++98 -Wall -Wextra -Werror -g -I.
 
 SRCS	= main.cpp ClapTrap.cpp ScavTrap.cpp
 

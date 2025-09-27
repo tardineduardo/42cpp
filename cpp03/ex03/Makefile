@@ -3,7 +3,7 @@ NAME	= diamond
 CC		= g++
 CFLAGS= -std=c++98 -Wall -Wextra -Werror -I.
 
-SRCS	= main.cpp ClapTrap.cpp FragTrap.cpp ScavTrap.cpp DiamondTrap.cpp
+SRCS	= main.cpp ClapTrap.cpp FlagTrap.cpp ScavTrap.cpp DiamondTrap.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 
