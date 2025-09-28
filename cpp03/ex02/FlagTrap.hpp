@@ -10,8 +10,8 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FlagTrap_HPP
-# define FlagTrap_HPP
+#ifndef FLAGTRAP_HPP
+# define FLAGTTRAP_HPP
 # include <iostream>
 # include "ClapTrap.hpp"
 

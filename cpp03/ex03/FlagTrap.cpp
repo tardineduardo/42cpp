@@ -14,32 +14,31 @@
 
 FlagTrap::FlagTrap() : ClapTrap()
 {
-	std::cout << "[FT derived default constructor called]\n";
-	_type = "FlagTrap";
-	_hitpoints = 100;
-	_maxhitpoints = 100;
-	_attack_damage = 30;
-	_guard_mode = false;	
+	_type			= "FlagTrap";
+	_hitpoints		= 100;
+	_maxhitpoints	= 100;
+	_energy_points	= 100;
+	_attack_damage	= 30;
+	std::cout << BLU "[FT default constructor called for Unnamed]\n" RESET;
 }
 
-FlagTrap::FlagTrap(std::string name) : ClapTrap(name)
+FlagTrap::FlagTrap(const std::string& name) : ClapTrap(name)
 {
-	std::cout << "[FT derived name constructor called]\n";
-	_type = "FlagTrap";
-	_name = name;
-	_hitpoints = 100;
-	_maxhitpoints = 100;
-	_attack_damage = 30;
-	_guard_mode = false;	
+	_type			= "FlagTrap";
+	_hitpoints		= 100;
+	_maxhitpoints	= 100;
+	_energy_points	= 100;
+	_attack_damage	= 30;
+	std::cout << BLU "[FT name constructor called for " << _type << " " << name << "]\n" RESET;
 }
 
 FlagTrap::~FlagTrap() {
-	std::cout << "[FT derived destructor called]\n";
+	std::cout << RED "🗑️  [FT destructor called for " << _type << " " << _name << "]\n" RESET;
 }
 
 FlagTrap::FlagTrap(const FlagTrap& other) : ClapTrap(other)  
 {
-	std::cout << "[FT derived default copy constructor called]\n";
+	std::cout << BLU "[FT default copy constructor called]\n" RESET;
 	_type 			= "FlagTrap";
 	_name 			= other._name;
 	_hitpoints 		= other._hitpoints;
@@ -53,13 +52,10 @@ FlagTrap::FlagTrap(const FlagTrap& other) : ClapTrap(other)
 
 FlagTrap& FlagTrap::operator=(const FlagTrap& other)
 {
+	std::cout << BLU "[FT default assignment operator called]\n" RESET;
 	if (this != &other) {
-		std::cout << "[FT derived default assigment operator called]\n";
-		_hitpoints = other._hitpoints;
-		_maxhitpoints = other._maxhitpoints;
-		_energy_points = other._energy_points;
-		_attack_damage = other._attack_damage;
-		_isdead = other._isdead;
+		ClapTrap::operator=(other);
+		_type = "FlagTrap";
 		if (_isdead)
 			print_message_copied_dead(other);
 	}
@@ -77,4 +73,3 @@ void FlagTrap::print_message_high_five() const {
 								  << _name
 								  << " gives a high five.\n";
 }
-
