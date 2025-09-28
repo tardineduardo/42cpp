@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 17:04:14 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/22 21:19:46 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/09/28 13:03:44 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,23 +14,25 @@
 
 ScavTrap::ScavTrap() : ClapTrap()
 {
-	_type = "ScavTrap";
-	_hitpoints = 100;
-	_maxhitpoints = 100;
-	_energy_points = 50; 	
-	_attack_damage = 20;
-	_guard_mode = false;	
-	std::cout << GRN "[ST default constructor called for " << _name << "]\n" RESET;
+	_type 			= "ScavTrap";
+	_name			= "Unnamed";
+	_hitpoints		= ST_HITPOINTS;
+	_maxhitpoints	= ST_MAXHITPOINTS;
+	_energy_points	= ST_ENERGYPOINTS;
+	_attack_damage	= ST_ATTACKDAMAGE;
+	_guard_mode		= false;
+	std::cout << GRN "[ST default constructor called for " << _type << " " << _name << "]\n" RESET;
 }
 
 ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name)
 {
-	_type = "ScavTrap";
-	_hitpoints = 100;
-	_energy_points = 50; 	
-	_maxhitpoints = 100;
-	_attack_damage = 20;
-	_guard_mode = false;	
+	_type			= "ScavTrap";
+	_name			= name;
+	_hitpoints		= ST_HITPOINTS;
+	_maxhitpoints	= ST_MAXHITPOINTS;
+	_energy_points	= ST_ENERGYPOINTS; 	
+	_attack_damage	= ST_ATTACKDAMAGE;
+	_guard_mode		= false;	
 	std::cout << GRN "[ST name constructor called for " << _type << " " << name << "]\n" RESET;
 }
 

@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 16:48:04 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/22 21:37:53 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/09/28 12:22:50 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,25 @@
 # include <iostream>
 # include "ClapTrap.hpp"
 
-# define RED        "\001\033[31m\002"
-# define GRN        "\001\033[32m\002"
-# define RESET		"\001\033[0m\002"
+# ifndef ST_HITPOINTS
+#  define ST_HITPOINTS 100
+# endif
+
+# ifndef ST_MAXHITPOINTS
+#  define ST_MAXHITPOINTS 100
+# endif
+
+# ifndef ST_ENERGYPOINTS
+#  define ST_ENERGYPOINTS 50
+# endif
+
+# ifndef ST_ATTACKDAMAGE
+#  define ST_ATTACKDAMAGE 20
+# endif
+
+# define RED	"\001\033[31m\002"
+# define GRN	"\001\033[32m\002"
+# define RESET	"\001\033[0m\002"
 
 class ScavTrap : virtual public ClapTrap
 {

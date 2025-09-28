@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:52:02 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/22 22:26:08 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/09/28 11:04:18 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,13 @@
 
 ClapTrap::ClapTrap()
 {
-	_type = "ClapTrap";
-	_name = "Unnamed";
-	_hitpoints = 10;
-	_maxhitpoints = 10;
-	_energy_points = 10;
-	_attack_damage = 0;
-	_isdead = false;
+	_type			= "ClapTrap";
+	_name			= "Unnamed";
+	_hitpoints		= CT_HITPOINTS;
+	_maxhitpoints	= CT_MAXHITPOINTS;
+	_energy_points	= CT_ENERGYPOINTS;
+	_attack_damage	= CT_ATTACKDAMAGE;
+	_isdead			= false;
 	std::cout << YEL "[CT default constructor called for Unnamed]\n" RESET;
 }
 
@@ -28,10 +28,10 @@ ClapTrap::ClapTrap(const std::string& name)
 {
 	_type = "ClapTrap";
 	_name = name;
-	_hitpoints = 10;
-	_maxhitpoints = 10;
-	_energy_points = 10;
-	_attack_damage = 0;
+	_hitpoints		= CT_HITPOINTS;
+	_maxhitpoints	= CT_MAXHITPOINTS;
+	_energy_points	= CT_ENERGYPOINTS;
+	_attack_damage	= CT_ATTACKDAMAGE;
 	_isdead = false;
 	std::cout << YEL "[CT name constructor called for " << _type << " " << name << "]\n" RESET;
 }

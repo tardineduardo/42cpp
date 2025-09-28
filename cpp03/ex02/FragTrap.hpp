@@ -6,11 +6,11 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/21 16:48:04 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/22 21:25:51 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/09/28 10:56:55 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef FLAGTRAP_HPP
+#ifndef FRAGTRAP_HPP
 # define FLAGTTRAP_HPP
 # include <iostream>
 # include "ClapTrap.hpp"
@@ -19,7 +19,7 @@
 # define BLU        "\001\033[34m\002"
 # define RESET		"\001\033[0m\002"
 
-class FlagTrap : public ClapTrap
+class FragTrap : public ClapTrap
 {
 	protected:
 		// messages
@@ -27,12 +27,12 @@ class FlagTrap : public ClapTrap
 
     public:
 		// canonicals
-        FlagTrap();									// default ctor
-        FlagTrap(const FlagTrap& other);			// default copy ctor
-        FlagTrap &operator=(const FlagTrap &other);	// default assignt ctor
-        ~FlagTrap();								// destructor
+        FragTrap();									// default ctor
+        FragTrap(const FragTrap& other);			// default copy ctor
+        FragTrap &operator=(const FragTrap &other);	// default assignt ctor
+        ~FragTrap();								// destructor
 
-		FlagTrap(const std::string& name);
+		FragTrap(const std::string& name);
 		void highFivesGuys(void);
 };
 

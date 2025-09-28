@@ -6,13 +6,29 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/20 18:52:09 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/22 21:25:33 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/09/28 12:23:17 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CLAPTRAP_HPP
 # define CLAPTRAP_HPP
 # include <iostream>
+
+# ifndef CT_HITPOINTS
+#  define CT_HITPOINTS 10
+# endif
+
+# ifndef CT_MAXHITPOINTS
+#  define CT_MAXHITPOINTS 10
+# endif
+
+# ifndef CT_ENERGYPOINTS
+#  define CT_ENERGYPOINTS 10
+# endif
+
+# ifndef CT_ATTACKDAMAGE
+#  define CT_ATTACKDAMAGE 0
+# endif
 
 # define RED        "\001\033[31m\002"
 # define YEL        "\001\033[33m\002"
