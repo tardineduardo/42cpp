@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/03 20:37:05 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/03 20:37:11 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/09/20 12:38:27 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void Zombie::announce(void)
 }
 
 std::string Zombie::name()
-{	
+{
 	return Zombie::name_;
 }
 
-void Zombie::set_name(std::string name)
+void Zombie::set_name(const std::string& name)
 {
 	this->name_ = name;
 }

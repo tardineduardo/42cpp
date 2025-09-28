@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/20 18:49:46 by eduribei          #+#    #+#             */
+/*   Updated: 2025/09/20 18:49:47 by eduribei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Fixed.hpp"
 
 const int Fixed::bits_ = FRACTIONAL_BITS;
@@ -46,12 +58,12 @@ Fixed::Fixed(int value) {
 }
 
 Fixed::Fixed(float value) {
-  std::cout << "Float constructor called\n";
-  const int   scale   = 1 << bits_;					// 2^bits_  (fixed-point scale)
-  const float scaled  = value * scale;				// move the binary point left
-  const float rounded = roundf(scaled);				// nearest integer (half away from 0)
-  const int   raw     = static_cast<int>(rounded);	// convert to raw fixed format
-  value_ = raw;										// store internal representation
+	std::cout << "Float constructor called\n";
+	const int   scale   = 1 << bits_;					// 2^bits_  (fixed-point scale)
+	const float scaled  = value * scale;				// move the binary point left
+	const float rounded = roundf(scaled);				// nearest integer (half away from 0)
+	const int   raw     = static_cast<int>(rounded);	// convert to raw fixed format
+	value_ = raw;										// store internal representation
 }
 
 int Fixed::toInt(void) const {
@@ -59,9 +71,9 @@ int Fixed::toInt(void) const {
 }
 
 float Fixed::toFloat(void) const {
-  const int scale = 1 << bits_;       // 2^fractional_bits
-  float result = static_cast<float>(value_) / scale;
-  return result;
+	const int scale = 1 << bits_;
+	float result = static_cast<float>(value_) / scale;
+	return result;
 }
 
 std::ostream& operator<<(std::ostream& os, const Fixed& x) {

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/20 18:49:49 by eduribei          #+#    #+#             */
+/*   Updated: 2025/09/20 18:49:50 by eduribei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
@@ -18,17 +30,17 @@ class Fixed {
 		Fixed();								//default constructor
 		~Fixed();								//destructor
 		Fixed(const Fixed& other);				//default copy constr
-		Fixed& operator=(const Fixed& other);	//copy assignment op.
+		Fixed&	operator=(const Fixed& other);	//copy assignment op.
 
 		//ex00 - from subject
-		int getRawBits(void) const;
-		void setRawBits(int const raw);
+		int		getRawBits(void) const;
+		void	setRawBits(int const raw);
 
 		//ex01
 		Fixed(const int value);					//ctor from int
 		Fixed(const float value);				//ctor from float
-		int toInt(void) const;
-		float toFloat(void) const;
+		int		toInt(void) const;
+		float	toFloat(void) const;
 };
 
 //ex01

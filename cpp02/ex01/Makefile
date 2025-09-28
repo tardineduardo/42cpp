@@ -1,7 +1,7 @@
 NAME	= fixed01
 
 CC		= g++
-CFLAGS= -std=c++98 -Wall -Wextra -Werror -g -I.
+CFLAGS= -std=c++98 -Wall -Wextra -Werror -I.
 
 SRCS	= main.cpp Fixed.cpp
 

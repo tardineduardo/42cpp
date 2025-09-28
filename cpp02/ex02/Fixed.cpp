@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.cpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/20 18:50:19 by eduribei          #+#    #+#             */
+/*   Updated: 2025/09/20 18:50:20 by eduribei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "Fixed.hpp"
 
 const int Fixed::bits_ = FRACTIONAL_BITS;
@@ -46,7 +58,7 @@ Fixed::Fixed(int value) {
 }
 
 Fixed::Fixed(float value) {
-  std::cout << "Float constructor called\n";
+	std::cout << "Float constructor called\n";
 	const int   scale   = 1 << bits_;					// 2^bits_  (fixed-point scale)
 	const float scaled  = value * scale;				// move the binary point left
 	const float rounded = roundf(scaled);				// nearest integer (half away from 0)
@@ -59,7 +71,7 @@ int Fixed::toInt(void) const {
 }
 
 float Fixed::toFloat(void) const {
-	const int scale = 1 << bits_;       // 2^fractional_bits
+	const int scale = 1 << bits_;
 	float result = static_cast<float>(value_) / scale;
 	return result;
 }
@@ -72,50 +84,50 @@ std::ostream& operator<<(std::ostream& os, const Fixed& x) {
 /* --------------------------------- ex02 ----------------------------------- */
 
 bool Fixed::operator>(const Fixed& other) const {
-	return (this->value_ > other.value_);	
+	return (value_ > other.value_);	
 }
 
 bool Fixed::operator<(const Fixed& other) const {
-	return (this->value_ < other.value_);	
+	return (value_ < other.value_);	
 }
 
 bool Fixed::operator>=(const Fixed& other) const {
-	return (this->value_ >= other.value_);	
+	return (value_ >= other.value_);	
 }	
 
 bool Fixed::operator<=(const Fixed& other) const {
-	return (this->value_ <= other.value_);	
+	return (value_ <= other.value_);	
 }
 
 bool Fixed::operator==(const Fixed& other) const {
-	return (this->value_ == other.value_);	
+	return (value_ == other.value_);	
 }
 
 bool Fixed::operator!=(const Fixed& other) const {
-	return (this->value_ != other.value_);	
+	return (value_ != other.value_);	
 }
 
 Fixed Fixed::operator+(const Fixed& other) const {
     Fixed result;
-    result.setRawBits(this->value_ + other.value_);
+    result.setRawBits(value_ + other.value_);
     return result;  // return by value (safe copy, no leak)
 }
 
 Fixed Fixed::operator-(const Fixed& other) const {
     Fixed result;
-    result.setRawBits(this->value_ - other.value_);
+    result.setRawBits(value_ - other.value_);
     return result;
 }
 
 Fixed Fixed::operator*(const Fixed& other) const {
     Fixed result;
-    result.setRawBits((this->value_ * other.value_) >> bits_);
+    result.setRawBits((value_ * other.value_) >> bits_);
     return result;
 }
 
 Fixed Fixed::operator/(const Fixed& other) const {
     Fixed result;
-    result.setRawBits((this->value_ << bits_) / other.value_);
+    result.setRawBits((value_ << bits_) / other.value_);
     return result;
 }
 
@@ -141,13 +153,13 @@ Fixed  Fixed::operator--(int) {
 	return (temp);
 }
 
-Fixed& Fixed::max(Fixed& val1, Fixed& val2){
-	if (val1 <= val2)
+Fixed& Fixed::max(Fixed& val1, Fixed& val2) {
+	if (val1 >= val2)
 		return val1;
 	return val2;
 }
 
-Fixed& Fixed::min(Fixed& val1, Fixed& val2){
+Fixed& Fixed::min(Fixed& val1, Fixed& val2) {
 	if (val1 <= val2)
 		return val1;
 	return val2;

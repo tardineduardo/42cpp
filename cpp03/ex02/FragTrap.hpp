@@ -1,0 +1,39 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   FlagTrap.hpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/21 16:48:04 by eduribei          #+#    #+#             */
+/*   Updated: 2025/09/28 10:56:55 by eduribei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef FRAGTRAP_HPP
+# define FLAGTTRAP_HPP
+# include <iostream>
+# include "ClapTrap.hpp"
+
+# define RED        "\001\033[31m\002"
+# define BLU        "\001\033[34m\002"
+# define RESET		"\001\033[0m\002"
+
+class FragTrap : public ClapTrap
+{
+	protected:
+		// messages
+		void print_message_high_five() const;
+
+    public:
+		// canonicals
+        FragTrap();									// default ctor
+        FragTrap(const FragTrap& other);			// default copy ctor
+        FragTrap &operator=(const FragTrap &other);	// default assignt ctor
+        ~FragTrap();								// destructor
+
+		FragTrap(const std::string& name);
+		void highFivesGuys(void);
+};
+
+#endif

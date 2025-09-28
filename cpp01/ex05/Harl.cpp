@@ -22,7 +22,8 @@ void Harl::complain(std::string level) {
 		&Harl::warning,
 		&Harl::error};
 	
-	for(int i = 0; level[i]; i++) {
+	int count = sizeof(levels) / sizeof(levels[0]);
+	for(int i = 0; i < count; i++) {
 		if (levels[i] == level) 
 			(this->*function[i])();}
 

@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Fixed.hpp                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/20 18:51:40 by eduribei          #+#    #+#             */
+/*   Updated: 2025/09/20 18:51:42 by eduribei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef FIXED_HPP
 # define FIXED_HPP
 
@@ -27,28 +39,28 @@ class Fixed {
 		//ex01
 		Fixed(const int value);					//ctor from int
 		Fixed(const float value);				//ctor from float
-		float	toFloat(void) const;
 		int		toInt(void) const;
+		float	toFloat(void) const;
 
 		//ex02
-		bool	operator>(const Fixed& other) const;
-		bool	operator<(const Fixed& other) const;
-		bool	operator>=(const Fixed& other) const;		
-		bool	operator<=(const Fixed& other) const;
-		bool	operator==(const Fixed& other) const;	
-		bool	operator!=(const Fixed& other) const;
-		Fixed	operator+(const Fixed& other) const;
-		Fixed	operator-(const Fixed& other) const;
-		Fixed	operator*(const Fixed& other) const;
-		Fixed	operator/(const Fixed& other) const;				
-		Fixed	operator++(int);						//post
-		Fixed	operator--(int);						//post
-		Fixed&	operator++(); 							//pre
-		Fixed&	operator--();							//pre
-		static Fixed& max(Fixed& a, Fixed& b);
-		static const Fixed& max(const Fixed& a, const Fixed& b);
-		static Fixed& min(Fixed& a, Fixed& b);
-		static const Fixed& min(const Fixed& a, const Fixed& b);
+		bool	operator > (const Fixed& other) const;
+		bool	operator < (const Fixed& other) const;
+		bool	operator >=(const Fixed& other) const;		
+		bool	operator <=(const Fixed& other) const;
+		bool	operator ==(const Fixed& other) const;	
+		bool	operator !=(const Fixed& other) const;
+		Fixed	operator + (const Fixed& other) const;
+		Fixed	operator - (const Fixed& other) const;
+		Fixed	operator * (const Fixed& other) const;
+		Fixed	operator / (const Fixed& other) const;				
+		Fixed	operator ++(int);						//post
+		Fixed	operator --(int);						//post
+		Fixed&	operator ++(); 							//pre
+		Fixed&	operator --();							//pre
+		static Fixed&		max(Fixed& a, Fixed& b);
+		static Fixed&		min(Fixed& a, Fixed& b);
+		static const Fixed&	max(const Fixed& a, const Fixed& b);
+		static const Fixed&	min(const Fixed& a, const Fixed& b);
 };
 
 //ex01
