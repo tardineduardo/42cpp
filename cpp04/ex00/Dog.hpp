@@ -1,0 +1,27 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/09/28 18:38:25 by eduribei          #+#    #+#             */
+/*   Updated: 2025/09/28 19:05:21 by eduribei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#include <iostream>
+#include "Animal.hpp"
+
+class Dog : public Animal
+{
+	public:
+		// canonicals
+        Dog();								// default ctor
+        Dog(const Dog& other);				// default copy ctor
+        Dog &operator=(const Dog &other);	// default assignt ctor
+        ~Dog();								// destructor	
+
+		void getType();
+		void makeSound();
+};
