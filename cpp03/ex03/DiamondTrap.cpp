@@ -17,26 +17,26 @@ DiamondTrap::DiamondTrap()
 {
 	_name			= "Unnamed";
 	_type			= "DmndTrap";
-	_hitpoints		= FT_HITPOINTS;
-	_maxhitpoints	= FT_MAXHITPOINTS;
-	_energy_points	= ST_ENERGYPOINTS;
-	_attack_damage	= FT_ATTACKDAMAGE;
+	_hitpoints		= FragTrap::_hitpoints;
+	_maxhitpoints	= FragTrap::_maxhitpoints;;
+	_energy_points	= ScavTrap::_energy_points;
+	_attack_damage	= FragTrap::_attack_damage;
 	_isdead			= false;
 	std::cout << PNK "[DT default constructor called for " << _type << " " << _name << "]\n" RESET;
 
 }
 
 DiamondTrap::DiamondTrap(const std::string& name) 
-	: ClapTrap(name + "_clap_name")
+	: ClapTrap(name + "_clap_name"),
+	  ScavTrap(name),
+	  FragTrap(name)
 {
-	ScavTrap::_name = name;
-	FragTrap::_name = name;
 	_name			= name;
 	_type			= "DmndTrap";
-	_hitpoints		= FT_HITPOINTS;
-	_maxhitpoints	= FT_MAXHITPOINTS;
-	_energy_points	= ST_ENERGYPOINTS;
-	_attack_damage	= FT_ATTACKDAMAGE;
+	_hitpoints		= FragTrap::_hitpoints;
+	_maxhitpoints	= FragTrap::_maxhitpoints;;
+	_energy_points	= ScavTrap::_energy_points;
+	_attack_damage	= FragTrap::_attack_damage;
 	_isdead			= false;
 	std::cout << PNK "[DT name constructor called for " << _type << " " << name << "]\n" RESET;
 }
@@ -67,8 +67,9 @@ DiamondTrap& DiamondTrap::operator=(const DiamondTrap& other) {
 	std::cout << PNK "[DT default assignment operator called]\n" RESET;
 	if (this != &other) {
         ScavTrap::operator=(other);
-        FragTrap::_hitpoints = FT_HITPOINTS;
-        _type = "DmndTrap";
+		FragTrap::operator=(other);
+        _type = other._type;
+		_name = other._name;
         if (_isdead)
             print_message_copied_dead(other);
     }

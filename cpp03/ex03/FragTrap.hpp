@@ -38,6 +38,8 @@
 class FragTrap : virtual public ClapTrap
 {
 	protected:
+		std::string	_name;
+
 		// messages
 		void print_message_high_five() const;
 

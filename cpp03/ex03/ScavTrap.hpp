@@ -38,7 +38,8 @@
 class ScavTrap : virtual public ClapTrap
 {
 	protected:
-		bool	_guard_mode;
+		bool		_guard_mode;
+		std::string	_name;
 
 		// messages
 		void print_message_guard_mode_on() const;

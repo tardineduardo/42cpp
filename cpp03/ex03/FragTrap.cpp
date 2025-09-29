@@ -26,7 +26,7 @@ FragTrap::FragTrap() : ClapTrap()
 FragTrap::FragTrap(const std::string& name) : ClapTrap(name)
 {
 	_type			= "FragTrap";
-	_name			= "name";
+	_name			= name;
 	_hitpoints		= FT_HITPOINTS;
 	_maxhitpoints	= FT_MAXHITPOINTS;
 	_energy_points	= FT_ENERGYPOINTS;

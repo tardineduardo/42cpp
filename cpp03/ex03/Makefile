@@ -1,7 +1,7 @@
 NAME	= diamond
 
 CC		= g++
-CFLAGS= -std=c++98 -Wall -Wextra -Werror -I.
+CFLAGS= -std=c++98 -Wall -Wextra -Werror -Wshadow -I.
 
 SRCS	= main.cpp ClapTrap.cpp FragTrap.cpp ScavTrap.cpp DiamondTrap.cpp
 
