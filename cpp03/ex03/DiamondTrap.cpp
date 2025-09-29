@@ -32,6 +32,7 @@ DiamondTrap::DiamondTrap(const std::string& name)
 	  FragTrap(name)
 {
 	_name			= name;
+	ClapTrap::_name	= name + "_clap_name";
 	_type			= "DmndTrap";
 	_hitpoints		= FragTrap::_hitpoints;
 	_maxhitpoints	= FragTrap::_maxhitpoints;;
