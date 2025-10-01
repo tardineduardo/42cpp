@@ -71,7 +71,8 @@ void FragTrap::highFivesGuys(void) {
 /* ------------------------------ messages ---------------------------------- */
 
 void FragTrap::print_message_high_five() const {
-						std::cout << "FragTrap " 
+						std::cout << _type
+								  << " "
 								  << _name
 								  << " gives a high five.\n";
 }
