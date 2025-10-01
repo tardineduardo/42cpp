@@ -15,25 +15,10 @@
 # include <iostream>
 # include "ClapTrap.hpp"
 
-# ifndef FT_HITPOINTS
-#  define FT_HITPOINTS 100
-# endif
-
-# ifndef FT_MAXHITPOINTS
-#  define FT_MAXHITPOINTS 100
-# endif
-
-# ifndef FT_ENERGYPOINTS
-#  define FT_ENERGYPOINTS 100
-# endif
-
-# ifndef FT_ATTACKDAMAGE
-#  define FT_ATTACKDAMAGE 30
-# endif
-
-# define RED        "\001\033[31m\002"
-# define BLU        "\001\033[34m\002"
-# define RESET		"\001\033[0m\002"
+# define FT_HITPOINTS		100
+# define FT_MAXHITPOINTS	100
+# define FT_ENERGYPOINTS	100
+# define FT_ATTACKDAMAGE	30
 
 class FragTrap : virtual public ClapTrap
 {
@@ -49,7 +34,11 @@ class FragTrap : virtual public ClapTrap
         ~FragTrap();								// destructor
 
 		FragTrap(const std::string& name);
-		void highFivesGuys(void);
+		void	highFivesGuys(void);
 };
+
+# define RED        "\001\033[31m\002"
+# define BLU        "\001\033[34m\002"
+# define RESET		"\001\033[0m\002"
 
 #endif

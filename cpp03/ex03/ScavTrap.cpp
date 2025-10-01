@@ -15,7 +15,6 @@
 ScavTrap::ScavTrap() : ClapTrap()
 {
 	_type 			= "ScavTrap";
-	_name			= "Unnamed";
 	_hitpoints		= ST_HITPOINTS;
 	_maxhitpoints	= ST_MAXHITPOINTS;
 	_energy_points	= ST_ENERGYPOINTS;
@@ -27,7 +26,6 @@ ScavTrap::ScavTrap() : ClapTrap()
 ScavTrap::ScavTrap(const std::string& name) : ClapTrap(name)
 {
 	_type			= "ScavTrap";
-	_name			= name;
 	_hitpoints		= ST_HITPOINTS;
 	_maxhitpoints	= ST_MAXHITPOINTS;
 	_energy_points	= ST_ENERGYPOINTS; 	
@@ -68,6 +66,23 @@ ScavTrap& ScavTrap::operator=(const ScavTrap& other)
 	return (*this);
 }
 
+void ScavTrap::attack(const std::string& target)
+{
+	if (_isdead)
+	{
+		print_message_dead();
+		return;
+	}
+
+	if (_energy_points == 0)
+	{
+		print_message_no_energy();
+		return;
+	}	
+	_energy_points--;
+	print_message_attack(target);
+}
+
 void ScavTrap::guardGate() {
 	if (_guard_mode) {
 		_guard_mode = false;
@@ -83,8 +98,20 @@ void ScavTrap::print_message_guard_mode_on() const {
 						std::cout << _name
 								  << " is in gate keeper mode.\n";
 }
-
 void ScavTrap::print_message_guard_mode_off() const {
 						std::cout << _name
 								  << " is no longer in gate keeper mode.\n";
+}
+void ScavTrap::print_message_attack(const std::string& target) const {						
+						std::cout << "🏹 "
+								  << _type 
+								  << " " 
+								  << _name
+								  << " attacks "
+								  << target
+								  << ", causing "
+								  << _attack_damage
+								  << " points of damage, "
+								  << _energy_points
+								  << " energy left\n";
 }

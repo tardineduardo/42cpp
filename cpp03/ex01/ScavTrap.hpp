@@ -15,9 +15,10 @@
 # include <iostream>
 # include "ClapTrap.hpp"
 
-# define RED        "\001\033[31m\002"
-# define GRN        "\001\033[32m\002"
-# define RESET		"\001\033[0m\002"
+# define ST_HITPOINTS		100
+# define ST_MAXHITPOINTS	100
+# define ST_ENERGYPOINTS	50
+# define ST_ATTACKDAMAGE	20
 
 class ScavTrap : public ClapTrap
 {
@@ -25,9 +26,9 @@ class ScavTrap : public ClapTrap
 		bool	_guard_mode;
 
 		// messages
-		void print_message_guard_mode_on() const;
-		void print_message_guard_mode_off() const;
-
+		void	print_message_guard_mode_on() const;
+		void	print_message_guard_mode_off() const;
+		void	print_message_attack(const std::string& target) const;
 
     public:
 		// canonicals
@@ -36,8 +37,15 @@ class ScavTrap : public ClapTrap
         ScavTrap &operator=(const ScavTrap &other);	// default assignt ctor
         ~ScavTrap();								// destructor
 
+		//name ctor
 		ScavTrap(const std::string& name);
-		void guardGate();
+	
+		void	attack(const std::string& target);
+		void	guardGate();
 };
+
+# define RED        "\001\033[31m\002"
+# define GRN        "\001\033[32m\002"
+# define RESET		"\001\033[0m\002"
 
 #endif

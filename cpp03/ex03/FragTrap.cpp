@@ -26,7 +26,7 @@ FragTrap::FragTrap() : ClapTrap()
 FragTrap::FragTrap(const std::string& name) : ClapTrap(name)
 {
 	_type			= "FragTrap";
-	_name			= "name";
+	_name			= name;
 	_hitpoints		= FT_HITPOINTS;
 	_maxhitpoints	= FT_MAXHITPOINTS;
 	_energy_points	= FT_ENERGYPOINTS;
@@ -71,7 +71,8 @@ void FragTrap::highFivesGuys(void) {
 /* ------------------------------ messages ---------------------------------- */
 
 void FragTrap::print_message_high_five() const {
-						std::cout << "FragTrap " 
+						std::cout << _type
+								  << " "
 								  << _name
 								  << " gives a high five.\n";
 }

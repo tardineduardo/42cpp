@@ -1,4 +1,4 @@
-NAME	= flag
+NAME	= frag
 
 CC		= g++
 CFLAGS= -std=c++98 -Wall -Wextra -Werror -I.
