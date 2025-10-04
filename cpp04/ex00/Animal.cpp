@@ -12,21 +12,45 @@
 
 #include "Animal.hpp"
 
-Animal::Animal()
+// Default constructor
+Animal::Animal(void)
 {
-	_type = "Undefined"; 
-}
-Animal::Animal(const Animal& other)
-{
-	_type = other._type;
-}
-
-Animal& Animal::operator=(const Animal &other)
-{
-	if (this != &other) {
-		_type = other._type;
-	}
-	return *this;
+    std::cout << "animal default constructor called" << std::endl;
+    _type = "generic animal";
+    return ;
 }
 
-Animal::~Animal() {}
+// Copy constructor
+Animal::Animal(const Animal &other)
+{
+    std::cout << "animal copy constructor called" << std::endl;
+    _type = other._type;
+    return ;
+}
+
+// Assignment operator overload
+Animal &Animal::operator=(const Animal &other)
+{
+    std::cout << "animal assignment operator called" << std::endl;
+    _type = other._type;
+    return (*this);
+}
+
+// Destructor
+Animal::~Animal(void)
+{
+    std::cout << "animal destructor called" << std::endl;
+    return ;
+}
+
+
+const std::string& Animal::getType() const
+{
+	return _type;
+}
+
+void Animal::makeSound(void) const
+{
+    std::cout << "generic animal makes no sound" << std::endl;
+	return ;	
+}

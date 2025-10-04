@@ -10,18 +10,21 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "Animal.hpp"
+#ifndef DOG_HPP
+# define DOG_HPP
+# include <iostream>
+# include "Animal.hpp"
 
 class Dog : public Animal
 {
-	public:
+    public:
 		// canonicals
         Dog();								// default ctor
         Dog(const Dog& other);				// default copy ctor
         Dog &operator=(const Dog &other);	// default assignt ctor
-        ~Dog();								// destructor	
+        ~Dog();			
 
-		void getType();
-		void makeSound();
+		void makeSound() const;
 };
+
+#endif

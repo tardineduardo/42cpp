@@ -10,19 +10,22 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "Animal.hpp"
+#ifndef CAT_HPP
+# define CAT_HPP
+# include <iostream>
+# include "Animal.hpp"
 
 class Cat : public Animal
 {
-	public:
+    public:
 		// canonicals
         Cat();								// default ctor
         Cat(const Cat& other);				// default copy ctor
         Cat &operator=(const Cat &other);	// default assignt ctor
-        ~Cat();								// destructor	
+        ~Cat();			
 
-		void getType();
-		void makeSound();
+		void makeSound() const;
 
 };
+
+#endif

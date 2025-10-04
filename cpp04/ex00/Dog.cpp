@@ -12,27 +12,40 @@
 
 #include "Dog.hpp"
 
-Dog::Dog() : Animal()
+// Default constructor
+Dog::Dog()
 {
-	_type = "Undefined"; 
+    std::cout << "dog default constructor called" << std::endl;
+	_type = "dog"; 
+    return ;
 }
-Dog::Dog(const Dog& other) : Animal(other)
+
+// Copy constructor
+Dog::Dog(const Dog &other) : Animal(other)
 {
+    std::cout << "dog copy constructor called" << std::endl;
 	_type = other._type;
+    return ;
 }
 
-Dog& Dog::operator=(const Dog &other)
+// Assignment operator overload
+Dog &Dog::operator=(const Dog &other)
 {
-	Animal::operator=(other);
-	if (this != &other) {
-		_type = other._type;
-	}
-	return *this;
+    std::cout << "dog assignment operator called" << std::endl;
+	_type = other._type;
+    return (*this);
 }
 
-Dog::~Dog() {}
-
-void Dog::makeSound()
+// Destructor
+Dog::~Dog(void)
 {
-	std::cout << "Bark!\n";
+    std::cout << "dog Destructor called" << std::endl;
+    return ;
+}
+
+//------------------------------------------------------------------------------
+
+void Dog::makeSound() const
+{
+	std::cout << "woof!\n";
 }

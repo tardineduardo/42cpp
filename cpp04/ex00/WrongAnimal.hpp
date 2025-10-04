@@ -1,27 +1,20 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   WrongAnimal.hpp                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/28 18:38:25 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/28 19:08:46 by eduribei         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
+#ifndef WRONGWrongANIMAL_HPP
+# define WRONGWrongANIMAL_HPP
+# include <iostream>
 
-#include <string>
-
-class Animal
+class WrongAnimal
 {
-	protected:
-		std::string _type;
+    protected:
+        std::string _type;
 
-	public:
-		// canonicals
-        Animal();								// default ctor
-        Animal(const Animal& other);			// default copy ctor
-        Animal &operator=(const Animal &other);	// default assignt ctor
-        ~Animal();								// destructor	
+    public:
+       WrongAnimal();
+       WrongAnimal(const WrongAnimal& other);
+       WrongAnimal &operator=(const WrongAnimal &other);
+       ~WrongAnimal();
 
+       const std::string& getType() const;
+       void makeSound(void) const;
 };
+
+#endif

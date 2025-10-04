@@ -5,37 +5,47 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/09/28 18:38:29 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/28 19:15:05 by eduribei         ###   ########.fr       */
+/*   Created: 2025/09/28 18:38:25 by eduribei          #+#    #+#             */
+/*   Updated: 2025/09/28 19:04:53 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
 
-Cat::Cat() : Animal()
+// Default constructor
+Cat::Cat()
 {
-	_type = "Undefined"; 
+    std::cout << "cat default constructor called" << std::endl;
+	_type = "cat"; 
+    return ;
 }
-Cat::Cat(const Cat& other) : Animal(other)
+
+// Copy constructor
+Cat::Cat(const Cat &other) : Animal(other)
 {
+    std::cout << "cat copy constructor called" << std::endl;
 	_type = other._type;
+    return ;
 }
 
-Cat& Cat::operator=(const Cat &other)
+// Assignment operator overload
+Cat &Cat::operator=(const Cat &other)
 {
-	Animal::operator=(other);
-	if (this != &other) {
-		_type = other._type;
-	}
-	return *this;
+    std::cout << "cat assignment operator called" << std::endl;
+	_type = other._type;
+    return (*this);
 }
 
-Cat::~Cat() {}
-
-void Cat::makeSound()
+// Destructor
+Cat::~Cat(void)
 {
-	std::cout << "Meow!\n";
+    std::cout << "cat Destructor called" << std::endl;
+    return ;
 }
 
-const std::string& getType
+//------------------------------------------------------------------------------
 
+void Cat::makeSound() const
+{
+	std::cout << "meow!\n";
+}

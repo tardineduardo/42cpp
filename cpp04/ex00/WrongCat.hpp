@@ -1,28 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   WrongCat.hpp                                       :+:      :+:    :+:   */
+/*   WrongCat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 18:38:25 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/28 19:09:26 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/09/28 19:04:53 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <iostream>
-#include "Animal.hpp"
+#ifndef WRONGCAT_HPP
+# define WRONGCAT_HPP
+# include <iostream>
+# include "WrongAnimal.hpp"
 
-class Cat : public Animal
+class WrongCat : public WrongAnimal
 {
-	public:
+    public:
 		// canonicals
-        Cat();								// default ctor
-        Cat(const Cat& other);				// default copy ctor
-        Cat &operator=(const Cat &other);	// default assignt ctor
-        ~Cat();								// destructor	
+        WrongCat();						        	// default ctor
+        WrongCat(const WrongCat& other);			// default copy ctor
+        WrongCat &operator=(const WrongCat &other);	// default assignt ctor
+        ~WrongCat();			
 
-		void getType();
-		void makeSound();
-
+		void makeSound() const;
 };
+
+#endif

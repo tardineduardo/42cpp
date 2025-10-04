@@ -1,11 +1,14 @@
-NAME	= myphonebook
+NAME	= sound
 
 CC		= g++
 CFLAGS= -std=c++98 -Wall -Wextra -Werror -I.
 
 SRCS	= main.cpp \
-		  Contact.cpp \
-		  PhoneBook.cpp
+		  Animal.cpp \
+		  Cat.cpp \
+		  Dog.cpp \
+		  WrongAnimal.cpp \
+		  WrongCat.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 
