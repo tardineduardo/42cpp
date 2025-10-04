@@ -22,7 +22,7 @@ class Dog : public Animal
         Dog();								// default ctor
         Dog(const Dog& other);				// default copy ctor
         Dog &operator=(const Dog &other);	// default assignt ctor
-        ~Dog();			
+        ~Dog();                             // default dtor
 
 		void makeSound() const;
 };
