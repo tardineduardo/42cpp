@@ -6,43 +6,39 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 18:38:29 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/28 18:49:11 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/10/06 18:34:42 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Animal.hpp"
+#include "messages.hpp"
 
-// Default constructor
-Animal::Animal(void)
-{
-    std::cout << "animal default constructor called" << std::endl;
+// canonic methods -------------------------------------------------------------
+
+Animal::Animal(void) {
+    m_animalctor();
     _type = "generic animal";
     return ;
 }
 
-// Copy constructor
-Animal::Animal(const Animal &other)
-{
-    std::cout << "animal copy constructor called" << std::endl;
+Animal::Animal(const Animal &other) {
+    m_animalcopy();
     _type = other._type;
     return ;
 }
 
-// Assignment operator overload
-Animal &Animal::operator=(const Animal &other)
-{
-    std::cout << "animal assignment operator called" << std::endl;
+Animal &Animal::operator=(const Animal &other) {
+    m_animalassg();
     _type = other._type;
     return (*this);
 }
 
-// Destructor
-Animal::~Animal(void)
-{
-    std::cout << "animal destructor called" << std::endl;
+Animal::~Animal(void) {
+    m_animaldtor();
     return ;
 }
 
+//------------------------------------------------------------------------------
 
 const std::string& Animal::getType() const
 {
@@ -51,6 +47,6 @@ const std::string& Animal::getType() const
 
 void Animal::makeSound(void) const
 {
-    std::cout << "generic animal makes no sound" << std::endl;
+    std::cout << "⚠️  generic animal makes no sound" << std::endl;
 	return ;	
 }

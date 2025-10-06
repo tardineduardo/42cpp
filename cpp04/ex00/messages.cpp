@@ -5,17 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/06 18:36:46 by eduribei          #+#    #+#             */
-/*   Updated: 2025/10/06 18:37:52 by eduribei         ###   ########.fr       */
+/*   Created: 2025/10/06 18:35:08 by eduribei          #+#    #+#             */
+/*   Updated: 2025/10/06 18:35:09 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "messages.hpp"
 
-void m_brainctor(){std::cout << YEL "🧠 brain default constructor called" RST << std::endl;}
-void m_braindtor(){std::cout << RED "🧠 🗑️ brain destructor called" RST << std::endl;}
-void m_braincopy(){std::cout << YEL "🧠 brain copy constructor called" RST << std::endl;}
-void m_brainassg(){std::cout << YEL "🧠 brain assignment operator called" RST << std::endl;}
 void m_catctor(){std::cout << GRN "🐱 cat default constructor called" RST << std::endl;}
 void m_catdtor(){std::cout << RED "🐱 🗑️ cat destructor called" RST << std::endl;}
 void m_catcopy(){std::cout << GRN "🐱 cat copy constructor called" RST << std::endl;}

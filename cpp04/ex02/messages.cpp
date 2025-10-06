@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   messages.cpp                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/06 18:39:35 by eduribei          #+#    #+#             */
+/*   Updated: 2025/10/06 18:39:50 by eduribei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "messages.hpp"
 
 void m_brainctor(){std::cout << YEL "🧠 brain default constructor called" RST << std::endl;}

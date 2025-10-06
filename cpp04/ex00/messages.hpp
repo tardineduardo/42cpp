@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/10/06 18:39:30 by eduribei          #+#    #+#             */
-/*   Updated: 2025/10/06 18:39:34 by eduribei         ###   ########.fr       */
+/*   Created: 2025/10/06 18:35:11 by eduribei          #+#    #+#             */
+/*   Updated: 2025/10/06 18:35:13 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,10 +25,6 @@ void m_animalctor();
 void m_animaldtor();
 void m_animalcopy();
 void m_animalassg();
-void m_brainctor();
-void m_braindtor();
-void m_braincopy();
-void m_brainassg();
 void m_catctor();
 void m_catdtor();
 void m_catcopy();

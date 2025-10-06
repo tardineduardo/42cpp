@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 18:38:25 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/28 19:05:21 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/10/06 18:28:36 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,9 @@ class Dog : public Animal
         Dog &operator=(const Dog &other);	// default assignt ctor
         ~Dog();                             // default dtor
 
-		void makeSound() const;
+		void    makeSound() const;
+        void	store_idea(const int& index, const std::string& idea);
+        void	show_ideas();        
 };
 
 #endif

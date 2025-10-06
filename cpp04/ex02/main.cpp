@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 18:38:22 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/28 19:04:17 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/10/06 18:40:44 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ int main()
 	}
 
 	{
-		int size = 4;
+		int size = 10;
 		Animal* animals[size];
 
 		for (int i = 0; i < size; ++i)

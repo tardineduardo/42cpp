@@ -6,46 +6,38 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 18:38:25 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/28 19:04:53 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/10/06 18:24:03 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Cat.hpp"
+#include "messages.hpp"
 
-// Default constructor
-Cat::Cat()
-{
-    std::cout << "cat default constructor called" << std::endl;
-	_type = "cat"; 
-    return ;
+// canonic methods -------------------------------------------------------------
+
+Cat::Cat() {
+	m_catctor();
+	_type = "cat";
 }
 
-// Copy constructor
-Cat::Cat(const Cat &other) : Animal(other)
-{
-    std::cout << "cat copy constructor called" << std::endl;
+Cat::Cat(const Cat &other) : Animal(other) {
+	m_catcopy();
 	_type = other._type;
-    return ;
 }
 
-// Assignment operator overload
-Cat &Cat::operator=(const Cat &other)
-{
-    std::cout << "cat assignment operator called" << std::endl;
+Cat &Cat::operator=(const Cat &other) {
+	m_catassg();
 	_type = other._type;
-    return (*this);
+	return (*this);
 }
 
-// Destructor
-Cat::~Cat(void)
-{
-    std::cout << "cat Destructor called" << std::endl;
-    return ;
+Cat::~Cat(void) {
+	m_catdtor();
 }
 
 //------------------------------------------------------------------------------
 
-void Cat::makeSound() const
-{
-	std::cout << "meow!\n";
+void Cat::makeSound() const {
+	std::cout << GRN "🐱💬 meow!\n" RST;
 }
+

@@ -6,7 +6,7 @@ CFLAGS= -std=c++98 -Wall -Wextra -Werror -I.
 SRCS	= main.cpp \
 		  Animal.cpp \
 		  Cat.cpp \
-		  Dog.cpp \
+		  Dog.cpp \  
 		  Brain.cpp \
 		  messages.cpp
 
@@ -18,6 +18,7 @@ all: $(NAME)
 
 $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) -o $@ $^
+
 
 %.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@

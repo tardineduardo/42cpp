@@ -1,6 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
+/*   WrongAnimal.cpp                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/10/06 18:35:15 by eduribei          #+#    #+#             */
+/*   Updated: 2025/10/06 18:35:17 by eduribei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
 /*   WrongAnimal.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
@@ -12,45 +24,38 @@
 
 #include "WrongAnimal.hpp"
 
-// Default constructor
-WrongAnimal::WrongAnimal(void)
-{
+// canonic methods -------------------------------------------------------------
+
+WrongAnimal::WrongAnimal(void) {
     std::cout << "wronganimal default constructor called" << std::endl;
     _type = "generic Wronganimal";
     return ;
 }
 
-// Copy constructor
-WrongAnimal::WrongAnimal(const WrongAnimal &other)
-{
+WrongAnimal::WrongAnimal(const WrongAnimal &other) {
     std::cout << "wronganimal copy constructor called" << std::endl;
     _type = other._type;
     return ;
 }
 
-// Assignment operator overload
-WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other)
-{
+WrongAnimal &WrongAnimal::operator=(const WrongAnimal &other) {
     std::cout << "wronganimal assignment operator called" << std::endl;
     _type = other._type;
     return (*this);
 }
 
-// Destructor
-WrongAnimal::~WrongAnimal(void)
-{
+WrongAnimal::~WrongAnimal(void) {
     std::cout << "wronganimal destructor called" << std::endl;
     return ;
 }
 
+//------------------------------------------------------------------------------
 
-const std::string& WrongAnimal::getType() const
-{
+const std::string& WrongAnimal::getType() const {
 	return _type;
 }
 
-void WrongAnimal::makeSound(void) const
-{
+void WrongAnimal::makeSound(void) const {
     std::cout << "generic wronganimal makes no sound" << std::endl;
 	return ;	
 }

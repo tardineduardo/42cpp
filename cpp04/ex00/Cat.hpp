@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/09/28 18:38:25 by eduribei          #+#    #+#             */
-/*   Updated: 2025/09/28 19:04:53 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/10/06 18:28:19 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,14 +17,15 @@
 
 class Cat : public Animal
 {
-    public:
+	public:
 		// canonicals
-        Cat();								// default ctor
-        Cat(const Cat& other);				// default copy ctor
-        Cat &operator=(const Cat &other);	// default assignt ctor
-        ~Cat();			
+		Cat();								// default ctor
+		Cat(const Cat& other);				// default copy ctor
+		Cat &operator=(const Cat &other);	// default assignt ctor
+		~Cat();								// default dtor
 
-		void makeSound() const;
+		void	makeSound() const;
+
 };
 
 #endif
