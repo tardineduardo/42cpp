@@ -13,30 +13,36 @@
 #ifndef BUREAUCRAT_HPP
 # define BUREAUCRAT_HPP
 # include <iostream>
+# include <exception>
 
 class Bureaucrat
 {
 	protected:
- 
 		const std::string	_name;
 		int					_grade;
 		static const int	_maxgrade = 1;
 		static const int	_mingrade = 150;
 
     public:
-		//canonicals
-        Bureaucrat(void);
+		//canonicals (no default)
+		Bureaucrat(std::string name, int grade);
         Bureaucrat(const Bureaucrat& other);
         Bureaucrat &operator=(const Bureaucrat &other);
         ~Bureaucrat();
 
-		//constructor
-		Bureaucrat(std::string name, int grade);
-
+	
 		const std::string&		getName();
 		const int&				getGrade();
-		void					incrementGrade(const int increment);
-		void					decrementGrade(const int decrement);
+		void					incrementGrade(const int& increment);
+		void					decrementGrade(const int& decrement);
+
+		//exceptions
+		class GradeTooHighException : public std::exception {
+			const char *what() const throw(); };
+
+		class GradeTooLowException : public std::exception {
+			const char *what() const throw(); };
+
 };
 
 #endif

@@ -65,12 +65,27 @@ const int& Bureaucrat::getGrade()
 	return _grade;
 }
 
-void Bureaucrat::incrementGrade(const int increment)
+void Bureaucrat::incrementGrade(const int& increment)
 {
 	_grade -= increment;
 }
 
-void Bureaucrat::decrementGrade(const int decrement)
+void Bureaucrat::decrementGrade(const int& decrement)
 {
 	_grade += decrement;
 }
+
+
+const char *Bureaucrat::GradeTooHighException::what() const throw()
+{
+
+
+}
+
+const char *Bureaucrat::GradeTooLowException::what() const throw()
+{
+
+
+}
+
+
