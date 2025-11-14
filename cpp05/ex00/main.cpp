@@ -2,8 +2,12 @@
 
 int main(void)
 {
-	return 0;
-
-
-
+	try
+	{
+	Bureaucrat maxine("Maxine", 50);
+	}
+	catch (...)
+	{
+		std::cout << "error";
+	}	
 }
