@@ -2,55 +2,35 @@
 
 int main(void)
 {
-	try
+	//-------------------------------------- CASE 1 ----------------------------	
+	try 
 	{
-	Bureaucrat maxine("Maxine", 50);
+		Bureaucrat max("Max", 300);
 	}
-	catch (...)
+	catch (...) 
 	{
-		std::cout << "error";
+		std::cout << "Can't instanciate bureacrat.\n";
 	}
-	try
+
+	//-------------------------------------- CASE 2 ----------------------------	
+	try 
 	{
-	Bureaucrat maxine("Maxine", 50);
+		Bureaucrat max("Max", 300);
 	}
-	catch (...)
+	catch (Bureaucrat::GradeTooHighException &e) 
 	{
-		std::cout << "error";
-	}	
-	try
-	{
-	Bureaucrat maxine("Maxine", 50);
+		std::cout << "Can't instanciate bureacrat.\n";
 	}
-	catch (...)
-	{
-		std::cout << "error";
-	}	
-	try
-	{
-	Bureaucrat maxine("Maxine", 50);
-	}
-	catch (...)
-	{
-		std::cout << "error";
-	}	
-	try
-	{
-	Bureaucrat maxine("Maxine", 50);
-	}
-	catch (...)
-	{
-		std::cout << "error";
-	}	
-	try
-	{
-	Bureaucrat maxine("Maxine", 50);
-	}
-	catch (...)
-	{
-		std::cout << "error";
-	}		
-	
-	
-	
-	}
+
+	//-------------------------------------- CASE 3 ----------------------------	
+
+
+
+
+
+	//-------------------------------------- CASE 4 ----------------------------	
+
+
+
+
+}

@@ -14,7 +14,14 @@
 #include "messages.hpp"
 
 
-void m_bureau_deft_ctor(Bureaucrat& b) { std::cout << BLU "default constructor called for Bureaucrat " RST << b.getName() << " " << b.getEmoji() << std::endl; }
-void m_bureau_deft_dtor(Bureaucrat& b) { std::cout << RED "default destructor called for Bureaucrat " RST << b.getName() << " " << b.getEmoji() << std::endl; }
-void m_bureau_copy_ctor(Bureaucrat& b) { std::cout << RED "copy constructor called for Bureaucrat " RST << b.getName() << " " << b.getEmoji() << std::endl; }
-void m_bureau_assg_ctor(Bureaucrat& b) { std::cout << RED "assignment constructor called for Bureaucrat " RST << b.getName() << " " << b.getEmoji() << std::endl; }
+void m_bureau_para_ctor(Bureaucrat& b) { 
+	std::cout << BLU "parameterized constructor called for Bureaucrat " << b.getName() << " " RST << b.getEmoji() << std::endl; }
+
+void m_bureau_deft_dtor(Bureaucrat& b) { 
+	std::cout << RED "default destructor called for Bureaucrat " << b.getName() << " " RST << b.getEmoji() << std::endl; }
+
+void m_bureau_copy_ctor(Bureaucrat& b) {
+	std::cout << RED "copy constructor called for Bureaucrat " << b.getName() << " " RST << b.getEmoji() << std::endl; }
+
+void m_bureau_assg_oper(Bureaucrat& b) { 
+	std::cout << RED "assignment constructor called for Bureaucrat " << b.getName() << " " RST << b.getEmoji() << std::endl; }

@@ -13,27 +13,28 @@
 #include "Bureaucrat.hpp"
 #include "messages.hpp"
 
-// parameterized constructor
-Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
-{
-	_grade = setGrade(grade);
-	_emoji = setEmoji();
-	m_bureau_deft_ctor(*this);
-	return;
-}
+// canonical methods -----------------------------------------------------------
+
+// parameterized constructor (no default ctor)
+Bureaucrat::Bureaucrat(std::string name, int grade) 
+	: _name(name)
+	{
+		_grade = setGrade(grade);
+		_emoji = setEmoji();
+		m_bureau_para_ctor(*this);
+	}
 
 // copy constructor
-Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name),
-												  _grade(other._grade)
+Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name)
 {
+	_grade = other._grade;
 	m_bureau_copy_ctor(*this);
-	return;
 }
 
 // assignment operator overload
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other) 
 {
-	m_bureau_assg_ctor(*this);
+	m_bureau_assg_oper(*this);
 	if (this != &other)
 	{
 		_grade = other._grade;
@@ -89,7 +90,6 @@ void Bureaucrat::decrementGrade(const int& decrement)
 	_grade += decrement;
 }
 
-
 const char *Bureaucrat::GradeTooHighException::what() const throw()
 {
 	return "Grade is too high";
@@ -99,6 +99,12 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 {
 	return "Grade is too low";
 }
+
+const char *Bureaucrat::GradeInvalidException::what() const throw()
+{
+	return "Grade is invalid";
+}
+
 
 std::string setEmoji(void)
 {
