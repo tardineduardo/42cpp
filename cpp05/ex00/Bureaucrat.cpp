@@ -18,7 +18,7 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 {
 	_grade = setGrade(grade);
 	_emoji = setEmoji();
-	m_bureau_ctor(*this);
+	m_bureau_deft_ctor(*this);
 	return;
 }
 
@@ -26,14 +26,14 @@ Bureaucrat::Bureaucrat(std::string name, int grade) : _name(name)
 Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name),
 												  _grade(other._grade)
 {
-	std::cout << "Copy constructor called" << std::endl;
+	m_bureau_copy_ctor(*this);
 	return;
 }
 
 // assignment operator overload
 Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other) 
 {
-	std::cout << "Assignment operator called" << std::endl;
+	m_bureau_assg_ctor(*this);
 	if (this != &other)
 	{
 		_grade = other._grade;
@@ -44,7 +44,7 @@ Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other)
 // destructor
 Bureaucrat::~Bureaucrat(void)
 {
-	std::cout << "Destructor called" << std::endl;
+	m_bureau_deft_dtor(*this);
 	return ;
 }
 
@@ -103,15 +103,10 @@ const char *Bureaucrat::GradeTooLowException::what() const throw()
 std::string setEmoji(void)
 {
 	static bool seeded = 0;
-	std::string emojis[] = {"🙍‍♀️", "🙍‍♂️", "🙍", "👱‍♀️",
-							"🕵️‍♂️", "👲", "🧕", "🤵",
-							"👨‍💼", "👩‍🦰", "👩‍🦱", "🧑‍🦱",
-							"👩‍🦳", "👩‍🦲", "👱‍♂️", "🧑‍🦰"};
-
-
-
-
-
+	std::string emojis[] = {"🙍", "🧕", "🤵", "🎅",
+							"🧟", "🧛", "👳", "👷",
+							"👮", "💂", "🥷", "👲",
+							"🧙", "🧝", "🙎", "👰"};
 	if (!seeded)
 	{
 		std::srand(static_cast<unsigned int>(std::time(NULL)));

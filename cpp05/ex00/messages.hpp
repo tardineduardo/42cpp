@@ -23,7 +23,13 @@
 # define BLU        "\001\033[34m\002"
 # define RST		"\001\033[0m\002"
 
-void m_bureau_ctor(Bureaucrat& b);
+void m_bureau_deft_ctor(Bureaucrat& b);
+void m_bureau_deft_dtor(Bureaucrat& b);
+void m_bureau_copy_ctor(Bureaucrat& b);
+void m_bureau_assg_ctor(Bureaucrat& b);
+
+
+
 
 
 

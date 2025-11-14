@@ -9,5 +9,48 @@ int main(void)
 	catch (...)
 	{
 		std::cout << "error";
+	}
+	try
+	{
+	Bureaucrat maxine("Maxine", 50);
+	}
+	catch (...)
+	{
+		std::cout << "error";
 	}	
-}
+	try
+	{
+	Bureaucrat maxine("Maxine", 50);
+	}
+	catch (...)
+	{
+		std::cout << "error";
+	}	
+	try
+	{
+	Bureaucrat maxine("Maxine", 50);
+	}
+	catch (...)
+	{
+		std::cout << "error";
+	}	
+	try
+	{
+	Bureaucrat maxine("Maxine", 50);
+	}
+	catch (...)
+	{
+		std::cout << "error";
+	}	
+	try
+	{
+	Bureaucrat maxine("Maxine", 50);
+	}
+	catch (...)
+	{
+		std::cout << "error";
+	}		
+	
+	
+	
+	}
