@@ -6,32 +6,33 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 18:39:30 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/13 21:07:08 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/14 22:08:34 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MESSAGES_HPP
 # define MESSAGES_HPP
 
+# include <iostream>
 # include "Bureaucrat.hpp"
 
-# include <iostream>
-
 # define RED        "\001\033[31m\002"
-# define GRN    	"\001\033[32m\002"
+# define GRN        "\001\033[32m\002"
 # define YEL        "\001\033[33m\002"
 # define BLU        "\001\033[34m\002"
+# define MAG        "\001\033[35m\002"
+# define CYN        "\001\033[36m\002"
+# define WHT        "\001\033[37m\002"
+# define BRED       "\001\033[1;31m\002"
+# define BGRN       "\001\033[1;32m\002"
+# define BYEL       "\001\033[1;33m\002"
+# define BBLU       "\001\033[1;34m\002"
 # define RST		"\001\033[0m\002"
 
-void m_bureau_para_ctor(Bureaucrat& b);
-void m_bureau_deft_dtor(Bureaucrat& b);
-void m_bureau_copy_ctor(Bureaucrat& b);
-void m_bureau_assg_oper(Bureaucrat& b);
-
-
-
-
-
-
+void message_bureau_defa_ctor(Bureaucrat& b);
+void message_bureau_para_ctor(Bureaucrat& b);
+void message_bureau_deft_dtor(Bureaucrat& b);
+void message_bureau_copy_ctor(Bureaucrat& b);
+void message_bureau_assg_oper(Bureaucrat& b);
 
 #endif
