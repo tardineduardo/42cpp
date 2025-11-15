@@ -18,7 +18,8 @@
 # include <cstdlib>		// for random emoji
 # include <ctime>		// for random emoji
 
-#include "Bureaucrat.hpp"
+//#include "Bureaucrat.hpp"
+class Bureaucrat;
 
 class Form
 {

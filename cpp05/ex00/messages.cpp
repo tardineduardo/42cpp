@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 18:39:35 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/15 19:11:28 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/15 20:17:16 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,17 +31,34 @@ void message_bureau_assg_oper(Bureaucrat& b) {
 
 
 
-void message_form_defa_ctor(Form& b) { 
-	std::cout << CYN "🔨default constructor called for " << b.getName() << b.getEmoji() << " form" RST << std::endl; }
+void message_form_defa_ctor(Form& f) { 
+	std::cout << CYN "🔨default constructor called for " << f.getName() << f.getEmoji() << " form" RST << std::endl; }
 
-void message_form_para_ctor(Form& b) { 
-	std::cout << CYN "📐parameterized constructor called for " << b.getName() << b.getEmoji() << " form" RST << std::endl; }
+void message_form_para_ctor(Form& f) { 
+	std::cout << CYN "📐parameterized constructor called for " << f.getName() << f.getEmoji() << " form" RST << std::endl; }
 
-void message_form_deft_dtor(Form& b) { 
-	std::cout << RED "🗑️ destructor called for " << b.getName() << b.getEmoji() << " form" RST << std::endl; }
+void message_form_deft_dtor(Form& f) { 
+	std::cout << RED "🗑️ destructor called for " << f.getName() << f.getEmoji() << " form" RST << std::endl; }
 
-void message_form_copy_ctor(Form& b) {
-	std::cout << CYN "👯 copy constructor called for " << b.getName() << b.getEmoji() << " form" RST << std::endl; }
+void message_form_copy_ctor(Form& f) {
+	std::cout << CYN "👯 copy constructor called for " << f.getName() << f.getEmoji() << " form" RST << std::endl; }
 
-void message_form_assg_oper(Form& b) { 
-	std::cout << CYN "🟰 assignment operator called for " << b.getName() << b.getEmoji() << " form" RST << std::endl; }
+void message_form_assg_oper(Form& f) { 
+	std::cout << CYN "🟰 assignment operator called for " << f.getName() << f.getEmoji() << " form" RST << std::endl; }
+
+
+
+void message_Aform_defa_ctor(AForm& af) { 
+	std::cout << CYN "🔨default constructor called for " << af.getName() << af.getEmoji() << " Aform" RST << std::endl; }
+
+void message_Aform_para_ctor(AForm& af) { 
+	std::cout << CYN "📐parameterized constructor called for " << af.getName() << af.getEmoji() << " Aform" RST << std::endl; }
+
+void message_Aform_deft_dtor(AForm& af) { 
+	std::cout << RED "🗑️ destructor called for " << af.getName() << af.getEmoji() << " Aform" RST << std::endl; }
+
+void message_Aform_copy_ctor(AForm& af) {
+	std::cout << CYN "👯 copy constructor called for " << af.getName() << af.getEmoji() << " Aform" RST << std::endl; }
+
+void message_Aform_assg_oper(AForm& af) { 
+	std::cout << CYN "🟰 assignment operator called for " << af.getName() << af.getEmoji() << " Aform" RST << std::endl; }	
