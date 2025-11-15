@@ -6,71 +6,71 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 18:58:27 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/13 21:12:50 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/14 23:47:47 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
 #include "messages.hpp"
 
-// canonical methods -----------------------------------------------------------
 
-// parameterized constructor (no default ctor)
-Bureaucrat::Bureaucrat(std::string name, int grade) 
-	: _name(name)
-	{
-		_grade = setGrade(grade);
-		_emoji = setEmoji();
-		m_bureau_para_ctor(*this);
-	}
+// ---------- canonical methods ------------------------------------------------
 
-// copy constructor
-Bureaucrat::Bureaucrat(const Bureaucrat &other) : _name(other._name)
-{
-	_grade = other._grade;
-	m_bureau_copy_ctor(*this);
-}
-
-// assignment operator overload
-Bureaucrat &Bureaucrat::operator=(const Bureaucrat &other) 
-{
-	m_bureau_assg_oper(*this);
-	if (this != &other)
-	{
-		_grade = other._grade;
-	}
-	return (*this);
+// default constructor
+Bureaucrat::Bureaucrat()
+	: _name("default"),
+	  _grade(150),
+	  _emoji(setEmoji()) {
+	message_bureau_defa_ctor(*this);
 }
 
 // destructor
-Bureaucrat::~Bureaucrat(void)
-{
-	m_bureau_deft_dtor(*this);
-	return ;
+Bureaucrat::~Bureaucrat() {
+	message_bureau_deft_dtor(*this);
 }
 
-//------------------------------------------------------------------------------
-
-
-
-const std::string& Bureaucrat::getName()
-{
-	return _name;
+// parameterized constructor
+Bureaucrat::Bureaucrat(std::string name, int value)
+	: _name(name),
+	  _grade(setGrade(value)),
+	  _emoji(setEmoji()) {
+  message_bureau_para_ctor(*this);
 }
 
-const std::string& Bureaucrat::getEmoji()
-{
-	return _emoji;
+// copy constructor
+Bureaucrat::Bureaucrat(const Bureaucrat& other)
+    : _name(other._name),
+	  _grade(other._grade),
+	  _emoji(setEmoji()) {
+  message_bureau_copy_ctor(*this);
 }
 
-const int& Bureaucrat::getGrade()
-{
+// assignment operator
+Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
+	if (this != &other) {
+		_grade = other._grade;
+    	_emoji = setEmoji();
+	}
+	message_bureau_assg_oper(*this);
+	return *this;
+}
+
+
+// ---------- other methods ----------------------------------------------------
+
+const int& Bureaucrat::getGrade() const {
 	return _grade;
 }
 
+const std::string& Bureaucrat::getName() const {
+	return _name;
+}
 
-int Bureaucrat::setGrade(int value)
-{
+const std::string& Bureaucrat::getEmoji() const {
+	return _emoji;
+}
+
+int Bureaucrat::setGrade(int value) {
 	if (value < 1)
 		throw GradeTooHighException();
 	if (value > 150)
@@ -79,32 +79,51 @@ int Bureaucrat::setGrade(int value)
 	return (_grade);
 }
 
+void Bureaucrat::incrementGrade() {
+	int new_grade = _grade - 1;
+	setGrade(new_grade);}
 
-void Bureaucrat::incrementGrade(const int& increment)
-{
-	_grade -= increment;
+void Bureaucrat::decrementGrade() {
+	int new_grade = _grade + 1;
+	setGrade(new_grade);
 }
 
-void Bureaucrat::decrementGrade(const int& decrement)
-{
-	_grade += decrement;
+void Bureaucrat::incrementGrade(const int& increment) {
+	int new_grade = _grade - increment;
+	setGrade(new_grade);
 }
 
-const char *Bureaucrat::GradeTooHighException::what() const throw()
-{
+void Bureaucrat::decrementGrade(const int& decrement) {
+	int new_grade = _grade + decrement;
+	setGrade(new_grade);
+}
+
+
+// ---------- exceptions -------------------------------------------------------
+
+const char *Bureaucrat::GradeTooHighException::what() const throw() {
 	return "Grade is too high";
 }
 
-const char *Bureaucrat::GradeTooLowException::what() const throw()
-{
+const char *Bureaucrat::GradeTooLowException::what() const throw() {
 	return "Grade is too low";
 }
 
-const char *Bureaucrat::GradeInvalidException::what() const throw()
+
+// ---------- stream operator overload -----------------------------------------
+
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& x)
 {
-	return "Grade is invalid";
+	os	<< x.getName()
+		<< x.getEmoji()
+		<< ", bureaucrat grade "
+		<< x.getGrade()
+		<< std::endl;
+	return os;
 }
 
+
+// ---------- random emoji generator -------------------------------------------
 
 std::string setEmoji(void)
 {
