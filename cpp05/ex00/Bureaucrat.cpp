@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 18:58:27 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/14 23:47:47 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/15 00:00:41 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,11 +22,6 @@ Bureaucrat::Bureaucrat()
 	  _grade(150),
 	  _emoji(setEmoji()) {
 	message_bureau_defa_ctor(*this);
-}
-
-// destructor
-Bureaucrat::~Bureaucrat() {
-	message_bureau_deft_dtor(*this);
 }
 
 // parameterized constructor
@@ -53,6 +48,11 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 	}
 	message_bureau_assg_oper(*this);
 	return *this;
+}
+
+// destructor
+Bureaucrat::~Bureaucrat() {
+	message_bureau_deft_dtor(*this);
 }
 
 
