@@ -5,6 +5,7 @@ CFLAGS  = -std=c++98 -Wall -Wextra -Werror -I.
 
 SRCS	= main.cpp \
 		  Bureaucrat.cpp \
+		  Form.cpp \
 		  messages.cpp
 
 OBJS	= $(SRCS:.cpp=.o)

@@ -1,53 +1,50 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*   Form.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 18:58:20 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/15 19:07:07 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/14 23:47:23 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREAUCRAT_HPP
-# define BUREAUCRAT_HPP
+#ifndef FORM_HPP
+# define FORM_HPP
 # include <iostream>
 # include <exception>
 # include <string>
 # include <cstdlib>		// for random emoji
 # include <ctime>		// for random emoji
 
-class Form;
+#include "Bureaucrat.hpp"
 
-class Bureaucrat
+class Form
 {
-	protected:
-		const std::string	_name;
-		int					_grade;
+	private:
+		const std::string	_k_name;
+		const int			_k_sign_grade;
+		const int			_k_exec_grade;
+		bool				_signed;
 		std::string			_emoji;
 
-	public:
+    public:
 		// canonical
-		Bureaucrat();									  // default constructor
-        ~Bureaucrat();									  // destructor
-		Bureaucrat(std::string name, int grade);		  // parameterized ctor
-        Bureaucrat(const Bureaucrat& other);			  // copy constructor
-        Bureaucrat &operator=(const Bureaucrat &other);	  // assignment operator
+		Form();											  // default constructor
+        ~Form();										  // destructor
+		Form(std::string name, int s_grade, int e_grade); // parameterized ctor
+        Form(const Form& other);						  // copy constructor
+        Form &operator=(const Form &other);				  // assignment operator
 
 		// other
+		const int&				getSignGrade() const;
+		const int&				getExecGrade() const;
 		const std::string&		getName() const;
-		const int&				getGrade() const;
-		void					incrementGrade();
-		void					decrementGrade();
-		void					incrementGrade(const int& increment);
-		void					decrementGrade(const int& decrement);
-		int&					validateGrade(int &value) const;
-		void					signForm(Form& f);
-
-		// constants	
-		static const int	kmaxgrade = 1;
-		static const int	kmingrade = 150;
+		bool					getSigned() const;
+		void					beSigned(Bureaucrat& b);
+		int&					validateSignGrade(int& value) const;
+		int&					validateExecGrade(int& value) const;
 
 		// exceptions
 		class GradeTooHighException : public std::exception {
@@ -59,9 +56,10 @@ class Bureaucrat
 		// extra
 		const std::string& getEmoji() const;
 		std::string setEmoji(void);
+	
 };
 
-// ostream operator overload
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);
+// stream operator overload
+std::ostream& operator<<(std::ostream& os, const Form& f);
 
 #endif

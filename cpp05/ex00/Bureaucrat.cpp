@@ -6,11 +6,12 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 18:58:27 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/15 00:00:41 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/15 19:10:59 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include "messages.hpp"
 
 
@@ -18,8 +19,8 @@
 
 // default constructor
 Bureaucrat::Bureaucrat()
-	: _name("default"),
-	  _grade(150),
+	: _name("Unnamed"),
+	  _grade(kmingrade),
 	  _emoji(setEmoji()) {
 	message_bureau_defa_ctor(*this);
 }
@@ -27,7 +28,7 @@ Bureaucrat::Bureaucrat()
 // parameterized constructor
 Bureaucrat::Bureaucrat(std::string name, int value)
 	: _name(name),
-	  _grade(setGrade(value)),
+	  _grade(validateGrade(value)),
 	  _emoji(setEmoji()) {
   message_bureau_para_ctor(*this);
 }
@@ -40,7 +41,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat& other)
   message_bureau_copy_ctor(*this);
 }
 
-// assignment operator
+// assignment operator overload
 Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 	if (this != &other) {
 		_grade = other._grade;
@@ -70,33 +71,54 @@ const std::string& Bureaucrat::getEmoji() const {
 	return _emoji;
 }
 
-int Bureaucrat::setGrade(int value) {
-	if (value < 1)
-		throw GradeTooHighException();
-	if (value > 150)
-		throw GradeTooLowException();
-	_grade = value;
-	return (_grade);
-}
-
 void Bureaucrat::incrementGrade() {
 	int new_grade = _grade - 1;
-	setGrade(new_grade);}
+	_grade = validateGrade(new_grade);
+}
 
 void Bureaucrat::decrementGrade() {
 	int new_grade = _grade + 1;
-	setGrade(new_grade);
+	_grade = validateGrade(new_grade);
 }
 
 void Bureaucrat::incrementGrade(const int& increment) {
 	int new_grade = _grade - increment;
-	setGrade(new_grade);
+	_grade = validateGrade(new_grade);
 }
 
 void Bureaucrat::decrementGrade(const int& decrement) {
 	int new_grade = _grade + decrement;
-	setGrade(new_grade);
+	_grade = validateGrade(new_grade);
 }
+
+int& Bureaucrat::validateGrade(int& value) const {
+	if (value < kmaxgrade)
+		throw GradeTooHighException();
+	if (value > kmingrade)
+		throw GradeTooLowException();
+	return (value);
+}
+
+void Bureaucrat::signForm(Form& f)
+{
+	try {
+		f.beSigned(*this);
+	}
+	catch (Form::GradeTooLowException &e) {
+		std::cout << _name << _emoji
+				  << "couldn’t sign " 
+				  << f.getName() << f.getEmoji() 
+				  << " because their grade is too low."
+				  << std::endl;	
+		return;
+	}
+	std::cout << _name << _emoji
+			  << " signed " 
+			  << f.getName() << f.getEmoji()
+			  << std::endl;	
+}
+
+
 
 
 // ---------- exceptions -------------------------------------------------------
@@ -112,12 +134,12 @@ const char *Bureaucrat::GradeTooLowException::what() const throw() {
 
 // ---------- stream operator overload -----------------------------------------
 
-std::ostream& operator<<(std::ostream& os, const Bureaucrat& x)
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& b)
 {
-	os	<< x.getName()
-		<< x.getEmoji()
+	os	<< b.getName()
+		<< b.getEmoji()
 		<< ", bureaucrat grade "
-		<< x.getGrade()
+		<< b.getGrade()
 		<< std::endl;
 	return os;
 }
@@ -125,7 +147,7 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& x)
 
 // ---------- random emoji generator -------------------------------------------
 
-std::string setEmoji(void)
+std::string Bureaucrat::setEmoji(void)
 {
 	static bool seeded = 0;
 	std::string emojis[] = {"🙍", "🧕", "🤵", "🎅",
