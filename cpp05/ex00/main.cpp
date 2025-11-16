@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 19:22:06 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/15 23:30:59 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/16 13:31:27 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -276,6 +276,8 @@ separator(
 		tim.signForm(c);
 		std::cout << c << "\n";
 	}
+
+	// TRY/CATCH NOT VISIBLE TO USER ANYMORE! <3
 
 	std::cout << "\n";
 }

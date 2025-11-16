@@ -11,7 +11,7 @@
 /* ************************************************************************** */
 
 #include "AForm.hpp"
-#include "Bureaucrat.hpp"
+#include "Bureaucrat2.hpp"
 #include "messages.hpp"
 
 
@@ -20,8 +20,8 @@
 // default constructor
 AForm::AForm()
 	: _k_name("unnamed"),
-	  _k_sign_grade(Bureaucrat::kmingrade),
-	  _k_exec_grade(Bureaucrat::kmingrade),
+	  _k_sign_grade(Bureaucrat2::kmingrade),
+	  _k_exec_grade(Bureaucrat2::kmingrade),
 	  _signed(false),
 	  _emoji(setEmoji()) {
 	message_Aform_defa_ctor(*this);
@@ -85,7 +85,7 @@ const std::string& AForm::getEmoji() const {
 	return _emoji;
 }
 
-void AForm::beSigned(Bureaucrat& b)
+void AForm::beSigned(Bureaucrat2& b)
 {
 	if (b.getGrade() <= AForm::_k_sign_grade)
 		_signed = true;
@@ -94,24 +94,19 @@ void AForm::beSigned(Bureaucrat& b)
 }
 
 int& AForm::validateSignGrade(int& value) const {
-	if (value < Bureaucrat::kmaxgrade)
+	if (value < Bureaucrat2::kmaxgrade)
 		throw GradeTooHighException();
-	if (value > Bureaucrat::kmingrade)
+	if (value > Bureaucrat2::kmingrade)
 		throw GradeTooLowException();
 	return (value);
 }
 
 int& AForm::validateExecGrade(int& value) const {
-	if (value < 1)
+	if (value < Bureaucrat2::kmaxgrade)
 		throw GradeTooHighException();
-	if (value > 150)
+	if (value > Bureaucrat2::kmingrade)
 		throw GradeTooLowException();
 	return (value);
-}
-
-void AForm::execute(Bureaucrat const &executor)
-{
-	(void)executor;
 }
 
 
@@ -122,6 +117,10 @@ const char *AForm::GradeTooHighException::what() const throw() {
 }
 
 const char *AForm::GradeTooLowException::what() const throw() {
+	return "Grade is too low";
+}
+
+const char *AForm::FormNotSignedException::what() const throw() {
 	return "Grade is too low";
 }
 

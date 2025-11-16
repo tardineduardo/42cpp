@@ -5,8 +5,12 @@ CFLAGS  = -std=c++98 -Wall -Wextra -Werror -I.
 
 SRCS	= main.cpp \
 		  Bureaucrat.cpp \
+		  Bureaucrat2.cpp \
 		  Form.cpp \
 		  AForm.cpp \
+		  ShrubberyCreationForm.cpp \
+		  RobotomyRequestForm.cpp \
+		  PresidentialPardonForm.cpp \
 		  messages.cpp
 
 OBJS	= $(SRCS:.cpp=.o)

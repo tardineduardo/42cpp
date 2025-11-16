@@ -6,13 +6,12 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 18:39:35 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/15 20:17:16 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/16 14:58:03 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "messages.hpp"
-#include "Form.hpp"
-#include "Bureaucrat.hpp"
+
 
 void message_bureau_defa_ctor(Bureaucrat& b) { 
 	std::cout << CYN "🔨default constructor called for bureaucrat " << b.getName() << "" RST << b.getEmoji() << std::endl; }
@@ -28,6 +27,23 @@ void message_bureau_copy_ctor(Bureaucrat& b) {
 
 void message_bureau_assg_oper(Bureaucrat& b) { 
 	std::cout << CYN "🟰 assignment operator called for bureaucrat " << b.getName() << "" RST << b.getEmoji() << std::endl; }
+
+
+void message_bureau2_defa_ctor(Bureaucrat2& b) { 
+	std::cout << CYN "🔨default constructor called for bureaucrat2 " << b.getName() << "" RST << b.getEmoji() << std::endl; }
+
+void message_bureau2_para_ctor(Bureaucrat2& b) { 
+	std::cout << CYN "📐parameterized constructor called for bureaucrat2 " << b.getName() << "" RST << b.getEmoji() << std::endl; }
+
+void message_bureau2_deft_dtor(Bureaucrat2& b) { 
+	std::cout << RED "🗑️ destructor called for bureaucrat2 " << b.getName() << "" RST << b.getEmoji() << std::endl; }
+
+void message_bureau2_copy_ctor(Bureaucrat2& b) {
+	std::cout << CYN "👯 copy constructor called for bureaucrat2 " << b.getName() << "" RST << b.getEmoji() << std::endl; }
+
+void message_bureau2_assg_oper(Bureaucrat2& b) { 
+	std::cout << CYN "🟰 assignment operator called for bureaucrat2 " << b.getName() << "" RST << b.getEmoji() << std::endl; }	
+
 
 
 
@@ -62,3 +78,54 @@ void message_Aform_copy_ctor(AForm& af) {
 
 void message_Aform_assg_oper(AForm& af) { 
 	std::cout << CYN "🟰 assignment operator called for " << af.getName() << af.getEmoji() << " Aform" RST << std::endl; }	
+
+
+
+
+void message_scf_defa_ctor(ShrubberyCreationForm& s) {
+	std::cout << CYN "🔨default constructor called for " << s.getName() << s.getEmoji() << "" RST << std::endl; }
+
+void message_scf_para_ctor(ShrubberyCreationForm& s) {
+	std::cout << CYN "📐parameterized constructor called for " << s.getName() << s.getEmoji() << "" RST << std::endl; }
+
+void message_scf_deft_dtor(ShrubberyCreationForm& s) {
+	std::cout << RED "🗑️ destructor called for " << s.getName() << s.getEmoji() << "" RST << std::endl; }
+
+void message_scf_copy_ctor(ShrubberyCreationForm& s) {
+	std::cout << CYN "👯 copy constructor called for " << s.getName() << s.getEmoji() << "" RST << std::endl; }
+
+void message_scf_assg_oper(ShrubberyCreationForm& s) {
+	std::cout << CYN "🟰 assignment operator called for " << s.getName() << s.getEmoji() << "" RST << std::endl; }
+
+
+
+void message_rrf_defa_ctor(RobotomyRequestForm& r) {
+	std::cout << CYN "🔨default constructor called for " << r.getName() << r.getEmoji() << "" RST << std::endl; }
+
+void message_rrf_para_ctor(RobotomyRequestForm& r) {
+	std::cout << CYN "📐parameterized constructor called for " << r.getName() << r.getEmoji() << "" RST << std::endl; }
+
+void message_rrf_deft_dtor(RobotomyRequestForm& r) {
+	std::cout << RED "🗑️ destructor called for " << r.getName() << r.getEmoji() << "" RST << std::endl; }
+
+void message_rrf_copy_ctor(RobotomyRequestForm& r) {
+	std::cout << CYN "👯 copy constructor called for " << r.getName() << r.getEmoji() << "" RST << std::endl; }
+
+void message_rrf_assg_oper(RobotomyRequestForm& r) {
+	std::cout << CYN "🟰 assignment operator called for " << r.getName() << r.getEmoji() << "" RST << std::endl; }
+
+
+void message_ppf_defa_ctor(PresidentialPardonForm& r) {
+	std::cout << CYN "🔨default constructor called for " << r.getName() << r.getEmoji() << "" RST << std::endl; }
+
+void message_ppf_para_ctor(PresidentialPardonForm& r) {
+	std::cout << CYN "📐parameterized constructor called for " << r.getName() << r.getEmoji() << "" RST << std::endl; }
+
+void message_ppf_deft_dtor(PresidentialPardonForm& r) {
+	std::cout << RED "🗑️ destructor called for " << r.getName() << r.getEmoji() << "" RST << std::endl; }
+
+void message_ppf_copy_ctor(PresidentialPardonForm& r) {
+	std::cout << CYN "👯 copy constructor called for " << r.getName() << r.getEmoji() << "" RST << std::endl; }
+
+void message_ppf_assg_oper(PresidentialPardonForm& r) {
+	std::cout << CYN "🟰 assignment operator called for " << r.getName() << r.getEmoji() << "" RST << std::endl; }		

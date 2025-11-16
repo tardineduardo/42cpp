@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 18:39:30 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/15 20:14:32 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/16 14:53:17 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,12 @@
 
 # include <iostream>
 # include "Bureaucrat.hpp"
+# include "Bureaucrat2.hpp"
 # include "Form.hpp"
 # include "AForm.hpp"
+# include "ShrubberyCreationForm.hpp"
+# include "RobotomyRequestForm.hpp"
+# include "PresidentialPardonForm.hpp"
 
 # define RED	"\001\033[31m\002"
 # define GRN	"\001\033[32m\002"
@@ -37,6 +41,12 @@ void message_bureau_deft_dtor(Bureaucrat& b);
 void message_bureau_copy_ctor(Bureaucrat& b);
 void message_bureau_assg_oper(Bureaucrat& b);
 
+void message_bureau2_defa_ctor(Bureaucrat2& b);
+void message_bureau2_para_ctor(Bureaucrat2& b);
+void message_bureau2_deft_dtor(Bureaucrat2& b);
+void message_bureau2_copy_ctor(Bureaucrat2& b);
+void message_bureau2_assg_oper(Bureaucrat2& b);
+
 void message_form_defa_ctor(Form& f);
 void message_form_para_ctor(Form& f);
 void message_form_deft_dtor(Form& f);
@@ -48,6 +58,28 @@ void message_Aform_para_ctor(AForm& af);
 void message_Aform_deft_dtor(AForm& af);
 void message_Aform_copy_ctor(AForm& af);
 void message_Aform_assg_oper(AForm& af);
+
+void message_scf_defa_ctor(ShrubberyCreationForm& s);
+void message_scf_para_ctor(ShrubberyCreationForm& s);
+void message_scf_deft_dtor(ShrubberyCreationForm& s);
+void message_scf_copy_ctor(ShrubberyCreationForm& s);
+void message_scf_assg_oper(ShrubberyCreationForm& s);
+
+void message_rrf_defa_ctor(RobotomyRequestForm& r);
+void message_rrf_para_ctor(RobotomyRequestForm& r);
+void message_rrf_deft_dtor(RobotomyRequestForm& r);
+void message_rrf_copy_ctor(RobotomyRequestForm& r);
+void message_rrf_assg_oper(RobotomyRequestForm& r);
+
+void message_ppf_defa_ctor(PresidentialPardonForm& r);
+void message_ppf_para_ctor(PresidentialPardonForm& r);
+void message_ppf_deft_dtor(PresidentialPardonForm& r);
+void message_ppf_copy_ctor(PresidentialPardonForm& r);
+void message_ppf_assg_oper(PresidentialPardonForm& r);
+
+
+
+
 
 
 #endif
