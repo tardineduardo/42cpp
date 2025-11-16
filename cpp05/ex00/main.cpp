@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 19:22:06 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/16 18:15:56 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/16 19:22:17 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -293,15 +293,27 @@ separator("Yay");
 		p("------ A ------");
 		Bureaucrat2 max("Max", 1);
 		PresidentialPardonForm b;
+		ShrubberyCreationForm c;
+		RobotomyRequestForm d;
+
 		std::cout << max;
+		
 		std::cout << b;
-		std::cout << "debugxxx\n";		
+		std::cout << c;
+		std::cout << d;
+
 		max.signForm(b);
+		max.signForm(c);
+		max.signForm(d);
+
+		b.setTarget("Eduardo");
+		c.setTarget("Maria");
+		d.setTarget("Joao");				
+
+
 		max.executeForm(b);
-		std::cout << b << "\n";
-
-
-
+		max.executeForm(c);
+		max.executeForm(d);
 
 
 	}

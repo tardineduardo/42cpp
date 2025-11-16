@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 13:26:23 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/16 18:05:34 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/16 20:02:56 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,10 @@
 # include <iostream>
 # include <exception>
 # include <string>
+# include <fstream>
 # include "AForm.hpp"
+
+std::string getTree1();
 
 class ShrubberyCreationForm : public AForm
 {

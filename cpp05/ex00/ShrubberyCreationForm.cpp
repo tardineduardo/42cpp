@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 13:39:39 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/16 18:08:05 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/16 20:04:30 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,15 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 // ---------- other methods ----------------------------------------------------
 
 void ShrubberyCreationForm::action(std::string target) const {
-	(void)target;
-	std::cout << "draws tree on " << target << "\n";
-	//Creates a file <target>_shrubbery in the working directory and writes ASCII trees
-	//inside it.
-	//TO DO
+	std::string filename = target + "_" + "shrubbery";
+	std::ofstream MyFile(filename.c_str());
+	MyFile << getTree1();
+	MyFile.close();
+	std::cout << "File " << filename << " saved to local folder\n";
+}
+
+
+std::string getTree1() {
+	std::string tree = "          .     .  .      +     .      .          .\n     .       .      .     #       .           .\n        .      .         ###            .      .      .\n      .      .   \"#:. .:##\"##:. .:#\"  .      .\n          .      . \"####\"###\"####\"  .\n       .     \"#:.    .:#\"###\"#:.    .:#\"  .        .       .\n  .             \"#########\"#########\"        .        .\n        .    \"#:.  \"####\"###\"####\"  .:#\"   .       .\n     .     .  \"#######\"\"##\"##\"\"#######\"                  .\n                .\"##\"#####\"#####\"##\"           .      .\n    .   \"#:. ...  .:##\"###\"###\"##:.  ... .:#\"     .\n      .     \"#######\"##\"#####\"##\"#######\"      .     .\n    .    .     \"#####\"\"#######\"\"#####\"    .      .\n            .     \"      000      \"    .     .\n       .         .   .   000     .        .       .\n.. .. ..................O000O........................ ......";
+	return tree;
 }

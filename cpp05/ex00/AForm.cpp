@@ -24,7 +24,7 @@ AForm::AForm()
 	  _k_exec_grade(Bureaucrat2::kmingrade),
 	  _signed(false),
 	  _emoji(setEmoji()) {
-	message_Aform_defa_ctor(*this);
+	message_AForm_defa_ctor(*this);
 }
 
 // parameterized constructor
@@ -34,7 +34,7 @@ AForm::AForm(std::string name, int s_grade, int e_grade)
 	  _k_exec_grade(validateExecGrade(e_grade)),
   	  _signed(false),
 	  _emoji(setEmoji()) {
-  message_Aform_para_ctor(*this);
+  message_AForm_para_ctor(*this);
 }
 
 // copy constructor
@@ -44,7 +44,7 @@ AForm::AForm(const AForm& other)
 	  _k_exec_grade(other._k_exec_grade),
 	  _signed(false),
 	  _emoji(setEmoji()) {
-  message_Aform_copy_ctor(*this);
+  message_AForm_copy_ctor(*this);
 }
 
 // assignment operator overload
@@ -53,13 +53,13 @@ AForm& AForm::operator=(const AForm& other) {
 		_signed = false;
     	_emoji = setEmoji();
 	}
-	message_Aform_assg_oper(*this);
+	message_AForm_assg_oper(*this);
 	return *this;
 }
 
 // destructor
 AForm::~AForm() {
-	message_Aform_deft_dtor(*this);
+	message_AForm_deft_dtor(*this);
 }
 
 
@@ -89,7 +89,8 @@ const std::string& AForm::getTarget() const {
 	return _target;
 }
 
-void	AForm::setTarget(std::string& target) {
+void	AForm::setTarget(const std::string& target) {
+	std::cout << getEmoji() << " target set to " << target << std::endl;
 	_target = target;
 }
 
@@ -121,7 +122,7 @@ void AForm::execute(Bureaucrat2 const &executor) const {
 	if (!getSigned())
 		throw AForm::FormNotSignedException();
 	if (getTarget() == "")
-		throw AForm::FormNotSignedException();
+		throw AForm::NoTargetException();
 	if (executor.getGrade() > _k_exec_grade)
 		throw Bureaucrat2::GradeTooLowException();
 	this->action(getTarget());
@@ -130,19 +131,19 @@ void AForm::execute(Bureaucrat2 const &executor) const {
 // ---------- exceptions -------------------------------------------------------
 
 const char *AForm::GradeTooHighException::what() const throw() {
-	return "Grade is too high";
+	return "grade is too high";
 }
 
 const char *AForm::GradeTooLowException::what() const throw() {
-	return "Grade is too low";
+	return "grade is too low";
 }
 
 const char *AForm::FormNotSignedException::what() const throw() {
-	return "Grade is too low";
+	return "form is not signed";
 }
 
 const char *AForm::NoTargetException::what() const throw() {
-	return "Form target is not specified";
+	return "target is not specified";
 }
 
 

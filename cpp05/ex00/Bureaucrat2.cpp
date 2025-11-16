@@ -120,12 +120,12 @@ void Bureaucrat2::signForm(AForm& f)
 
 void Bureaucrat2::executeForm(AForm const &form) const {
 	try {
-		std::cout << "debug1\n";		
 		form.execute(*this);
 		std::cout << getName()
 				  << getEmoji()
 				  << " executed "
 				  << form.getName()
+  				  << form.getEmoji()
 				  << std::endl;
 	}
 	catch (std::exception &e) {
@@ -133,6 +133,7 @@ void Bureaucrat2::executeForm(AForm const &form) const {
 				  << getEmoji()
 				  << " can't execute "
 				  << form.getName()
+				  << form.getEmoji()
 				  << ": "
 				  << e.what()
   				  << std::endl;

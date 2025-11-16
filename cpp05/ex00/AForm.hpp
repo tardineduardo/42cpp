@@ -44,7 +44,7 @@ class AForm
 		const std::string&		getName() const;
 		const std::string&		getTarget() const;	
 		bool					getSigned() const;
-		void					setTarget(std::string& target);
+		void					setTarget(const std::string& target);
 		void					beSigned(Bureaucrat2& b);
 		int&					validateSignGrade(int& value) const;
 		int&					validateExecGrade(int& value) const;

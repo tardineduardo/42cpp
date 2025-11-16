@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 18:39:30 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/16 14:53:17 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/16 19:31:17 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,11 @@ void message_form_deft_dtor(Form& f);
 void message_form_copy_ctor(Form& f);
 void message_form_assg_oper(Form& f);
 
-void message_Aform_defa_ctor(AForm& af);
-void message_Aform_para_ctor(AForm& af);
-void message_Aform_deft_dtor(AForm& af);
-void message_Aform_copy_ctor(AForm& af);
-void message_Aform_assg_oper(AForm& af);
+void message_AForm_defa_ctor(AForm& af);
+void message_AForm_para_ctor(AForm& af);
+void message_AForm_deft_dtor(AForm& af);
+void message_AForm_copy_ctor(AForm& af);
+void message_AForm_assg_oper(AForm& af);
 
 void message_scf_defa_ctor(ShrubberyCreationForm& s);
 void message_scf_para_ctor(ShrubberyCreationForm& s);
