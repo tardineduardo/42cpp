@@ -6,100 +6,75 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 19:22:06 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/15 19:55:15 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/15 23:30:59 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Form.hpp"
 #include "Bureaucrat.hpp"
 
+static void separator(std::string def);
+
 int main(void)
 {
-// CASE X - Default constructor------------------------------------------------
-
-	std::cout << "1." << std::endl;
+// -----------------------------------------------------------------------------	
+separator(
+"A Bureaucrat must have: a) A constant name. b) A grade that ranges from 1 (highest\n"
+"possible grade) to 150 (lowest possible grade).");
 
 	{
 		Bureaucrat a;
-		std::cout << a;
+		Bureaucrat b("Max", 100);
+
+		std::cout << a.getName() << "/" << a.getGrade() << "\n";
+		std::cout << b.getName() << "/" << b.getGrade() << "\n";
 	}
 
-	std::cout << std::endl;
 
-// CASE X - Default constructor------------------------------------------------
+// -----------------------------------------------------------------------------	
+separator(
+"Any attempt to instantiate a Bureaucrat with an invalid grade must throw an exception:\n"
+"either a Bureaucrat::GradeTooHighException or a Bureaucrat::GradeTooLowException.");
 
-	std::cout << "2." << std::endl;
+	// // TEST FOR EVALUATION
+	// { Bureaucrat a("Kim", 152); }
+
+	// // TEST FOR EVALUATION
+	// { Bureaucrat a("Kim", 0); }
 
 	{
-		Bureaucrat a("Max", 1);
-		std::cout << a;
-		try {
-			a.incrementGrade();
+		try { Bureaucrat a("Kim", 152); }
+		catch (...) { std::cout << "⚠️ some error (1)\n\n"; }
+
+		try { Bureaucrat b("Max", 100); }
+		catch (...) { std::cout << "⚠️ some error (2)\n\n"; }
+	}
+
+	{
+		try { Bureaucrat a("Kim", 152); }
+		catch (std::exception &e) {
+			std::cout << "⚠️ some error (1)\n";
+			std::cout << e.what() << "\n\n"; }
+
+		try { Bureaucrat b("Max", 100); }
+		catch (std::exception &e) {
+			std::cout << "⚠️ some error (2)\n\n";
+			std::cout << e.what() << "\n\n";
 		}
-		catch (Bureaucrat::GradeTooHighException &e)
-		{std::cout << "error\n";}
-		std::cout << a;
-		try {
-			a.decrementGrade();
-		}
-		catch (Bureaucrat::GradeTooHighException &e)
-		{}
-				std::cout << a;
+
+		std::cout << "\ndoesn't break! the exception was caught.\n\n";
+	}	
 
 
 
-
-
-	}
-
-	std::cout << std::endl;
-
-
-
-
-	try 
-	{
-		Bureaucrat b1("Max", 20);
-		std::cout << b1;
-	}
-	catch (...) 
-	{
-		std::cout << "Can't instanciate bureacrat.\n";
-	}
-
-	//-------------------------------------- CASE 2 ----------------------------	
-	try 
-	{
-		Bureaucrat b2("Yan", 50);
-		Bureaucrat b1("Max", 20);
-		b1 = b2;
-		b1.decrementGrade(6);
-		std::cout << b1.getGrade() << std::endl;
-	}
-	catch (Bureaucrat::GradeTooHighException &e) 
-	{
-		std::cout << "Can't instanciate bureacrat.\n";
-	}
-
-	//-------------------------------------- CASE 3 ----------------------------	
-
-	Form new1;
-
-	Form form("C10XPTO",100, Bureaucrat::kmingrade);
-
-	std::cout << new1;
-	std::cout << form;
-
-	//-------------------------------------- CASE 4 ----------------------------	
-
-
-
-
+	std::cout << "\n";
 }
 
 
+//A Bureaucrat must have: A constant name. A grade that ranges from 1 (highest possible grade) to 150 (lowest possible grade).
 
-//A Bureaucrat must have: • A constant name. • A grade that ranges from 1 (highest possible grade) to 150 (lowest possible grade). Any attempt to instantiate a Bureaucrat with an invalid grade must throw an exception: either a Bureaucrat::GradeTooHighException or a Bureaucrat::GradeTooLowException.
+
+//Any attempt to instantiate a Bureaucrat with an invalid grade must throw an exception: either a Bureaucrat::GradeTooHighException or a Bureaucrat::GradeTooLowException.
 
 //You will provide getters for both attributes: getName() and getGrade().
 
@@ -110,3 +85,14 @@ int main(void)
 //The thrown exceptions must be catchable using try and catch blocks:
 
 //You must implement an overload of the insertion («) operator to print output in the following format (without the angle brackets): <name>, bureaucrat grade <grade>.
+
+
+static void separator(std::string def)
+{
+	static int a = 1;
+
+	std::cout <<"\n\n--------------------------------------------------------------------------------\n"
+			  << a << ". " << def << "\n\n";
+
+	a++;
+}
