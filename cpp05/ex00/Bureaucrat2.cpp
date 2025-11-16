@@ -104,9 +104,9 @@ void Bureaucrat2::signForm(AForm& f)
 	try {
 		f.beSigned(*this);
 	}
-	catch (Form::GradeTooLowException &e) {
+	catch (AForm::GradeTooLowException &e) {
 		std::cout << _name << _emoji
-				  << "couldn’t sign " 
+				  << " couldn't sign " 
 				  << f.getName() << f.getEmoji() 
 				  << " because their grade is too low."
 				  << std::endl;	
@@ -118,8 +118,26 @@ void Bureaucrat2::signForm(AForm& f)
 			  << std::endl;	
 }
 
-
-
+void Bureaucrat2::executeForm(AForm const &form) const {
+	try {
+		std::cout << "debug1\n";		
+		form.execute(*this);
+		std::cout << getName()
+				  << getEmoji()
+				  << " executed "
+				  << form.getName()
+				  << std::endl;
+	}
+	catch (std::exception &e) {
+		std::cout << getName()
+				  << getEmoji()
+				  << " can't execute "
+				  << form.getName()
+				  << ": "
+				  << e.what()
+  				  << std::endl;
+	}
+}
 
 // ---------- exceptions -------------------------------------------------------
 

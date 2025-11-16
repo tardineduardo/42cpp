@@ -44,6 +44,7 @@ class Bureaucrat2
 		void					decrementGrade(const int& decrement);
 		int&					validateGrade(int &value) const;
 		void					signForm(AForm& f);
+		void					executeForm(AForm const &form) const;
 
 		// constants	
 		static const int	kmaxgrade = 1;

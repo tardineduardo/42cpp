@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 13:39:39 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/16 15:00:38 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/16 18:08:05 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ ShrubberyCreationForm::ShrubberyCreationForm()
 // copy constructor
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
 	: AForm("ShrubberyCreationForm", k_scf_signgrade, k_scf_execgrade) {
-	(void)other;
+	(void)other; //other is irrelevant, these forms are always the same
 	message_scf_copy_ctor(*this);
 }
 
@@ -45,27 +45,10 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 
 // ---------- other methods ----------------------------------------------------
 
-void ShrubberyCreationForm::execute(Bureaucrat2 const &executor) const {
-	(void)executor;
-}
-
-void ShrubberyCreationForm::actionDrawTrees(std::string& target) const {
+void ShrubberyCreationForm::action(std::string target) const {
 	(void)target;
+	std::cout << "draws tree on " << target << "\n";
 	//Creates a file <target>_shrubbery in the working directory and writes ASCII trees
 	//inside it.
 	//TO DO
 }
-
-
-
-// ---------- exceptions -------------------------------------------------------
-
-
-
-
-// ---------- stream operator overload -----------------------------------------
-
-
-
-// ---------- random emoji generator -------------------------------------------
-

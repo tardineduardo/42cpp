@@ -6,13 +6,14 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 13:39:39 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/16 15:01:24 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/16 18:07:19 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "RobotomyRequestForm.hpp"
 #include "Bureaucrat2.hpp"
 #include "messages.hpp"
+
 
 // ---------- canonical methods ------------------------------------------------
 
@@ -25,7 +26,7 @@ RobotomyRequestForm::RobotomyRequestForm()
 // copy constructor
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
 	: AForm("RobotomyRequestForm", k_rrf_signgrade, k_rrf_execgrade) {
-	(void)other;
+	(void)other; //other is irrelevant, these forms are always the same
 	message_rrf_copy_ctor(*this);
 }
 
@@ -45,27 +46,9 @@ RobotomyRequestForm::~RobotomyRequestForm() {
 
 // ---------- other methods ----------------------------------------------------
 
-void RobotomyRequestForm::execute(Bureaucrat2 const &executor) const {
-	(void)executor;
-}
-
-void RobotomyRequestForm::actionDoRobotomy(std::string& target) const {
-	(void)target;
+void RobotomyRequestForm::action(std::string target) const {
+	std::cout << "does robotomy on " << target << std::endl;
 	//Makes some drilling noises, then informs that <target> has been robotomized
 	//successfully 50% of the time. Otherwise, it informs that the robotomy failed.
 	//TO DO
 }
-
-
-
-// ---------- exceptions -------------------------------------------------------
-
-
-
-
-// ---------- stream operator overload -----------------------------------------
-
-
-
-// ---------- random emoji generator -------------------------------------------
-

@@ -85,6 +85,14 @@ const std::string& AForm::getEmoji() const {
 	return _emoji;
 }
 
+const std::string& AForm::getTarget() const {
+	return _target;
+}
+
+void	AForm::setTarget(std::string& target) {
+	_target = target;
+}
+
 void AForm::beSigned(Bureaucrat2& b)
 {
 	if (b.getGrade() <= AForm::_k_sign_grade)
@@ -109,6 +117,15 @@ int& AForm::validateExecGrade(int& value) const {
 	return (value);
 }
 
+void AForm::execute(Bureaucrat2 const &executor) const {
+	if (!getSigned())
+		throw AForm::FormNotSignedException();
+	if (getTarget() == "")
+		throw AForm::FormNotSignedException();
+	if (executor.getGrade() > _k_exec_grade)
+		throw Bureaucrat2::GradeTooLowException();
+	this->action(getTarget());
+}
 
 // ---------- exceptions -------------------------------------------------------
 
@@ -122,6 +139,10 @@ const char *AForm::GradeTooLowException::what() const throw() {
 
 const char *AForm::FormNotSignedException::what() const throw() {
 	return "Grade is too low";
+}
+
+const char *AForm::NoTargetException::what() const throw() {
+	return "Form target is not specified";
 }
 
 

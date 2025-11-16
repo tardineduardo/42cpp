@@ -27,6 +27,7 @@ class AForm
 		const int			_k_sign_grade;
 		const int			_k_exec_grade;
 		bool				_signed;
+		std::string			_target;
 		std::string			_emoji;
 
     public:
@@ -41,13 +42,16 @@ class AForm
 		const int&				getSignGrade() const;
 		const int&				getExecGrade() const;
 		const std::string&		getName() const;
+		const std::string&		getTarget() const;	
 		bool					getSigned() const;
+		void					setTarget(std::string& target);
 		void					beSigned(Bureaucrat2& b);
 		int&					validateSignGrade(int& value) const;
 		int&					validateExecGrade(int& value) const;
+		void					execute(Bureaucrat2 const &executor) const;
 
 		// virtuals
-		virtual void			execute(Bureaucrat2 const &executor) const = 0;
+		virtual void			action(std::string target) const = 0;
 
 		// exceptions
 		class GradeTooHighException : public std::exception {
@@ -57,6 +61,9 @@ class AForm
 			public: const char *what() const throw(); };
 
 		class FormNotSignedException : public std::exception {
+			public: const char *what() const throw(); };
+
+		class NoTargetException : public std::exception {
 			public: const char *what() const throw(); };
 
 		// extra

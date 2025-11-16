@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 13:39:39 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/16 14:58:55 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/16 18:05:50 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ PresidentialPardonForm::PresidentialPardonForm()
 // copy constructor
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other)
 	: AForm("PresidentialPardonForm", k_ppf_signgrade, k_ppf_execgrade) {
-	(void)other;
+	(void)other; //other is irrelevant, these forms are always the same
 	message_ppf_copy_ctor(*this);
 }
 
@@ -45,26 +45,6 @@ PresidentialPardonForm::~PresidentialPardonForm() {
 
 // ---------- other methods ----------------------------------------------------
 
-void PresidentialPardonForm::execute(Bureaucrat2 const &executor) const {
-	(void)executor;
+void PresidentialPardonForm::action(std::string target) const {
+	std::cout << target << " has been pardoned by Zaphod Beeblebrox.\n";
 }
-
-void PresidentialPardonForm::actionPardon(std::string& target) const {
-	(void)target;
-	// Informs that <target> has been pardoned by Zaphod Beeblebrox.
-	//TO DO
-}
-
-
-
-// ---------- exceptions -------------------------------------------------------
-
-
-
-
-// ---------- stream operator overload -----------------------------------------
-
-
-
-// ---------- random emoji generator -------------------------------------------
-

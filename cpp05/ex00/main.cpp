@@ -6,12 +6,17 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 19:22:06 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/16 13:31:27 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/16 18:15:56 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "Form.hpp"
-#include "Bureaucrat.hpp"
+# include "Bureaucrat.hpp"
+# include "Bureaucrat2.hpp"
+# include "Form.hpp"
+# include "AForm.hpp"
+# include "ShrubberyCreationForm.hpp"
+# include "RobotomyRequestForm.hpp"
+# include "PresidentialPardonForm.hpp"
 
 static void separator(std::string def);
 static void p(std::string x);
@@ -279,8 +284,35 @@ separator(
 
 	// TRY/CATCH NOT VISIBLE TO USER ANYMORE! <3
 
+
+
+// -----------------------------------------------------------------------------
+separator("Yay");
+
+	{
+		p("------ A ------");
+		Bureaucrat2 max("Max", 1);
+		PresidentialPardonForm b;
+		std::cout << max;
+		std::cout << b;
+		std::cout << "debugxxx\n";		
+		max.signForm(b);
+		max.executeForm(b);
+		std::cout << b << "\n";
+
+
+
+
+
+	}
+
+	// TRY/CATCH NOT VISIBLE TO USER ANYMORE! <3
+
 	std::cout << "\n";
 }
+
+
+
 
 
 

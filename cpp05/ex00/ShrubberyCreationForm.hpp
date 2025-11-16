@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 13:26:23 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/16 14:59:07 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/16 18:05:34 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@
 class ShrubberyCreationForm : public AForm
 {
 	private:
-		void actionDrawTrees(std::string& target) const;
 
     public:
 		// canonical
@@ -29,9 +28,8 @@ class ShrubberyCreationForm : public AForm
         ShrubberyCreationForm(const ShrubberyCreationForm& other);			 // copy constructor
         ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);// assignment operator
 
-		// other
-		void execute(Bureaucrat2 const &executor) const;
-	
+		void action(std::string target) const;
+
 		// constants
 		static const int k_scf_signgrade = 145;
 		static const int k_scf_execgrade = 137;		

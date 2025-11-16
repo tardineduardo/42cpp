@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 13:26:23 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/16 15:01:04 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/16 18:06:31 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,6 @@
 class RobotomyRequestForm : public AForm
 {
 	private:
-		void actionDoRobotomy(std::string& target) const;
 
     public:
 		// canonical
@@ -31,7 +30,7 @@ class RobotomyRequestForm : public AForm
         RobotomyRequestForm &operator=(const RobotomyRequestForm &other);// assignment operator
 
 		// other
-		void execute(Bureaucrat2 const &executor) const;
+		void action(std::string target) const;
 	
 		// constants
 		static const int k_rrf_signgrade = 72;
