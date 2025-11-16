@@ -149,21 +149,47 @@ separator(
 
 // -----------------------------------------------------------------------------	
 separator(
-"A Form class has a) a constant name, b) a boolean indicating whether it is"
-"signed (at construction, it is not), c) A constant grade required to sign it,"
-"d) A constant grade required to execute it.");
+"A Form class has a) a constant name, b) a boolean indicating whether it is\n"
+"signed (at construction, it is not), c) A constant grade required to sign it,\n"
+"d) A constant grade required to execute it. As before, write getters for all\n"
+"attributes and overload the insertion («) operator to print the form's info.");
 
 
 
 
 
+// -----------------------------------------------------------------------------	
+separator(
+"The grades of the Form follow the same rules as those of the Bureaucrat. Thus,\n"
+"the following exceptions will be thrown if a form's grade is out of bounds:\n"
+"Form::GradeTooHighException and Form::GradeTooLowException.");
 
 
 
 
 
+// -----------------------------------------------------------------------------	
+separator(
+"Add a beSigned() member function to the Form that takes a Bureaucrat as a\n"
+"parameter. It changes the form's status to signed if the bureaucrat's grade\n"
+"is high enough (greater than or equal to the required one). If the grade is\n"
+"too low, throw a Form::GradeTooLowException.");
 
 
+
+
+// -----------------------------------------------------------------------------	
+separator(
+"Add a signForm() member function in the Bureaucrat class. This function must\n"
+"call Form::beSigned() to attempt to sign the form. If the form is signed successfully,\n"
+"it will print something like: <bureaucrat> signed <form>. Otherwise, it will\n"
+"print something like: <bureaucrat> couldn’t sign <form> because <reason>.");
+
+
+
+	
+	
+	
 	std::cout << "\n";
 }
 
