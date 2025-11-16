@@ -125,14 +125,18 @@ const char *Form::GradeTooLowException::what() const throw() {
 
 std::ostream& operator<<(std::ostream& os, const Form& f)
 {
-	os  << f.getName()
-		<< f.getEmoji()
-		<< " form required grades: "
-		<< f.getSignGrade()
-		<< " (S), "
-		<< f.getExecGrade()
-		<< "(E)"
-		<< std::endl;
+	std::string signedstatus;
+
+	if (f.getSigned())
+		signedstatus = "signed";
+	else
+		signedstatus = "not signed";
+
+	os  << f.getName() << f.getEmoji()
+		<< " required grades: "
+		<< f.getSignGrade() << "(sign), "
+		<< f.getExecGrade() << "(exec), "
+		<< signedstatus << std::endl;
 	return os;
 }
 

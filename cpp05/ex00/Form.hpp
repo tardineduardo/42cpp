@@ -49,10 +49,10 @@ class Form
 
 		// exceptions
 		class GradeTooHighException : public std::exception {
-			const char *what() const throw(); };
+			public: const char *what() const throw(); };
 
 		class GradeTooLowException : public std::exception {
-			const char *what() const throw(); };
+			public: const char *what() const throw(); };
 
 		// extra
 		const std::string& getEmoji() const;
