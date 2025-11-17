@@ -106,10 +106,10 @@ void Bureaucrat::signForm(Form& f)
 	}
 	catch (Form::GradeTooLowException &e) {
 		std::cout << _name << _emoji
-				  << "couldn’t sign " 
+				  << " couldn't sign " 
 				  << f.getName() << f.getEmoji() 
 				  << " because their grade is too low."
-				  << std::endl;	
+				  << std::endl;
 		return;
 	}
 	std::cout << _name << _emoji

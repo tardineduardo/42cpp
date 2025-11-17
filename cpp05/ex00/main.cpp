@@ -266,6 +266,7 @@ separator(
 
 	{
 		p("------ A ------");
+
 		Bureaucrat max("Max", 100);
 		Form b("XPTO11", 100, 20);
 		std::cout << max;
@@ -273,7 +274,8 @@ separator(
 		max.signForm(b);
 		std::cout << b << "\n";
 
-		p("------ A ------");
+		p("------ B ------");
+
 		Bureaucrat tim("Tim", 100);
 		Form c("XPTO12", 1, 20);
 		std::cout << tim;
@@ -287,39 +289,56 @@ separator(
 
 
 // -----------------------------------------------------------------------------
-separator("Yay");
+separator(
+"The base class Form must be an abstract class and should therefore be renamed\n"
+"AForm. The form's attributes need to remain private. ShrubberyCreationForm:\n"
+"Required grades: sign 145, exec 137 Creates a file <target>_shrubbery in the\n"
+"working directory and writes ASCII trees inside it.");
 
 	{
 		p("------ A ------");
 		Bureaucrat2 max("Max", 1);
-		PresidentialPardonForm b;
-		ShrubberyCreationForm c;
-		RobotomyRequestForm d;
-
+		Bureaucrat2 kim("Kim", 150);
 		std::cout << max;
-		
-		std::cout << b;
-		std::cout << c;
-		std::cout << d;
+		std::cout << kim;
 
-		max.signForm(b);
-		max.signForm(c);
-		max.signForm(d);
+		p("------ B ------");
+		ShrubberyCreationForm a;
+		std::cout << a;
 
-		b.setTarget("Eduardo");
-		c.setTarget("Maria");
-		d.setTarget("Joao");				
+		p("------ C ------");
+		kim.signForm(a);
+		max.signForm(a);
+	
+		p("------ D ------");
+		kim.executeForm(a);
+		max.executeForm(a);
 
+		p("------ D ------");
+		a.setTarget("xxxxxxxxxx");
 
-		max.executeForm(b);
-		max.executeForm(c);
-		max.executeForm(d);
+		p("------ E ------");
+		kim.executeForm(a);
+		std::cout << std::endl;
+		max.executeForm(a);
 
-
+		std::cout << std::endl;
 	}
 
-	// TRY/CATCH NOT VISIBLE TO USER ANYMORE! <3
 
+
+
+
+
+
+
+
+
+
+
+
+
+	
 	std::cout << "\n";
 }
 
