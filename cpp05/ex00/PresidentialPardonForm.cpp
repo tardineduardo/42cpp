@@ -22,6 +22,13 @@ PresidentialPardonForm::PresidentialPardonForm()
 	message_ppf_defa_ctor(*this);
 }
 
+// parameterized constructor
+PresidentialPardonForm::PresidentialPardonForm(std::string& target)
+	: AForm("PresidentialPardonForm", k_ppf_signgrade, k_ppf_execgrade) {
+	setTarget(target);
+	message_ppf_defa_ctor(*this);
+}
+
 // copy constructor
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other)
 	: AForm("PresidentialPardonForm", k_ppf_signgrade, k_ppf_execgrade) {
@@ -45,6 +52,6 @@ PresidentialPardonForm::~PresidentialPardonForm() {
 
 // ---------- other methods ----------------------------------------------------
 
-void PresidentialPardonForm::action(std::string target) const {
-	std::cout << target << " has been pardoned by Zaphod Beeblebrox.\n";
+void PresidentialPardonForm::action() const {
+	std::cout << getTarget() << " has been pardoned by Zaphod Beeblebrox.\n";
 }

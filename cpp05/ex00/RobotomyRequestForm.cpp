@@ -23,6 +23,13 @@ RobotomyRequestForm::RobotomyRequestForm()
 	message_rrf_defa_ctor(*this);
 }
 
+// paramet constructor
+RobotomyRequestForm::RobotomyRequestForm(std::string& target)
+	: AForm("RobotomyRequestForm", k_rrf_signgrade, k_rrf_execgrade) {
+	setTarget(target);
+	message_rrf_defa_ctor(*this);
+}
+
 // copy constructor
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
 	: AForm("RobotomyRequestForm", k_rrf_signgrade, k_rrf_execgrade) {
@@ -46,8 +53,8 @@ RobotomyRequestForm::~RobotomyRequestForm() {
 
 // ---------- other methods ----------------------------------------------------
 
-void RobotomyRequestForm::action(std::string target) const {
-	std::cout << "does robotomy on " << target << std::endl;
+void RobotomyRequestForm::action() const {
+	std::cout << "does robotomy on " << getTarget() << std::endl;
 	//Makes some drilling noises, then informs that <target> has been robotomized
 	//successfully 50% of the time. Otherwise, it informs that the robotomy failed.
 	//TO DO

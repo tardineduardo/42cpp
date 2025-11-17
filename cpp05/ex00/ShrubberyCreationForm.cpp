@@ -22,6 +22,13 @@ ShrubberyCreationForm::ShrubberyCreationForm()
 	message_scf_defa_ctor(*this);
 }
 
+// paramet constructor
+ShrubberyCreationForm::ShrubberyCreationForm(std::string& target)
+	: AForm("ShrubberyCreationForm", k_scf_signgrade, k_scf_execgrade) {
+	setTarget(target);
+	message_scf_defa_ctor(*this);
+}
+
 // copy constructor
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
 	: AForm("ShrubberyCreationForm", k_scf_signgrade, k_scf_execgrade) {
@@ -45,14 +52,13 @@ ShrubberyCreationForm::~ShrubberyCreationForm() {
 
 // ---------- other methods ----------------------------------------------------
 
-void ShrubberyCreationForm::action(std::string target) const {
-	std::string filename = target + "_" + "shrubbery";
+void ShrubberyCreationForm::action() const {
+	std::string filename = getTarget() + "_" + "shrubbery";
 	std::ofstream MyFile(filename.c_str());
 	MyFile << getTree1();
 	MyFile.close();
 	std::cout << "File " << filename << " saved to local folder\n";
 }
-
 
 std::string getTree1() {
 	std::string tree = "          .     .  .      +     .      .          .\n     .       .      .     #       .           .\n        .      .         ###            .      .      .\n      .      .   \"#:. .:##\"##:. .:#\"  .      .\n          .      . \"####\"###\"####\"  .\n       .     \"#:.    .:#\"###\"#:.    .:#\"  .        .       .\n  .             \"#########\"#########\"        .        .\n        .    \"#:.  \"####\"###\"####\"  .:#\"   .       .\n     .     .  \"#######\"\"##\"##\"\"#######\"                  .\n                .\"##\"#####\"#####\"##\"           .      .\n    .   \"#:. ...  .:##\"###\"###\"##:.  ... .:#\"     .\n      .     \"#######\"##\"#####\"##\"#######\"      .     .\n    .    .     \"#####\"\"#######\"\"#####\"    .      .\n            .     \"      000      \"    .     .\n       .         .   .   000     .        .       .\n.. .. ..................O000O........................ ......";

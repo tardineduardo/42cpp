@@ -24,11 +24,12 @@ class PresidentialPardonForm : public AForm
     public:
 		// canonical
 		PresidentialPardonForm();											   // default constructor
+		PresidentialPardonForm(std::string& target);						   // paramet constructor
         ~PresidentialPardonForm();											   // destructor
         PresidentialPardonForm(const PresidentialPardonForm& other);		   // copy constructor
         PresidentialPardonForm &operator=(const PresidentialPardonForm &other);// assignment operator
 				
-		void action(std::string target) const;
+		void action() const;
 
 		// constants
 		static const int k_ppf_signgrade = 25;

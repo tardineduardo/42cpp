@@ -51,7 +51,7 @@ class AForm
 		void					execute(Bureaucrat2 const &executor) const;
 
 		// virtuals
-		virtual void			action(std::string target) const = 0;
+		virtual void			action() const = 0;
 
 		// exceptions
 		class GradeTooHighException : public std::exception {

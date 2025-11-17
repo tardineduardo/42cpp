@@ -330,13 +330,28 @@ separator(
 
 
 
+// Now, add the execute(Bureaucrat const & executor) const member function to
+// the base form and implement a function to execute the form’s action in the concrete
+// classes. You must check that the form is signed and that the grade of the bureaucrat at-
+// tempting to execute the form is high enough. Otherwise, throw an appropriate exception.
 
+// Whether you check the requirements in every concrete class or in the base class (and
+// then call another function to execute the form) is up to you. However, one way is more
+// elegant than the other.
 
+// Lastly, add the executeForm(AForm const & form) const member function to the
+// Bureaucrat class. It must attempt to execute the form. If successful, print something like:
+// <bureaucrat> executed <form>
+// If not, print an explicit error message.
+// Implement and submit some tests to ensure everything works as expected.
 
-
-
-
-
+// • RobotomyRequestForm: Required grades: sign 72, exec 45
+// Makes some drilling noises, then informs that <target> has been robotomized
+// successfully 50% of the time. Otherwise, it informs that the robotomy failed.
+// • PresidentialPardonForm: Required grades: sign 25, exec 5
+// Informs that <target> has been pardoned by Zaphod Beeblebrox.
+// All of them take only one parameter in their constructor: the target of the form. For
+// example, "home" if you want to plant shrubbery at home.
 
 	
 	std::cout << "\n";

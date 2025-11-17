@@ -27,11 +27,12 @@ class ShrubberyCreationForm : public AForm
     public:
 		// canonical
 		ShrubberyCreationForm();											 // default constructor
+		ShrubberyCreationForm(std::string& target);							 // paramet constructor		
         ~ShrubberyCreationForm();											 // destructor
         ShrubberyCreationForm(const ShrubberyCreationForm& other);			 // copy constructor
         ShrubberyCreationForm &operator=(const ShrubberyCreationForm &other);// assignment operator
 
-		void action(std::string target) const;
+		void action() const;
 
 		// constants
 		static const int k_scf_signgrade = 145;

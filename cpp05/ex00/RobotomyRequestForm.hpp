@@ -25,12 +25,13 @@ class RobotomyRequestForm : public AForm
     public:
 		// canonical
 		RobotomyRequestForm();											 // default constructor
+		RobotomyRequestForm(std::string& target);						 // paramet constructor
         ~RobotomyRequestForm();											 // destructor
         RobotomyRequestForm(const RobotomyRequestForm& other);			 // copy constructor
         RobotomyRequestForm &operator=(const RobotomyRequestForm &other);// assignment operator
 
 		// other
-		void action(std::string target) const;
+		void action() const;
 	
 		// constants
 		static const int k_rrf_signgrade = 72;

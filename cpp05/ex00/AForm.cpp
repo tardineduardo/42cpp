@@ -125,7 +125,7 @@ void AForm::execute(Bureaucrat2 const &executor) const {
 		throw AForm::NoTargetException();
 	if (executor.getGrade() > _k_exec_grade)
 		throw Bureaucrat2::GradeTooLowException();
-	this->action(getTarget());
+	this->action();
 }
 
 // ---------- exceptions -------------------------------------------------------
