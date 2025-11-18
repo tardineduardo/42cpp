@@ -32,7 +32,7 @@ PresidentialPardonForm::PresidentialPardonForm(std::string& target)
 // copy constructor
 PresidentialPardonForm::PresidentialPardonForm(const PresidentialPardonForm& other)
 	: AForm("PresidentialPardonForm", k_ppf_signgrade, k_ppf_execgrade) {
-	(void)other; //other is irrelevant, these forms are always the same
+	setTarget(other.getTarget());
 	message_ppf_copy_ctor(*this);
 }
 
@@ -48,7 +48,6 @@ PresidentialPardonForm& PresidentialPardonForm::operator=(const PresidentialPard
 PresidentialPardonForm::~PresidentialPardonForm() {
 	message_ppf_deft_dtor(*this);
 }
-
 
 // ---------- other methods ----------------------------------------------------
 

@@ -14,7 +14,6 @@
 #include "Bureaucrat2.hpp"
 #include "messages.hpp"
 
-
 // ---------- canonical methods ------------------------------------------------
 
 // default constructor
@@ -32,18 +31,19 @@ AForm::AForm(std::string name, int s_grade, int e_grade)
 	: _k_name(name),
 	  _k_sign_grade(validateSignGrade(s_grade)),
 	  _k_exec_grade(validateExecGrade(e_grade)),
-  	  _signed(false),
+	  _signed(false),
 	  _emoji(setEmoji()) {
-  message_AForm_para_ctor(*this);
+	message_AForm_para_ctor(*this);
 }
 
 // copy constructor
 AForm::AForm(const AForm& other)
-    : _k_name(other._k_name),
-	  _k_sign_grade(other._k_sign_grade),
-	  _k_exec_grade(other._k_exec_grade),
-	  _signed(false),
-	  _emoji(setEmoji()) {
+	:	_k_name(other._k_name),
+		_k_sign_grade(other._k_sign_grade),
+		_k_exec_grade(other._k_exec_grade),
+		_signed(false),
+		_target(other._target),
+		_emoji(setEmoji()) {
   message_AForm_copy_ctor(*this);
 }
 
@@ -52,6 +52,7 @@ AForm& AForm::operator=(const AForm& other) {
 	if (this != &other) {
 		_signed = false;
     	_emoji = setEmoji();
+		_target = other._target;
 	}
 	message_AForm_assg_oper(*this);
 	return *this;
@@ -89,9 +90,21 @@ const std::string& AForm::getTarget() const {
 	return _target;
 }
 
-void	AForm::setTarget(const std::string& target) {
+void AForm::setTarget(const std::string& target) {
+	if (_signed)
+		throw TargetLockedException();
+	if (target.empty())
+		throw NoTargetException();
+	try {
+		setTarget(target);
+	}
+	catch (AForm::TargetLockedException &e) {
+		std::cout << "Error setting target: " << e.what() << std::endl;
+
+
+
+	}
 	std::cout << getEmoji() << " target set to " << target << std::endl;
-	_target = target;
 }
 
 void AForm::beSigned(Bureaucrat2& b)
@@ -146,6 +159,9 @@ const char *AForm::NoTargetException::what() const throw() {
 	return "target is not specified";
 }
 
+const char *AForm::TargetLockedException::what() const throw() {
+	return "form was already signed and is now locked";
+}
 
 // ---------- stream operator overload -----------------------------------------
 

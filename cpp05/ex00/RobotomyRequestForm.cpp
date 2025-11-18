@@ -33,7 +33,7 @@ RobotomyRequestForm::RobotomyRequestForm(std::string& target)
 // copy constructor
 RobotomyRequestForm::RobotomyRequestForm(const RobotomyRequestForm& other)
 	: AForm("RobotomyRequestForm", k_rrf_signgrade, k_rrf_execgrade) {
-	(void)other; //other is irrelevant, these forms are always the same
+	setTarget(other.getTarget());
 	message_rrf_copy_ctor(*this);
 }
 
@@ -54,8 +54,19 @@ RobotomyRequestForm::~RobotomyRequestForm() {
 // ---------- other methods ----------------------------------------------------
 
 void RobotomyRequestForm::action() const {
-	std::cout << "does robotomy on " << getTarget() << std::endl;
-	//Makes some drilling noises, then informs that <target> has been robotomized
-	//successfully 50% of the time. Otherwise, it informs that the robotomy failed.
-	//TO DO
+	static bool seeded = false;
+
+	if (!seeded) {
+		std::srand(static_cast<unsigned int>(std::time(NULL)));
+		seeded = true;
+	}
+
+	std::cout << "🔊 biiiiiiiip [DRILLING NOISES]" << std::endl;
+	int sucess = rand() % 2;
+
+	if (sucess)
+		std::cout << "🤖" << getTarget() << "has been does robotomized ✅\n";
+	else
+		std::cout << "🤖" << getTarget() << "'s robotomization failed ❌\n";
 }
+

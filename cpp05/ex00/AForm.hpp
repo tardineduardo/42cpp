@@ -33,16 +33,17 @@ class AForm
     public:
 		// canonical
 		AForm();										  // default constructor
-        ~AForm();										  // destructor
 		AForm(std::string name, int s_grade, int e_grade);// parameterized ctor
         AForm(const AForm& other);						  // copy constructor
         AForm &operator=(const AForm &other);			  // assignment operator
+        virtual ~AForm();								  // destructor
+
 
 		// other
 		const int&				getSignGrade() const;
 		const int&				getExecGrade() const;
 		const std::string&		getName() const;
-		const std::string&		getTarget() const;	
+		const std::string&		getTarget() const;
 		bool					getSigned() const;
 		void					setTarget(const std::string& target);
 		void					beSigned(Bureaucrat2& b);
@@ -64,6 +65,9 @@ class AForm
 			public: const char *what() const throw(); };
 
 		class NoTargetException : public std::exception {
+			public: const char *what() const throw(); };
+
+		class TargetLockedException : public std::exception {
 			public: const char *what() const throw(); };
 
 		// extra

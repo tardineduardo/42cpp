@@ -32,7 +32,7 @@ ShrubberyCreationForm::ShrubberyCreationForm(std::string& target)
 // copy constructor
 ShrubberyCreationForm::ShrubberyCreationForm(const ShrubberyCreationForm& other)
 	: AForm("ShrubberyCreationForm", k_scf_signgrade, k_scf_execgrade) {
-	(void)other; //other is irrelevant, these forms are always the same
+	setTarget(other.getTarget());
 	message_scf_copy_ctor(*this);
 }
 

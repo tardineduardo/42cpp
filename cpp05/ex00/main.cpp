@@ -262,7 +262,7 @@ separator(
 "Add a signForm() member function in the Bureaucrat class. This function must\n"
 "call Form::beSigned() to attempt to sign the form. If the form is signed successfully,\n"
 "it will print something like: <bureaucrat> signed <form>. Otherwise, it will\n"
-"print something like: <bureaucrat> couldn’t sign <form> because <reason>.");
+"print something like: <bureaucrat> couldn't sign <form> because <reason>.");
 
 	{
 		p("------ A ------");
@@ -291,9 +291,10 @@ separator(
 // -----------------------------------------------------------------------------
 separator(
 "The base class Form must be an abstract class and should therefore be renamed\n"
-"AForm. The form's attributes need to remain private. ShrubberyCreationForm:\n"
-"Required grades: sign 145, exec 137 Creates a file <target>_shrubbery in the\n"
-"working directory and writes ASCII trees inside it.");
+"AForm. The form's attributes need to remain private\n\n."
+"ShrubberyCreationForm: Required grades: sign 145, exec 137. Creates a file\n"
+"<target>_shrubbery in the working directory and writes ASCII trees inside it."
+"All of them take only one parameter in their constructor: the target of the form.");
 
 	{
 		p("------ A ------");
@@ -303,7 +304,7 @@ separator(
 		std::cout << kim;
 
 		p("------ B ------");
-		ShrubberyCreationForm a;
+		ShrubberyCreationForm a("filepath");
 		std::cout << a;
 
 		p("------ C ------");
@@ -326,9 +327,14 @@ separator(
 	}
 
 
+// -----------------------------------------------------------------------------
+separator(
+"RobotomyRequestForm: Required grades: sign 72, exec 45. Makes some drilling\n"
+"noises, then informs that <target> has been robotomized successfully 50\% of\n"
+"the time. Otherwise, it informs that the robotomy failed. All of them take\n"
+"only one parameter in their constructor: the target of the form.");
 
-
-
+// All of them take only one parameter in their constructor: the target of the form. 
 
 // Now, add the execute(Bureaucrat const & executor) const member function to
 // the base form and implement a function to execute the form’s action in the concrete
@@ -345,13 +351,10 @@ separator(
 // If not, print an explicit error message.
 // Implement and submit some tests to ensure everything works as expected.
 
-// • RobotomyRequestForm: Required grades: sign 72, exec 45
-// Makes some drilling noises, then informs that <target> has been robotomized
-// successfully 50% of the time. Otherwise, it informs that the robotomy failed.
+
 // • PresidentialPardonForm: Required grades: sign 25, exec 5
 // Informs that <target> has been pardoned by Zaphod Beeblebrox.
-// All of them take only one parameter in their constructor: the target of the form. For
-// example, "home" if you want to plant shrubbery at home.
+
 
 	
 	std::cout << "\n";
