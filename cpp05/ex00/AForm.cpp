@@ -91,20 +91,17 @@ const std::string& AForm::getTarget() const {
 }
 
 void AForm::setTarget(const std::string& target) {
+	try {
 	if (_signed)
 		throw TargetLockedException();
 	if (target.empty())
 		throw NoTargetException();
-	try {
-		setTarget(target);
+	_target = target;
+	std::cout << getEmoji() << " target set to " << target << std::endl;
 	}
 	catch (AForm::TargetLockedException &e) {
 		std::cout << "Error setting target: " << e.what() << std::endl;
-
-
-
 	}
-	std::cout << getEmoji() << " target set to " << target << std::endl;
 }
 
 void AForm::beSigned(Bureaucrat2& b)

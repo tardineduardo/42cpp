@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 13:39:39 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/16 20:04:30 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/18 20:19:28 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ ShrubberyCreationForm::ShrubberyCreationForm()
 }
 
 // paramet constructor
-ShrubberyCreationForm::ShrubberyCreationForm(std::string& target)
+ShrubberyCreationForm::ShrubberyCreationForm(const std::string& target)
 	: AForm("ShrubberyCreationForm", k_scf_signgrade, k_scf_execgrade) {
 	setTarget(target);
 	message_scf_defa_ctor(*this);
