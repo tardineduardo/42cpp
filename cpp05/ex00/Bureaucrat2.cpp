@@ -142,6 +142,7 @@ void Bureaucrat2::executeForm(AForm const &form) const {
 
 }
 
+
 // ---------- exceptions -------------------------------------------------------
 
 const char *Bureaucrat2::GradeTooHighException::what() const throw() {

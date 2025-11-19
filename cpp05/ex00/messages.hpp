@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 18:39:30 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/16 19:31:17 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/19 01:32:53 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,42 +40,47 @@ void message_bureau_para_ctor(Bureaucrat& b);
 void message_bureau_deft_dtor(Bureaucrat& b);
 void message_bureau_copy_ctor(Bureaucrat& b);
 void message_bureau_assg_oper(Bureaucrat& b);
-
+//------------------------------------------------------------------------------
 void message_bureau2_defa_ctor(Bureaucrat2& b);
 void message_bureau2_para_ctor(Bureaucrat2& b);
 void message_bureau2_deft_dtor(Bureaucrat2& b);
 void message_bureau2_copy_ctor(Bureaucrat2& b);
 void message_bureau2_assg_oper(Bureaucrat2& b);
-
+//------------------------------------------------------------------------------
 void message_form_defa_ctor(Form& f);
 void message_form_para_ctor(Form& f);
 void message_form_deft_dtor(Form& f);
 void message_form_copy_ctor(Form& f);
 void message_form_assg_oper(Form& f);
-
+//------------------------------------------------------------------------------
 void message_AForm_defa_ctor(AForm& af);
 void message_AForm_para_ctor(AForm& af);
 void message_AForm_deft_dtor(AForm& af);
 void message_AForm_copy_ctor(AForm& af);
 void message_AForm_assg_oper(AForm& af);
-
+//------------------------------------------------------------------------------
 void message_scf_defa_ctor(ShrubberyCreationForm& s);
 void message_scf_para_ctor(ShrubberyCreationForm& s);
 void message_scf_deft_dtor(ShrubberyCreationForm& s);
 void message_scf_copy_ctor(ShrubberyCreationForm& s);
 void message_scf_assg_oper(ShrubberyCreationForm& s);
-
+//------------------------------------------------------------------------------
 void message_rrf_defa_ctor(RobotomyRequestForm& r);
 void message_rrf_para_ctor(RobotomyRequestForm& r);
 void message_rrf_deft_dtor(RobotomyRequestForm& r);
 void message_rrf_copy_ctor(RobotomyRequestForm& r);
 void message_rrf_assg_oper(RobotomyRequestForm& r);
-
+//------------------------------------------------------------------------------
 void message_ppf_defa_ctor(PresidentialPardonForm& r);
 void message_ppf_para_ctor(PresidentialPardonForm& r);
 void message_ppf_deft_dtor(PresidentialPardonForm& r);
 void message_ppf_copy_ctor(PresidentialPardonForm& r);
 void message_ppf_assg_oper(PresidentialPardonForm& r);
+ 
+void message_intrn_defa_ctor();
+void message_intrn_deft_dtor();
+void message_intrn_copy_ctor();
+void message_intrn_assg_oper();
 
 
 

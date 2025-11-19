@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 19:22:06 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/18 23:04:07 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/19 00:27:46 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -427,10 +427,28 @@ separator(
 
 
 
+//The
+// intern has no name, no grade, and no unique characteristics. The only thing bureaucrats
+// care about is that they do their job.
+// However, the intern has one key ability: the makeForm() function. This function
+// takes two strings as parameters: the first one represents the name of a form, and the
+// second one represents the target of the form. It returns a pointer to a AForm object
+// (corresponding to the form name passed as a parameter), with its target initialized to
+// the second parameter.
+// It should print something like:
+// Intern creates <form>
+// If the provided form name does not exist, print an explicit error message.
 
 
 
-	
+
+
+
+
+
+
+
+
 	std::cout << "\n";
 }
 

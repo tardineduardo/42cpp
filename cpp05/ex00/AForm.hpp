@@ -74,6 +74,8 @@ class AForm
 		const std::string& getEmoji() const;
 		std::string setEmoji(void);
 	
+
+
 };
 
 // stream operator overload
