@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 13:39:39 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/16 18:05:50 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/18 23:03:38 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ PresidentialPardonForm::PresidentialPardonForm()
 }
 
 // parameterized constructor
-PresidentialPardonForm::PresidentialPardonForm(std::string& target)
+PresidentialPardonForm::PresidentialPardonForm(const std::string& target)
 	: AForm("PresidentialPardonForm", k_ppf_signgrade, k_ppf_execgrade) {
 	setTarget(target);
 	message_ppf_defa_ctor(*this);

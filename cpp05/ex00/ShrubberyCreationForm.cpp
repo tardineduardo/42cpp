@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 13:39:39 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/18 20:19:28 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/18 20:29:26 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@ void ShrubberyCreationForm::action() const {
 	std::ofstream MyFile(filename.c_str());
 	MyFile << getTree1();
 	MyFile.close();
-	std::cout << "File " << filename << " saved to local folder\n";
+	std::cout << "File \"" << filename << "\" saved to local folder\n";
 }
 
 std::string getTree1() {

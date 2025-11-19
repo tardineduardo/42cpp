@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 13:39:39 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/16 18:07:19 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/18 22:58:02 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ RobotomyRequestForm::RobotomyRequestForm()
 }
 
 // paramet constructor
-RobotomyRequestForm::RobotomyRequestForm(std::string& target)
+RobotomyRequestForm::RobotomyRequestForm(const std::string& target)
 	: AForm("RobotomyRequestForm", k_rrf_signgrade, k_rrf_execgrade) {
 	setTarget(target);
 	message_rrf_defa_ctor(*this);
@@ -54,19 +54,24 @@ RobotomyRequestForm::~RobotomyRequestForm() {
 // ---------- other methods ----------------------------------------------------
 
 void RobotomyRequestForm::action() const {
-	static bool seeded = false;
-
-	if (!seeded) {
-		std::srand(static_cast<unsigned int>(std::time(NULL)));
-		seeded = true;
-	}
+	// static bool seeded = false;
+	// if (!seeded) {
+	// 	std::srand(static_cast<unsigned int>(std::time(NULL)));
+	// 	seeded = true;
+	// }
 
 	std::cout << "🔊 biiiiiiiip [DRILLING NOISES]" << std::endl;
-	int sucess = rand() % 2;
+	int sucess = std::rand() % 2;
 
 	if (sucess)
-		std::cout << "🤖" << getTarget() << "has been does robotomized ✅\n";
-	else
-		std::cout << "🤖" << getTarget() << "'s robotomization failed ❌\n";
+		std::cout << "🤖 " << getTarget() << " has been does robotomized ✅" << std::endl;
+	else {
+		std::cout << "🤖 " << getTarget() << "'s robotomization failed ❌" << std::endl;
+		throw (RandomFailException());
+	}
 }
+		// ---------- exceptions -----------------------------------------------
 
+const char *RobotomyRequestForm::RandomFailException::what() const throw() {
+	return "failed robotomy";
+}	

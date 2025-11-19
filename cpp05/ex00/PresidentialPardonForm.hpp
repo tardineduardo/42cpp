@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 13:26:23 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/16 18:04:57 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/18 23:03:33 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ class PresidentialPardonForm : public AForm
     public:
 		// canonical
 		PresidentialPardonForm();											   // default constructor
-		PresidentialPardonForm(std::string& target);						   // paramet constructor
+		PresidentialPardonForm(const std::string& target);					   // paramet constructor
         ~PresidentialPardonForm();											   // destructor
         PresidentialPardonForm(const PresidentialPardonForm& other);		   // copy constructor
         PresidentialPardonForm &operator=(const PresidentialPardonForm &other);// assignment operator
