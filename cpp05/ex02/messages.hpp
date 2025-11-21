@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 18:39:30 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/20 22:04:20 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/20 23:12:04 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,11 @@
 # define RST	"\001\033[0m\002"
 
 //------------------------------------------------------------------------------
-void message_bureau2_defa_ctor(Bureaucrat& b);
-void message_bureau2_para_ctor(Bureaucrat& b);
-void message_bureau2_deft_dtor(Bureaucrat& b);
-void message_bureau2_copy_ctor(Bureaucrat& b);
-void message_bureau2_assg_oper(Bureaucrat& b);
+void message_bureau_defa_ctor(Bureaucrat& b);
+void message_bureau_para_ctor(Bureaucrat& b);
+void message_bureau_deft_dtor(Bureaucrat& b);
+void message_bureau_copy_ctor(Bureaucrat& b);
+void message_bureau_assg_oper(Bureaucrat& b);
 //------------------------------------------------------------------------------
 void message_AForm_defa_ctor(AForm& af);
 void message_AForm_para_ctor(AForm& af);

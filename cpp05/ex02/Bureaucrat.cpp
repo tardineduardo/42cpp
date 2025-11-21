@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat2.cpp                                    :+:      :+:    :+:   */
+/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 18:58:27 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/20 21:55:04 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/20 23:12:04 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ Bureaucrat::Bureaucrat()
 	: _name("Unnamed"),
 	  _grade(kmingrade),
 	  _emoji(setEmoji()) {
-	message_bureau2_defa_ctor(*this);
+	message_bureau_defa_ctor(*this);
 }
 
 // parameterized constructor
@@ -30,7 +30,7 @@ Bureaucrat::Bureaucrat(std::string name, int value)
 	: _name(name),
 	  _grade(validateGrade(value)),
 	  _emoji(setEmoji()) {
-  message_bureau2_para_ctor(*this);
+  message_bureau_para_ctor(*this);
 }
 
 // copy constructor
@@ -38,7 +38,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat& other)
     : _name(other._name),
 	  _grade(other._grade),
 	  _emoji(setEmoji()) {
-  message_bureau2_copy_ctor(*this);
+  message_bureau_copy_ctor(*this);
 }
 
 // assignment operator overload
@@ -47,13 +47,13 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 		_grade = other._grade;
     	_emoji = setEmoji();
 	}
-	message_bureau2_assg_oper(*this);
+	message_bureau_assg_oper(*this);
 	return *this;
 }
 
 // destructor
 Bureaucrat::~Bureaucrat() {
-	message_bureau2_deft_dtor(*this);
+	message_bureau_deft_dtor(*this);
 }
 
 

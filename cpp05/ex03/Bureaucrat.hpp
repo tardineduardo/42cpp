@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 18:58:20 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/15 19:56:15 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/20 23:19:09 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@
 # include <cstdlib>		// for random emoji
 # include <ctime>		// for random emoji
 
-class Form;
+class AForm;
 
 class Bureaucrat
 {
@@ -33,7 +33,7 @@ class Bureaucrat
         ~Bureaucrat();									  // destructor
 		Bureaucrat(std::string name, int grade);		  // parameterized ctor
         Bureaucrat(const Bureaucrat& other);			  // copy constructor
-        Bureaucrat &operator=(const Bureaucrat &other);	  // assignment operator
+        Bureaucrat &operator=(const Bureaucrat &other); // assignment operator
 
 		// other
 		const std::string&		getName() const;
@@ -43,7 +43,8 @@ class Bureaucrat
 		void					incrementGrade(const int& increment);
 		void					decrementGrade(const int& decrement);
 		int&					validateGrade(int &value) const;
-		void					signForm(Form& f);
+		void					signForm(AForm& f);
+		void					executeForm(AForm const &form) const;
 
 		// constants	
 		static const int	kmaxgrade = 1;

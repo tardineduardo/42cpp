@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 18:39:30 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/20 21:55:04 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/20 23:12:28 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,23 +35,12 @@
 # define BBLU	"\001\033[1;34m\002"
 # define RST	"\001\033[0m\002"
 
+//------------------------------------------------------------------------------
 void message_bureau_defa_ctor(Bureaucrat& b);
 void message_bureau_para_ctor(Bureaucrat& b);
 void message_bureau_deft_dtor(Bureaucrat& b);
 void message_bureau_copy_ctor(Bureaucrat& b);
 void message_bureau_assg_oper(Bureaucrat& b);
-//------------------------------------------------------------------------------
-void message_bureau2_defa_ctor(Bureaucrat& b);
-void message_bureau2_para_ctor(Bureaucrat& b);
-void message_bureau2_deft_dtor(Bureaucrat& b);
-void message_bureau2_copy_ctor(Bureaucrat& b);
-void message_bureau2_assg_oper(Bureaucrat& b);
-//------------------------------------------------------------------------------
-void message_form_defa_ctor(Form& f);
-void message_form_para_ctor(Form& f);
-void message_form_deft_dtor(Form& f);
-void message_form_copy_ctor(Form& f);
-void message_form_assg_oper(Form& f);
 //------------------------------------------------------------------------------
 void message_AForm_defa_ctor(AForm& af);
 void message_AForm_para_ctor(AForm& af);
@@ -76,15 +65,10 @@ void message_ppf_para_ctor(PresidentialPardonForm& r);
 void message_ppf_deft_dtor(PresidentialPardonForm& r);
 void message_ppf_copy_ctor(PresidentialPardonForm& r);
 void message_ppf_assg_oper(PresidentialPardonForm& r);
- 
+//------------------------------------------------------------------------------
 void message_intrn_defa_ctor();
 void message_intrn_deft_dtor();
 void message_intrn_copy_ctor();
 void message_intrn_assg_oper();
-
-
-
-
-
 
 #endif
