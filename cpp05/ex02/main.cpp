@@ -6,11 +6,15 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 19:22:06 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/20 21:36:11 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/20 22:03:39 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "Bureaucrat.hpp"
+# include "AForm.hpp"
+# include "ShrubberyCreationForm.hpp"
+# include "RobotomyRequestForm.hpp"
+# include "PresidentialPardonForm.hpp"
 
 static void separator(std::string def);
 static void p(std::string x);
@@ -146,7 +150,142 @@ separator(
 	}
 
 
-// -----------------------------------------------------------------------------	
+// -----------------------------------------------------------------------------
+separator(
+"The base class Form must be an abstract class and should therefore be renamed\n"
+"AForm. The form's attributes need to remain private\n\n."
+"ShrubberyCreationForm: Required grades: sign 145, exec 137. Creates a file\n"
+"<target>_shrubbery in the working directory and writes ASCII trees inside it."
+"All of them take only one parameter in their constructor: the target of the form.");
+
+	{
+		p("------ A ------");
+		Bureaucrat max("Max", 1);
+		Bureaucrat kim("Kim", 150);
+		std::cout << max;
+		std::cout << kim;
+
+		p("------ B ------");
+		ShrubberyCreationForm a("filepath");
+		std::cout << a;
+
+		p("------ C ------");
+		kim.signForm(a);
+		max.signForm(a);
+	
+		p("------ D ------");
+		kim.executeForm(a);
+		max.executeForm(a);
+
+		p("------ D ------");
+		a.setTarget("xxxxxxxxxx");
+
+		p("------ E ------");
+		kim.executeForm(a);
+		std::cout << std::endl;
+		max.executeForm(a);
+
+		std::cout << std::endl;
+	}
+
+
+// -----------------------------------------------------------------------------
+separator(
+"RobotomyRequestForm: Required grades: sign 72, exec 45. Makes some drilling\n"
+"noises, then informs that <target> has been robotomized successfully 50\% of\n"
+"the time. Otherwise, it informs that the robotomy failed. All of them take\n"
+"only one parameter in their constructor: the target of the form.");
+
+	{
+		p("------ A ------");
+		Bureaucrat ben("Ben", 1);
+		Bureaucrat tim("Tim", 150);
+		std::cout << ben;
+		std::cout << tim;
+
+		p("------ B ------");
+		RobotomyRequestForm a("Robot1");
+		RobotomyRequestForm b("Robot2");
+		RobotomyRequestForm c("Robot3");
+		RobotomyRequestForm d("Robot4");
+		RobotomyRequestForm e("Robot5");		
+		RobotomyRequestForm f("Robot6");
+		RobotomyRequestForm g("Robot7");				
+		RobotomyRequestForm h("Robot8");
+		RobotomyRequestForm i("Robot9");
+		RobotomyRequestForm j("Robot10");
+
+		
+		p("------ C ------");
+		ben.signForm(a);
+		ben.signForm(b);
+		ben.signForm(c);	
+		ben.signForm(d);
+		ben.signForm(e);
+		ben.signForm(f);
+		ben.signForm(g);
+		ben.signForm(h);
+		ben.signForm(i);
+		ben.signForm(j);
+	
+		p("------ D ------");
+		ben.executeForm(a); std::cout << std::endl;
+		ben.executeForm(b); std::cout << std::endl;
+		ben.executeForm(c); std::cout << std::endl;	
+		ben.executeForm(d); std::cout << std::endl;
+		ben.executeForm(e); std::cout << std::endl;
+		ben.executeForm(f); std::cout << std::endl;
+		ben.executeForm(g); std::cout << std::endl;
+		ben.executeForm(h); std::cout << std::endl;
+		ben.executeForm(i); std::cout << std::endl;
+		ben.executeForm(j); std::cout << std::endl;
+
+		p("------ D ------");
+		a.setTarget("xxxxxxxxxx");
+
+		p("------ E ------");
+		tim.executeForm(a);
+		std::cout << std::endl;
+		ben.executeForm(a);
+
+		std::cout << std::endl;
+	}
+
+// -----------------------------------------------------------------------------
+separator(
+"PresidentialPardonForm: Required grades: sign 25, exec 5. Informs that <target>\n"
+"has been pardoned by Zaphod Beeblebrox. Takes only one parameter in the\n"
+"constructor: the target of the form.");
+
+	{
+		p("------ A ------");
+		Bureaucrat max("Max", 1);
+		Bureaucrat kim("Kim", 150);
+		std::cout << max;
+		std::cout << kim;
+
+		p("------ B ------");
+		PresidentialPardonForm a("John");
+		std::cout << a;
+
+		p("------ C ------");
+		kim.signForm(a);
+		max.signForm(a);
+	
+		p("------ D ------");
+		kim.executeForm(a);
+		max.executeForm(a);
+
+		p("------ D ------");
+		a.setTarget("xxxxxxxxxx");
+
+		p("------ E ------");
+		kim.executeForm(a);
+		std::cout << std::endl;
+		max.executeForm(a);
+
+		std::cout << std::endl;
+	}
 
 
 

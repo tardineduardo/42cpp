@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat2.hpp                                     :+:      :+:    :+:   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,17 +10,17 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef BUREAUCRAT2_HPP
-# define BUREAUCRAT2_HPP
+#ifndef BUREAUCRAT_HPP
+# define BUREAUCRAT_HPP
 # include <iostream>
 # include <exception>
 # include <string>
 # include <cstdlib>		// for random emoji
 # include <ctime>		// for random emoji
 
-class AForm;
+class Form;
 
-class Bureaucrat2
+class Bureaucrat
 {
 	protected:
 		const std::string	_name;
@@ -29,11 +29,11 @@ class Bureaucrat2
 
 	public:
 		// canonical
-		Bureaucrat2();									  // default constructor
-        ~Bureaucrat2();									  // destructor
-		Bureaucrat2(std::string name, int grade);		  // parameterized ctor
-        Bureaucrat2(const Bureaucrat2& other);			  // copy constructor
-        Bureaucrat2 &operator=(const Bureaucrat2 &other); // assignment operator
+		Bureaucrat();									  // default constructor
+        ~Bureaucrat();									  // destructor
+		Bureaucrat(std::string name, int grade);		  // parameterized ctor
+        Bureaucrat(const Bureaucrat& other);			  // copy constructor
+        Bureaucrat &operator=(const Bureaucrat &other);	  // assignment operator
 
 		// other
 		const std::string&		getName() const;
@@ -43,8 +43,7 @@ class Bureaucrat2
 		void					incrementGrade(const int& increment);
 		void					decrementGrade(const int& decrement);
 		int&					validateGrade(int &value) const;
-		void					signForm(AForm& f);
-		void					executeForm(AForm const &form) const;
+		void					signForm(Form& f);
 
 		// constants	
 		static const int	kmaxgrade = 1;
@@ -63,6 +62,6 @@ class Bureaucrat2
 };
 
 // ostream operator overload
-std::ostream& operator<<(std::ostream& os, const Bureaucrat2& b);
+std::ostream& operator<<(std::ostream& os, const Bureaucrat& b);
 
 #endif

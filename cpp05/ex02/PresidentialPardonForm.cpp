@@ -6,12 +6,12 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/16 13:39:39 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/18 23:03:38 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/20 21:55:04 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "PresidentialPardonForm.hpp"
-#include "Bureaucrat2.hpp"
+#include "Bureaucrat.hpp"
 #include "messages.hpp"
 
 // ---------- canonical methods ------------------------------------------------

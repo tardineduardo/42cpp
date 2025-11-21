@@ -1,16 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Bureaucrat.cpp                                     :+:      :+:    :+:   */
+/*   Bureaucrat2.cpp                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 18:58:27 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/20 21:39:19 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/20 21:55:04 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "AForm.hpp"
 #include "messages.hpp"
 
 
@@ -21,7 +22,7 @@ Bureaucrat::Bureaucrat()
 	: _name("Unnamed"),
 	  _grade(kmingrade),
 	  _emoji(setEmoji()) {
-	message_bureau_defa_ctor(*this);
+	message_bureau2_defa_ctor(*this);
 }
 
 // parameterized constructor
@@ -29,7 +30,7 @@ Bureaucrat::Bureaucrat(std::string name, int value)
 	: _name(name),
 	  _grade(validateGrade(value)),
 	  _emoji(setEmoji()) {
-  message_bureau_para_ctor(*this);
+  message_bureau2_para_ctor(*this);
 }
 
 // copy constructor
@@ -37,7 +38,7 @@ Bureaucrat::Bureaucrat(const Bureaucrat& other)
     : _name(other._name),
 	  _grade(other._grade),
 	  _emoji(setEmoji()) {
-  message_bureau_copy_ctor(*this);
+  message_bureau2_copy_ctor(*this);
 }
 
 // assignment operator overload
@@ -46,13 +47,13 @@ Bureaucrat& Bureaucrat::operator=(const Bureaucrat& other) {
 		_grade = other._grade;
     	_emoji = setEmoji();
 	}
-	message_bureau_assg_oper(*this);
+	message_bureau2_assg_oper(*this);
 	return *this;
 }
 
 // destructor
 Bureaucrat::~Bureaucrat() {
-	message_bureau_deft_dtor(*this);
+	message_bureau2_deft_dtor(*this);
 }
 
 
@@ -98,6 +99,49 @@ int& Bureaucrat::validateGrade(int& value) const {
 	return (value);
 }
 
+void Bureaucrat::signForm(AForm& f)
+{
+	try {
+		f.beSigned(*this);
+	}
+	catch (AForm::GradeTooLowException &e) {
+		std::cout << _name << _emoji
+				  << " couldn't sign " 
+				  << f.getName() << f.getEmoji() 
+				  << " because their grade is too low."
+				  << std::endl;	
+		return;
+	}
+	std::cout << _name << _emoji
+			  << " signed " 
+			  << f.getName() << f.getEmoji()
+			  << std::endl;	
+}
+
+void Bureaucrat::executeForm(AForm const &form) const {
+	try {
+		form.execute(*this);
+	}
+	catch (std::exception &e) {
+		std::cout << getName()
+				  << getEmoji()
+				  << " can't execute "
+				  << form.getName()
+				  << form.getEmoji()
+				  << ": "
+				  << e.what()
+  				  << std::endl;
+				  return;
+	}
+		std::cout << getName()
+				  << getEmoji()
+				  << " executed "
+				  << form.getName()
+  				  << form.getEmoji()
+				  << std::endl;
+
+}
+
 
 // ---------- exceptions -------------------------------------------------------
 
@@ -116,7 +160,7 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& b)
 {
 	os	<< b.getName()
 		<< b.getEmoji()
-		<< ", bureaucrat grade "
+		<< ", bureaucrat2 grade "
 		<< b.getGrade()
 		<< std::endl;
 	return os;

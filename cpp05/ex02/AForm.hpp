@@ -18,7 +18,7 @@
 # include <cstdlib>		// for random emoji
 # include <ctime>		// for random emoji
 
-class Bureaucrat2;
+class Bureaucrat;
 
 class AForm
 {
@@ -46,10 +46,10 @@ class AForm
 		const std::string&		getTarget() const;
 		bool					getSigned() const;
 		void					setTarget(const std::string& target);
-		void					beSigned(Bureaucrat2& b);
+		void					beSigned(Bureaucrat& b);
 		int&					validateSignGrade(int& value) const;
 		int&					validateExecGrade(int& value) const;
-		void					execute(Bureaucrat2 const &executor) const;
+		void					execute(Bureaucrat const &executor) const;
 
 		// virtuals
 		virtual void			action() const = 0;

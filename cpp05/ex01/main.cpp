@@ -6,11 +6,12 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 19:22:06 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/20 21:36:11 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/20 21:49:49 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "Bureaucrat.hpp"
+# include "Form.hpp"
 
 static void separator(std::string def);
 static void p(std::string x);
@@ -147,6 +148,139 @@ separator(
 
 
 // -----------------------------------------------------------------------------	
+separator(
+"A Form class has a) a constant name, b) a boolean indicating whether it is\n"
+"signed (at construction, it is not), c) A constant grade required to sign it,\n"
+"d) A constant grade required to execute it. As before, write getters for all\n"
+"attributes and overload the insertion («) operator to print the form's info.");
+
+
+	{
+		Form a;
+		Form b("XPTO11", 100, 20);
+
+		std::cout << a.getName() << "/" 
+				  << a.getSignGrade() << "/"
+				  << a.getExecGrade() << "/"				  
+				  << a.getSigned() << std::endl;
+
+		std::cout << b.getName() << "/" 
+				  << b.getSignGrade() << "/"
+				  << b.getExecGrade() << "/"				  
+				  << b.getSigned() << std::endl;
+	
+		std::cout << a;
+		std::cout << b;
+	}
+
+
+// -----------------------------------------------------------------------------	
+separator(
+"The grades of the Form follow the same rules as those of the Bureaucrat. Thus,\n"
+"the following exceptions will be thrown if a form's grade is out of bounds:\n"
+"Form::GradeTooHighException and Form::GradeTooLowException.");
+
+	{
+		p("------ A ------");
+		try { Form a("FAA1XX", 152, 10); }
+		catch (...) { std::cout << "some error (1)\n\n"; }
+
+		p("------ B ------");
+		try { Form b("FBB3ZZ", 100, 10); }
+		catch (...) { std::cout << "some error (2)\n\n"; }
+
+		p("------ C ------");
+		try { Form b("FCC4WL", 152, 10); }
+		catch (std::exception &e) { std::cout << e.what() << "\n\n"; }
+
+		p("------ D ------");
+		try { Form d("FDD123", 10, 0); }
+		catch (std::exception &e) { std::cout << e.what() << "\n\n"; }
+
+		p("------ E ------");
+		try { Form e("FEEX44", 100, 20); }
+		catch (std::exception &e) { std::cout << e.what() << "\n\n"; }
+
+		p("------ F ------");
+		try { Form f("FFFX12", 1, 152); }
+		catch (std::exception &e) { std::cout << e.what() << "\n\n"; }
+
+		// INVERT ORDER DURING EVALUATION
+		p("------ G ------");
+		try { Form g("FGGV2", 10, 170); } 
+		catch (Form::GradeTooHighException &e) { std::cout << e.what() << "\n\n"; }
+		catch (Form::GradeTooLowException &e) { std::cout << e.what() << "\n\n"; }
+		catch (std::exception &e) { std::cout << e.what() << "\n\n"; }
+		catch (...) { std::cout << "some error (1)\n\n"; }
+	}	
+
+
+
+// -----------------------------------------------------------------------------	
+separator(
+"Add a beSigned() member function to the Form that takes a Bureaucrat as a\n"
+"parameter. It changes the form's status to signed if the bureaucrat's grade\n"
+"is high enough (greater than or equal to the required one). If the grade is\n"
+"too low, throw a Form::GradeTooLowException.");
+
+	{
+		p("------ A ------");
+		Bureaucrat max("Max", 100);
+		Form b("XPTO11", 100, 20);
+		std::cout << max;
+		std::cout << b;
+		b.beSigned(max);
+		std::cout << b << "\n";
+
+		// // TEST FOR EVALUATION
+		// p("------ TEST ------");
+		// Bureaucrat jim("Jim", 100);
+		// Form x("XPTO11", 10, 20);
+		// std::cout << jim;
+		// std::cout << x;
+		// x.beSigned(kim);
+		// std::cout << x << "\n";
+
+		p("------ B ------");
+		Bureaucrat kim("Kim", 100);
+		Form c("XPTO11", 10, 20);
+		std::cout << kim;
+		std::cout << c;
+		try { c.beSigned(kim); }
+		catch(std::exception &e) { std::cout << e.what() << "\n"; }
+		std::cout << c << "\n";
+
+	}
+
+// -----------------------------------------------------------------------------	
+separator(
+"Add a signForm() member function in the Bureaucrat class. This function must\n"
+"call Form::beSigned() to attempt to sign the form. If the form is signed successfully,\n"
+"it will print something like: <bureaucrat> signed <form>. Otherwise, it will\n"
+"print something like: <bureaucrat> couldn't sign <form> because <reason>.");
+
+	{
+		p("------ A ------");
+
+		Bureaucrat max("Max", 100);
+		Form b("XPTO11", 100, 20);
+		std::cout << max;
+		std::cout << b;
+		max.signForm(b);
+		std::cout << b << "\n";
+
+		p("------ B ------");
+
+		Bureaucrat tim("Tim", 100);
+		Form c("XPTO12", 1, 20);
+		std::cout << tim;
+		std::cout << c;
+		tim.signForm(c);
+		std::cout << c << "\n";
+	}
+
+	// TRY/CATCH NOT VISIBLE TO USER ANYMORE! <3
+
 
 
 

@@ -6,11 +6,12 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 18:58:27 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/20 21:39:19 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/20 21:44:15 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include "messages.hpp"
 
 
@@ -96,6 +97,25 @@ int& Bureaucrat::validateGrade(int& value) const {
 	if (value > kmingrade)
 		throw GradeTooLowException();
 	return (value);
+}
+
+void Bureaucrat::signForm(Form& f)
+{
+	try {
+		f.beSigned(*this);
+	}
+	catch (Form::GradeTooLowException &e) {
+		std::cout << _name << _emoji
+				  << " couldn't sign " 
+				  << f.getName() << f.getEmoji() 
+				  << " because their grade is too low."
+				  << std::endl;
+		return;
+	}
+	std::cout << _name << _emoji
+			  << " signed " 
+			  << f.getName() << f.getEmoji()
+			  << std::endl;	
 }
 
 
