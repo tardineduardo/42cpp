@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 18:58:27 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/20 23:12:04 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/22 17:52:28 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -160,7 +160,7 @@ std::ostream& operator<<(std::ostream& os, const Bureaucrat& b)
 {
 	os	<< b.getName()
 		<< b.getEmoji()
-		<< ", bureaucrat2 grade "
+		<< ", bureaucrat grade "
 		<< b.getGrade()
 		<< std::endl;
 	return os;

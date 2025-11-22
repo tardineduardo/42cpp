@@ -1,4 +1,4 @@
-NAME	= bureaucrats0
+NAME	= bureaucrats00
 
 CC		= g++
 CFLAGS  = -std=c++98 -Wall -Wextra -Werror -I.

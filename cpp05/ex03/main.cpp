@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 19:22:06 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/20 23:15:38 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/22 17:58:04 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,8 @@ static void p(std::string x);
 
 int main(void)
 {
+try { 
+
 // -----------------------------------------------------------------------------	
 separator(
 "A Bureaucrat must have: a) A constant name. b) A grade that ranges from 1 (highest\n"
@@ -156,7 +158,7 @@ separator(
 "The base class Form must be an abstract class and should therefore be renamed\n"
 "AForm. The form's attributes need to remain private\n\n."
 "ShrubberyCreationForm: Required grades: sign 145, exec 137. Creates a file\n"
-"<target>_shrubbery in the working directory and writes ASCII trees inside it."
+"<target>_shrubbery in the working directory and writes ASCII trees inside it.\n"
 "All of them take only one parameter in their constructor: the target of the form.");
 
 	{
@@ -167,7 +169,7 @@ separator(
 		std::cout << kim;
 
 		p("------ B ------");
-		ShrubberyCreationForm a("filepath");
+		ShrubberyCreationForm a("file_path");
 		std::cout << a;
 
 		p("------ C ------");
@@ -291,60 +293,77 @@ separator(
 // -----------------------------------------------------------------------------
 separator(
 "Intern: makeForm(\"form name\", \"target\") returns a concrete AForm* or\n"
-"prints an error if the form name is unknown.");
+"NULL and prints an error if the form name is invalid.");
 
     {
         p("------ A ------");
-        Intern      someRandomIntern;
+        Intern      random_intern;
         Bureaucrat boss("Boss", 1);
-        std::cout << boss;
+        Bureaucrat manager("Manager", 20);
+		std::cout << boss;
+		std::cout << manager;
+        p("------ B ------");
+
 
         // 1) Valid form name: Shrubbery
-        AForm *shrub = someRandomIntern.makeForm("shrubbery creation", "Garden");
+        AForm *shrub = random_intern.makeForm("shrubbery", "file_prefix");
         if (shrub != NULL)
         {
             std::cout << *shrub;
-            boss.signForm(*shrub);
+            manager.signForm(*shrub);
+            manager.executeForm(*shrub);
+			boss.signForm(*shrub);
             boss.executeForm(*shrub);
             delete shrub;
         }
 
         // 2) Valid form name: Robotomy
-        p("------ B ------");
-        AForm *robot = someRandomIntern.makeForm("robotomy request", "Bender");
-        if (robot != NULL)
+        p("------ C ------");
+
+        AForm *robotomy = random_intern.makeForm("robotomy", "Mario");
+        if (robotomy != NULL)
         {
-            std::cout << *robot;
-            boss.signForm(*robot);
-            boss.executeForm(*robot);
-            delete robot;
+            std::cout << *robotomy;
+            manager.signForm(*robotomy);
+            manager.executeForm(*robotomy);			
+            boss.signForm(*robotomy);
+            boss.executeForm(*robotomy);
+            delete robotomy;
         }
 
         // 3) Valid form name: Presidential pardon
-        p("------ C ------");
-        AForm *pardon = someRandomIntern.makeForm("presidential pardon", "Arthur Dent");
+        p("------ D ------");
+
+        AForm *pardon = random_intern.makeForm("pardon", "Luigi");
         if (pardon != NULL)
         {
             std::cout << *pardon;
+            manager.signForm(*pardon);
+            manager.executeForm(*pardon);			
             boss.signForm(*pardon);
             boss.executeForm(*pardon);
             delete pardon;
         }
 
         // 4) Invalid form name – should trigger Intern's error path
-        p("------ D ------");
-        
+        p("------ E ------");
 
-		AForm *unknown = someRandomIntern.makeForm("coffee request", "Office");
-        if (unknown != NULL) 
-            delete unknown;
-
+		AForm *unknown = random_intern.makeForm("coffee", "Melita");
+        if (unknown != NULL)
+		    delete unknown;
+	
 
     }	
 
 
 
 	std::cout << "\n";
+	}
+	catch (std::exception &e)
+	{
+		std::cout << e.what();
+	}
+
 }
 
 

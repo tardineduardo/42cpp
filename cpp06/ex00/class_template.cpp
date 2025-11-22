@@ -1,6 +1,6 @@
 #ifndef ${CLASS}_HPP
 # define ${CLASS}_HPP
-# include <exception>
+# include <exception> // Remove if no execptions are used
 # include <string>
 
 class ${class} //: public OtherClass
@@ -30,12 +30,9 @@ class ${class} //: public OtherClass
 		class ${class}Exception : public std::exception {
 			public: const char *what() const throw(); };
 
-		// extra
-		const std::string& getEmoji() const;
-		std::string setEmoji(void);
 };
 
 // ostream operator overload
-std::ostream& operator<<(std::ostream& os, const ${class}& b);
+// std::ostream& operator<<(std::ostream& os, const ${class}& b);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/10/06 18:39:30 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/20 23:12:28 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/22 16:58:00 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,12 @@
 
 # include <iostream>
 # include "Bureaucrat.hpp"
-# include "Bureaucrat.hpp"
-# include "Form.hpp"
 # include "AForm.hpp"
 # include "ShrubberyCreationForm.hpp"
 # include "RobotomyRequestForm.hpp"
 # include "PresidentialPardonForm.hpp"
+# include "Intern.hpp"
+
 
 # define RED	"\001\033[31m\002"
 # define GRN	"\001\033[32m\002"
