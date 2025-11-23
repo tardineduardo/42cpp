@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ScalarConverter.hpp                                :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2025/11/23 14:13:59 by eduribei          #+#    #+#             */
+/*   Updated: 2025/11/23 17:31:27 by eduribei         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SCALARCONVERTER_HPP
 # define SCALARCONVERTER_HPP
 # include <exception> // Remove if no execptions are used
@@ -5,6 +17,20 @@
 
 class ScalarConverter
 {
+	private:
+		struct output {
+			char *char_out;
+			char *int_out;
+			char *float_out;
+			char *double_out; //set values
+		};
+
+		char *char_convert(const std::string& input);
+		char *int_convert(const std::string& input);
+		char *float_convert(const std::string& input);
+		char *double_convert(const std::string& input);
+
+
 	public:
 		// canonical
 		ScalarConverter();											// default constructor

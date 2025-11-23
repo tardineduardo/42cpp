@@ -30,10 +30,23 @@ Form::Form()
 // parameterized constructor
 Form::Form(std::string name, int s_grade, int e_grade)
 	: _k_name(name),
-	  _k_sign_grade(validateSignGrade(s_grade)),
-	  _k_exec_grade(validateExecGrade(e_grade)),
   	  _signed(false),
 	  _emoji(setEmoji()) {
+	try { _k_sign_grade = validateSignGrade(s_grade); }
+	catch (std::exception &e) {
+		std::cerr << e.what() <<std::endl;
+		std::cerr << "Setting grade to default minimun: " 
+
+	}
+	try { _k_exec_grade = validateSignGrade(e_grade); }
+	catch (std::exception &e) {
+		
+	}
+
+
+
+
+
   message_form_para_ctor(*this);
 }
 
