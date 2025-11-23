@@ -3,7 +3,7 @@
 # include <exception> // Remove if no execptions are used
 # include <string>
 
-class ScalarConverter //: public OtherClass
+class ScalarConverter
 {
 	public:
 		// canonical
@@ -11,7 +11,6 @@ class ScalarConverter //: public OtherClass
         ~ScalarConverter();											// destructor
         ScalarConverter(const ScalarConverter& other);				// copy constructor
         ScalarConverter &operator=(const ScalarConverter &other);	// assignment operator
-		//ScalarConverter(char arg1, int arg2);						// parameterized ctor
 
 		// other
 		static void ScalarConverter::convert(std::string input);
