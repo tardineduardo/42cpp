@@ -6,13 +6,13 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 14:13:57 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/23 17:34:05 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/23 18:19:59 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-// ---------- canonical methods ------------------------------------------------
+// ---------- canonical methods (PRIVATE!) -------------------------------------
 
 // default constructor
 ScalarConverter::ScalarConverter() {}
@@ -28,6 +28,9 @@ ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other) {
 
 // destructor
 ScalarConverter::~ScalarConverter() {}
+
+
+
 
 
 // ---------- other methods ----------------------------------------------------
@@ -67,7 +70,18 @@ const char *ScalarConverter::ScalarConverterException::what() const throw() {
 // }
 
 
+// -----------------------------------------------------------------------------
 
+void ScalarConverter::charConvert(const std::string& input) {
+	if (input.length() == 1 &&
+		sizeof(input[0]) == sizeof(char) &&
+		std::(input[0]))
+
+
+}
+void ScalarConverter::intConvert(const std::string& input) {}
+void ScalarConverter::floatConvert(const std::string& input) {}
+void ScalarConverter::doubleConvert(const std::string& input) {}
 
 
 // Write a class ScalarConverter that will contain only one static method "convert"
