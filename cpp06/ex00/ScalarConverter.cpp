@@ -36,23 +36,28 @@ ScalarConverter::~ScalarConverter() {}
 // ---------- other methods ----------------------------------------------------
 
 void ScalarConverter::convert(std::string input) {
-	ScalarConverter::output out;
 
-	out.char_out = ScalarConverter::char_convert(input);
+	char *type = ScalarConverter::getType(input);
 
 
-	if (isint(input)) {
 
-	}
-	else if (isint(input)) {
 
-	}
-	else if (isint(input)) {
-
-	}
 
 
 }
+
+
+char ScalarConverter::*getType(const std::string& input) {
+	if (ScalarConverter::is_literal(input))
+
+
+
+
+}
+
+
+
+
 
 
 // ---------- exceptions -------------------------------------------------------

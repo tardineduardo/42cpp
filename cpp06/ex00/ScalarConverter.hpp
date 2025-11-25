@@ -26,11 +26,13 @@ class ScalarConverter
         ScalarConverter(const ScalarConverter& other);				// copy constructor
         ScalarConverter &operator=(const ScalarConverter &other);	// assignment operator
 
-		void		is_literal(const std::string& input);
-		void		is_char(const std::string& input);
-		void		is_int(const std::string& input);
-		void		is_float(const std::string& input);
-		void		is_double(const std::string& input);
+		static bool		is_literal(const std::string& input);
+		static bool		is_char(const std::string& input);
+		static bool		is_int(const std::string& input);
+		static bool		is_float(const std::string& input);
+		static bool		is_double(const std::string& input);
+
+		static char		*getType(const std::string input);
 
 		static void	convert_char(const std::string& input, char *type);
 		static void	convert_int(const std::string& input, char *type);
