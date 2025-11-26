@@ -34,20 +34,18 @@ AForm::AForm(std::string name, int s_grade, int e_grade)
   	  _signed(false),
 	  _emoji(setEmoji()) {
 
-	try {
-		const_cast<int&>(_k_sign_grade) = validateSignGrade(s_grade);
-	}	
-	catch (std::exception &e) {
+	try { const_cast<int&>(_k_sign_grade) = validateSignGrade(s_grade); }	
+	catch (std::exception &e)
+	{
 		std::cerr << e.what() <<std::endl;
 		std::cerr << "Setting grade to default minimun: "
 				  << Bureaucrat::kmingrade << std::endl;
 		const_cast<int&>(_k_sign_grade) = Bureaucrat::kmingrade;
 	}
 	
-	try {
-		const_cast<int&>(_k_exec_grade) = validateExecGrade(e_grade);
-	}	
-	catch (std::exception &e) {
+	try { const_cast<int&>(_k_exec_grade) = validateExecGrade(e_grade); }	
+	catch (std::exception &e)
+	{
 		std::cerr << e.what() <<std::endl;
 		std::cerr << "Setting grade to default minimun: "
 				  << Bureaucrat::kmingrade << std::endl;
