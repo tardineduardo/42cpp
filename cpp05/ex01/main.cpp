@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 19:22:06 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/22 19:53:55 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/20 21:49:49 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -275,7 +275,6 @@ separator(
 		Form c("XPTO12", 1, 20);
 		std::cout << tim;
 		std::cout << c;
-		try {tim.incrementGrade(100);} catch (std::exception &e) { std::cout << "xzxzxzxxz" << e.what() << std::endl;}
 		tim.signForm(c);
 		std::cout << c << "\n";
 	}

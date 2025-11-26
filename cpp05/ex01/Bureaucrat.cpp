@@ -6,18 +6,19 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/10 18:58:27 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/22 21:48:43 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/20 21:44:15 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "Bureaucrat.hpp"
+#include "Form.hpp"
 #include "messages.hpp"
 
 
 // ---------- canonical methods ------------------------------------------------
 
 // default constructor
-Bureaucrat::Bureaucrat() 
+Bureaucrat::Bureaucrat()
 	: _name("Unnamed"),
 	  _grade(kmingrade),
 	  _emoji(setEmoji()) {
@@ -78,34 +79,22 @@ const std::string& Bureaucrat::getEmoji() const {
 
 void Bureaucrat::incrementGrade() {
 	int new_grade = _grade - 1;
-	try { _grade = validateGrade(new_grade); }
-	catch (std::exception &e) {
-		std::cerr << e.what() <<std::endl;
-		std::cerr << "Grade was not updated" << std::endl; }
+	_grade = validateGrade(new_grade);
 }
 
 void Bureaucrat::decrementGrade() {
 	int new_grade = _grade + 1;
-	try { _grade = validateGrade(new_grade); }
-	catch (std::exception &e) {
-		std::cerr << e.what() <<std::endl;
-		std::cerr << "Grade was not updated" << std::endl; }
+	_grade = validateGrade(new_grade);
 }
 
 void Bureaucrat::incrementGrade(const int& increment) {
 	int new_grade = _grade - increment;
-	try { _grade = validateGrade(new_grade); }
-	catch (std::exception &e) {
-		std::cerr << e.what() <<std::endl;
-		std::cerr << "Grade was not updated" << std::endl; }
+	_grade = validateGrade(new_grade);
 }
 
 void Bureaucrat::decrementGrade(const int& decrement) {
 	int new_grade = _grade + decrement;
-	try { _grade = validateGrade(new_grade); }
-	catch (std::exception &e) {
-		std::cerr << e.what() <<std::endl;
-		std::cerr << "Grade was not updated" << std::endl; }
+	_grade = validateGrade(new_grade);
 }
 
 int& Bureaucrat::validateGrade(int& value) const {
@@ -114,6 +103,25 @@ int& Bureaucrat::validateGrade(int& value) const {
 	if (value > kmingrade)
 		throw GradeTooLowException();
 	return (value);
+}
+
+void Bureaucrat::signForm(Form& f)
+{
+	try {
+		f.beSigned(*this);
+	}
+	catch (Form::GradeTooLowException &e) {
+		std::cout << _name << _emoji
+				  << " couldn't sign " 
+				  << f.getName() << f.getEmoji() 
+				  << " because their grade is too low."
+				  << std::endl;
+		return;
+	}
+	std::cout << _name << _emoji
+			  << " signed " 
+			  << f.getName() << f.getEmoji()
+			  << std::endl;	
 }
 
 

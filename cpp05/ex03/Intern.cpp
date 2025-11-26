@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/22 15:16:08 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/22 18:04:26 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/22 17:49:24 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,11 +43,12 @@ AForm *Intern::makeForm(const std::string form, std::string target) const {
 
 	if (form == "" ) {
 		std::cout << "Invalid form name";
-	throw InternException();	}
+		return NULL;
+	}
 
 	if (target == "") {
 		std::cout << "Invalid target name";
-	throw InternException();
+		return NULL;
 	}
 
 	intern_tasks list[] = {
@@ -63,7 +64,8 @@ AForm *Intern::makeForm(const std::string form, std::string target) const {
 		if (list[a].request == form)
 			return (list[a].action(target));
 	}
-	throw InternException();
+	std::cout << "Invalid form name\n";
+	return NULL;	
 }
 
 // ---------- exceptions -------------------------------------------------------
