@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 14:13:59 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/24 21:08:45 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/27 20:58:32 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include <string>
 # include <cstdlib>
 # include <cctype>
+# include <cstdlib>
 
 class ScalarConverter
 {
@@ -27,13 +28,14 @@ class ScalarConverter
         ScalarConverter &operator=(const ScalarConverter &other);	// assignment operator
 
 
-		static char*	getType(const std::string& input);
+		static void		convert_literal(const std::string& str, std::string& type);
+		static void		convert_char(const std::string& str, std::string& type);
+		static void		convert_int(const std::string& str, std::string& type);
+		static void		convert_float(const std::string& str, std::string& type);
+		static void		convert_double(const std::string& str, std::string& type);
+		
+		static std::string	getType(const std::string& str);
 
-		static void	convert_literal(const std::string& input, char *type);
-		static void	convert_char(const std::string& input, char *type);
-		static void	convert_int(const std::string& input, char *type);
-		static void	convert_float(const std::string& input, char *type);
-		static void	convert_double(const std::string& input, char *type);
 
 	public:
 		// other
