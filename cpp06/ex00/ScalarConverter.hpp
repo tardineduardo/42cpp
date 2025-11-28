@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 14:13:59 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/27 20:58:32 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/28 18:57:59 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,23 @@
 # include <string>
 # include <cstdlib>
 # include <cctype>
+# include <cerrno> 
 # include <cstdlib>
+
+
+enum e_type {
+	ERROR = 0,
+	PSD_LITERAL,
+	PRINTBL_CHAR,
+	NONDISP_CHAR,
+	INT,
+	INT_OVERF,
+	FLOAT,
+	FLOAT_OVERF,
+	DOUBLE,
+	DOUBLE_OVERF,
+	INVALID
+};
 
 class ScalarConverter
 {
@@ -28,13 +44,14 @@ class ScalarConverter
         ScalarConverter &operator=(const ScalarConverter &other);	// assignment operator
 
 
-		static void		convert_literal(const std::string& str, std::string& type);
-		static void		convert_char(const std::string& str, std::string& type);
-		static void		convert_int(const std::string& str, std::string& type);
-		static void		convert_float(const std::string& str, std::string& type);
-		static void		convert_double(const std::string& str, std::string& type);
+
+		static void		convert_literal(const std::string& str, e_type type);
+		static void		convert_char(const std::string& str, e_type type);
+		static void		convert_int(const std::string& str, e_type type);
+		static void		convert_float(const std::string& str, e_type type);
+		static void		convert_double(const std::string& str, e_type type);
 		
-		static std::string	getType(const std::string& str);
+		static e_type	getType(const std::string& str);
 
 
 	public:
@@ -45,5 +62,7 @@ class ScalarConverter
 		class ScalarConverterException : public std::exception {
 			public: const char *what() const throw(); };
 };
+
+
 
 #endif

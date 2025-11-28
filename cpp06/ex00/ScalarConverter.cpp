@@ -6,17 +6,17 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 14:13:57 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/27 21:02:17 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/28 19:07:59 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-static bool			is_pseudo_literal(const std::string& input);
-static bool			is_char(const std::string& input);
-static bool			is_int(const std::string& input);
-static bool			is_float(const std::string& input);
-static bool			is_double(const std::string& input);
+static e_type			is_pseudo_literal(const std::string& input);
+static e_type			is_char(const std::string& input);
+static e_type			is_int(const std::string& input);
+static e_type			is_float(const std::string& input);
+static e_type			is_double(const std::string& input);
 static std::string	trim(std::string input);
 
 
@@ -44,30 +44,30 @@ ScalarConverter::~ScalarConverter() {}
 void ScalarConverter::convert(std::string input) {
 
 	std::string trimmed = trim(input);
-	std::string type = ScalarConverter::getType(trimmed);
+	e_type type = ScalarConverter::getType(trimmed);
 
-	if (type == "pseudo_literal")
+	if (type == PSD_LITERAL)
 		ScalarConverter::convert_literal(trimmed, type);
-	else if (type == "char")
+	else if (type == NONDISP_CHAR || type == PRINTBL_CHAR)
 		ScalarConverter::convert_char(trimmed, type);
-	else if (type == "int")
+	else if (type == INT || type == INT_OVERF)
 		ScalarConverter::convert_int(trimmed, type);
-	else if (type == "float")
+	else if (type == FLOAT)
 		ScalarConverter::convert_float(trimmed, type);
-	else if (type == "double")
+	else if (type == DOUBLE)
 		ScalarConverter::convert_double(trimmed, type);
 }
 
-std::string ScalarConverter::getType(const std::string& input)
+e_type ScalarConverter::getType(const std::string& input)
 {
-	std::string type;
+	e_type type = ERROR;
 
-	if (is_pseudo_literal(input))	{ type = "pseudo_literal"; }
-	else if (is_char(input))		{ type = "char"; }
-	else if (is_int(input))			{ type = "int"; }
-	else if (is_float(input))		{ type = "float"; }
-	else if (is_double(input))		{ type = "double"; }
-	else 							{ type = "invalid"; }
+	if (!type) { type = is_pseudo_literal(input); }
+	if (!type) { type = is_char(input);}
+	if (!type) { type = is_int(input);}
+	if (!type) { type = is_float(input);}
+	if (!type) { type = is_double(input);}
+	if (!type) { type = INVALID; }
 	
 	return type;
 }
@@ -81,19 +81,19 @@ const char *ScalarConverter::ScalarConverterException::what() const throw() {
 
 // ---------- static methods ---------------------------------------------------
 
-void ScalarConverter::convert_char(const std::string& input, std::string& type)
+void ScalarConverter::convert_char(const std::string& input, e_type type)
 {
 	//TODO
 }
-void ScalarConverter::convert_int(const std::string& input, std::string& type)
+void ScalarConverter::convert_int(const std::string& input, e_type type)
 {
 	//TODO
 }
-void ScalarConverter::convert_float(const std::string& input, std::string& type)
+void ScalarConverter::convert_float(const std::string& input, e_type type)
 {
 	//TODO
 }
-void ScalarConverter::convert_double(const std::string& input, std::string& type)
+void ScalarConverter::convert_double(const std::string& input, e_type type)
 {
 	//TODO
 }
@@ -101,52 +101,86 @@ void ScalarConverter::convert_double(const std::string& input, std::string& type
 
 // ---------- functions - validations ------------------------------------------
 
-static bool is_pseudo_literal(const std::string& input)
+static e_type is_pseudo_literal(const std::string& input)
 {
-	std::string p_literal[] = {"-inff", "+inff", "nanf", "-inf", "+inf", "nan"};
-	for(int a = 0; a < sizeof(p_literal)/sizeof(p_literal[0]); a++)
-		if (p_literal[a] == input) return true;
-	return false;
+	static const std::string p_literal[] = {
+		"-inff", "+inff", "nanf", "-inf", "+inf", "nan"};
+
+	static size_t size = sizeof(p_literal)/sizeof(p_literal[0]);
+
+	for(size_t a = 0; a < size; a++)
+		if (p_literal[a] == input)
+			return PSD_LITERAL;
+	return ERROR;
 }
 
-static bool is_char(const std::string& input)
+static e_type is_char(const std::string& input)
 {
- 	if (input.length() == 1 && sizeof(input) == sizeof(char)) {
- 		char c = static_cast<char>(input[0]);
-		if(c >= 0 && c <= 127) return true;
-	}
-	return false;
+    if(input.size() != 1)
+        return ERROR;
+		
+    unsigned char c = static_cast<unsigned char>(input[0]);
+
+    if(c > 127)
+		return ERROR;
+	if (std::isdigit(c))
+    	return ERROR;
+	if (!std::isprint(c))
+		return NONDISP_CHAR;
+	return PRINTBL_CHAR;
 }
 
-static bool is_int(const std::string& input) {
-	int value;
+static e_type is_int(const std::string& input)
+{
+	if (input.empty())
+    	return ERROR;
+
+	char *end = NULL;
+	const char *str = input.c_str();
+	long value = std::strtol(str, &end, 10);
+
+	if(end == str)
+		return ERROR;
+
+	if(end != NULL)
+			
+
+
 	for(int a = 0; a < input.length(); a++)
-		if(!isdigit(input[a])) return false;
-	value = std::atoll(input.c_str());
+		if(!isdigit(input[a]))
+			return false;
+	int value = std::atoll(input.c_str());
 	return true;
 }
 
 //input was trimmed already - trailind spaces at end and start
-static bool is_float(const std::string& input)
+static e_type is_float(const std::string& input)
 {
-	if (input.empty()) return false;
-	if(input[input.length() - 1] != 'f') return false;
+	if(input.empty())
+		return false;
+	if(input[input.length() - 1] != 'f')
+		return false;
 	char *end = NULL;
 	const char *cstr = input.c_str();
 	std::strtod(cstr, &end);
-	if (cstr == end) return false;
-    if (end[0] == 'f' && end[1] == '\0') return true;
-	return false;	
+	if (cstr == end)
+		return false;
+    if (end[0] == 'f' && end[1] == '\0')
+		return true;
+	return false;
 }
 
-static bool is_double(const std::string& input)
+static e_type is_double(const std::string& input)
 {
-	if (input.empty()) return false;
+	if (input.empty())
+		return false;
 	char *end = NULL;
 	const char *cstr = input.c_str();
 	std::strtod(cstr, &end);
-	if (cstr == end) return false;
-    if (end[0] == '\0') return true;
+	if (cstr == end)
+		return false;
+	if (end[0] == '\0')
+		return true;
 	return false;	
 }
 
