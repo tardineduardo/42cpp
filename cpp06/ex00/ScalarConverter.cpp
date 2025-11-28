@@ -105,11 +105,7 @@ static bool is_pseudo_literal(const std::string& input)
 {
 	std::string p_literal[] = {"-inff", "+inff", "nanf", "-inf", "+inf", "nan"};
 	for(int a = 0; a < sizeof(p_literal)/sizeof(p_literal[0]); a++)
-	{
-		if (p_literal[a] == input)
-			return true;
-		a++;
-	}
+		if (p_literal[a] == input) return true;
 	return false;
 }
 
@@ -117,8 +113,7 @@ static bool is_char(const std::string& input)
 {
  	if (input.length() == 1 && sizeof(input) == sizeof(char)) {
  		char c = static_cast<char>(input[0]);
-		if(c >= 0 && c <= 127)
-			return true;
+		if(c >= 0 && c <= 127) return true;
 	}
 	return false;
 }
@@ -126,8 +121,7 @@ static bool is_char(const std::string& input)
 static bool is_int(const std::string& input) {
 	int value;
 	for(int a = 0; a < input.length(); a++)
-		if(!isdigit(input[a]))
-			return false;
+		if(!isdigit(input[a])) return false;
 	value = std::atoll(input.c_str());
 	return true;
 }
@@ -135,40 +129,24 @@ static bool is_int(const std::string& input) {
 //input was trimmed already - trailind spaces at end and start
 static bool is_float(const std::string& input)
 {
-	if (input.empty())
-		return false;
-
-	if(input[input.length() - 1] != 'f')
-		return false;
-
+	if (input.empty()) return false;
+	if(input[input.length() - 1] != 'f') return false;
 	char *end = NULL;
 	const char *cstr = input.c_str();
 	std::strtod(cstr, &end);
-
-	if (cstr == end)
-    	return false;
-
-    if (end[0] == 'f' && end[1] == '\0')
-		return true;
-	
+	if (cstr == end) return false;
+    if (end[0] == 'f' && end[1] == '\0') return true;
 	return false;	
 }
 
 static bool is_double(const std::string& input)
 {
-	if (input.empty())
-		return false;
-
+	if (input.empty()) return false;
 	char *end = NULL;
 	const char *cstr = input.c_str();
 	std::strtod(cstr, &end);
-
-	if (cstr == end)
-    	return false;
-
-    if (end[0] == '\0')
-		return true;
-	
+	if (cstr == end) return false;
+    if (end[0] == '\0') return true;
 	return false;	
 }
 
@@ -180,11 +158,9 @@ static std::string trim(std::string input)
 	std::string trimmed = "";
 
 	for(int a = 0; a < input.length(); a++)
-	{
-		if(!std::isspace(input[a]))
-		trimmed += input[a];
-	}
+		if(!std::isspace(input[a])) trimmed += input[a];
 	
+
 	return trimmed;
 }
 
