@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 14:13:57 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/27 20:59:18 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/27 21:02:17 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,29 @@ const char *ScalarConverter::ScalarConverterException::what() const throw() {
 	return "generic ScalarConverter error";
 }
 
-// -----------------------------------------------------------------------------
+
+// ---------- static methods ---------------------------------------------------
+
+void ScalarConverter::convert_char(const std::string& input, std::string& type)
+{
+	//TODO
+}
+void ScalarConverter::convert_int(const std::string& input, std::string& type)
+{
+	//TODO
+}
+void ScalarConverter::convert_float(const std::string& input, std::string& type)
+{
+	//TODO
+}
+void ScalarConverter::convert_double(const std::string& input, std::string& type)
+{
+	//TODO
+}
+
+
+// ---------- functions - validations ------------------------------------------
+
 static bool is_pseudo_literal(const std::string& input)
 {
 	std::string p_literal[] = {"-inff", "+inff", "nanf", "-inf", "+inf", "nan"};
@@ -151,25 +173,7 @@ static bool is_double(const std::string& input)
 }
 
 
-
-// ---------- con -------------------------------------------------------
-
-void ScalarConverter::convert_char(const std::string& input, std::string& type)
-{
-	//TODO
-}
-void ScalarConverter::convert_int(const std::string& input, std::string& type)
-{
-	//TODO
-}
-void ScalarConverter::convert_float(const std::string& input, std::string& type)
-{
-	//TODO
-}
-void ScalarConverter::convert_double(const std::string& input, std::string& type)
-{
-	//TODO
-}
+// ---------- functions - trim -------------------------------------------------
 
 static std::string trim(std::string input)
 {
@@ -183,3 +187,9 @@ static std::string trim(std::string input)
 	
 	return trimmed;
 }
+
+
+
+
+
+
