@@ -20,9 +20,10 @@
 # include <cstdlib>
 
 
-enum e_type {
-	ERROR = 0,
-	PSD_LITERAL,
+typedef enum e_type {
+	CONTINUE = 0,
+	PSEUDO_LITERAL_F,
+	PSEUDO_LITERAL_D,
 	PRINTBL_CHAR,
 	NONDISP_CHAR,
 	INT,
@@ -32,7 +33,7 @@ enum e_type {
 	DOUBLE,
 	DOUBLE_OVERF,
 	INVALID
-};
+} t_type;
 
 class ScalarConverter
 {

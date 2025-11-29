@@ -1,15 +1,18 @@
 #include<string>
 #include<iostream>
 #include<cctype>
+#include<limits>
+#include<cmath>
 
 int main(void)
 {
-	std::string a = "éb";
+	std::string input = "922337203685477580700";
+	
+	char *end = NULL;
+	const char *str = input.c_str();
+	long long value = std::strtoll(str, &end, 10);
 
-	std::cout << a[0] << std::endl;
-	std::cout << static_cast<char>(a[0]) << std::endl;
-	std::cout << static_cast<int>(a[0]) << std::endl;
-	std::cout << static_cast<unsigned int>(a[0]) << std::endl;
-	std::cout << static_cast<unsigned char>(a[0]) << std::endl;
-	std::cout << a[0] << std::endl;
+	std::cout << value << std::endl;
+
+
 }

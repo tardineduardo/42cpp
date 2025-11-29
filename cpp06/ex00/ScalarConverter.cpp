@@ -12,11 +12,11 @@
 
 #include "ScalarConverter.hpp"
 
-static e_type			is_pseudo_literal(const std::string& input);
-static e_type			is_char(const std::string& input);
-static e_type			is_int(const std::string& input);
-static e_type			is_float(const std::string& input);
-static e_type			is_double(const std::string& input);
+static t_type			is_pseudo_literal(const std::string& input);
+static t_type			is_char(const std::string& input);
+static t_type			is_int(const std::string& input);
+static t_type			is_float(const std::string& input);
+static t_type			is_double(const std::string& input);
 static std::string	trim(std::string input);
 
 
@@ -44,9 +44,9 @@ ScalarConverter::~ScalarConverter() {}
 void ScalarConverter::convert(std::string input) {
 
 	std::string trimmed = trim(input);
-	e_type type = ScalarConverter::getType(trimmed);
+	t_type type = ScalarConverter::getType(trimmed);
 
-	if (type == PSD_LITERAL)
+	if (type == 0)
 		ScalarConverter::convert_literal(trimmed, type);
 	else if (type == NONDISP_CHAR || type == PRINTBL_CHAR)
 		ScalarConverter::convert_char(trimmed, type);
@@ -58,9 +58,10 @@ void ScalarConverter::convert(std::string input) {
 		ScalarConverter::convert_double(trimmed, type);
 }
 
-e_type ScalarConverter::getType(const std::string& input)
+t_type ScalarConverter::getType(const std::string& input)
 {
-	e_type type = ERROR;
+	t_type type;
+	type = CONTINUE;
 
 	if (!type) { type = is_pseudo_literal(input); }
 	if (!type) { type = is_char(input);}
@@ -81,19 +82,19 @@ const char *ScalarConverter::ScalarConverterException::what() const throw() {
 
 // ---------- static methods ---------------------------------------------------
 
-void ScalarConverter::convert_char(const std::string& input, e_type type)
+void ScalarConverter::convert_char(const std::string& input, t_type type)
 {
 	//TODO
 }
-void ScalarConverter::convert_int(const std::string& input, e_type type)
+void ScalarConverter::convert_int(const std::string& input, t_type type)
 {
 	//TODO
 }
-void ScalarConverter::convert_float(const std::string& input, e_type type)
+void ScalarConverter::convert_float(const std::string& input, t_type type)
 {
 	//TODO
 }
-void ScalarConverter::convert_double(const std::string& input, e_type type)
+void ScalarConverter::convert_double(const std::string& input, t_type type)
 {
 	//TODO
 }
@@ -101,87 +102,100 @@ void ScalarConverter::convert_double(const std::string& input, e_type type)
 
 // ---------- functions - validations ------------------------------------------
 
-static e_type is_pseudo_literal(const std::string& input)
+static t_type is_pseudo_literal(const std::string& input)
 {
-	static const std::string p_literal[] = {
-		"-inff", "+inff", "nanf", "-inf", "+inf", "nan"};
+	static const std::string f_literal[] = {
+		"-inff", "+inff", "nanf", "inff"};
 
-	static size_t size = sizeof(p_literal)/sizeof(p_literal[0]);
+	static const std::string d_literal[] = {
+		"-inf", "+inf", "nan", "inf"};
 
-	for(size_t a = 0; a < size; a++)
-		if (p_literal[a] == input)
-			return PSD_LITERAL;
-	return ERROR;
+	static size_t sizef = sizeof(f_literal)/sizeof(f_literal[0]);
+	static size_t sized = sizeof(d_literal)/sizeof(d_literal[0]);	
+
+	for(size_t a = 0; a < sizef; a++)
+		if (f_literal[a] == input)
+			return PSEUDO_LITERAL_F;
+
+	for(size_t a = 0; a < sized; a++)
+		if (d_literal[a] == input)
+			return PSEUDO_LITERAL_D;
+
+	return CONTINUE;
 }
 
-static e_type is_char(const std::string& input)
+static t_type is_char(const std::string& input)
 {
     if(input.size() != 1)
-        return ERROR;
+        return CONTINUE;
 		
     unsigned char c = static_cast<unsigned char>(input[0]);
 
+	// we are looking for ascii chars only
     if(c > 127)
-		return ERROR;
+		return CONTINUE;
+
+	// can't be an int
 	if (std::isdigit(c))
-    	return ERROR;
+    	return CONTINUE;
+
+	// checks if is is printable
 	if (!std::isprint(c))
 		return NONDISP_CHAR;
+		
 	return PRINTBL_CHAR;
 }
 
-static e_type is_int(const std::string& input)
+static t_type is_int(const std::string& input)
 {
 	if (input.empty())
-    	return ERROR;
+    	return CONTINUE;
 
 	char *end = NULL;
 	const char *str = input.c_str();
 	long value = std::strtol(str, &end, 10);
 
 	if(end == str)
-		return ERROR;
+		return CONTINUE;
 
 	if(end != NULL)
 			
-
-
 	for(int a = 0; a < input.length(); a++)
 		if(!isdigit(input[a]))
-			return false;
+			return CONTINUE;
 	int value = std::atoll(input.c_str());
-	return true;
+	return INT;
 }
 
 //input was trimmed already - trailind spaces at end and start
-static e_type is_float(const std::string& input)
+static t_type is_float(const std::string& input)
 {
 	if(input.empty())
-		return false;
+		return CONTINUE;
 	if(input[input.length() - 1] != 'f')
-		return false;
+		return CONTINUE;
 	char *end = NULL;
 	const char *cstr = input.c_str();
 	std::strtod(cstr, &end);
 	if (cstr == end)
-		return false;
+		return CONTINUE;
     if (end[0] == 'f' && end[1] == '\0')
-		return true;
-	return false;
+		return FLOAT;
+	return CONTINUE;
 }
 
-static e_type is_double(const std::string& input)
+static t_type is_double(const std::string& input)
 {
 	if (input.empty())
-		return false;
+		return CONTINUE;
 	char *end = NULL;
 	const char *cstr = input.c_str();
 	std::strtod(cstr, &end);
 	if (cstr == end)
-		return false;
+		return CONTINUE;
 	if (end[0] == '\0')
-		return true;
-	return false;	
+		return DOUBLE;
+	return CONTINUE;	
 }
 
 
