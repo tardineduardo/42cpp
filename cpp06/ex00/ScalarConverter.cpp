@@ -6,18 +6,29 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 14:13:57 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/28 19:07:59 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/29 20:15:43 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "ScalarConverter.hpp"
 
-static t_type			is_pseudo_literal(const std::string& input);
-static t_type			is_char(const std::string& input);
-static t_type			is_int(const std::string& input);
-static t_type			is_float(const std::string& input);
-static t_type			is_double(const std::string& input);
 static std::string	trim(std::string input);
+static t_type getType(const std::string& input);
+
+static t_type		is_pseudo_literal(const std::string& input);
+static t_type		is_char(const std::string& input);
+static t_type		is_int(const std::string& input);
+static t_type		is_float(const std::string& input);
+static t_type		is_double(const std::string& input);
+
+static void			convert_literal(const std::string& input, t_type type);
+static void			convert_char(const std::string& input, t_type type);
+static void			convert_int(const std::string& input, t_type type);
+static void			convert_float(const std::string& input, t_type type);
+static void			convert_double(const std::string& input, t_type type);
+
+
+
 
 
 
@@ -27,7 +38,9 @@ static std::string	trim(std::string input);
 ScalarConverter::ScalarConverter() {}
 
 // copy constructor
-ScalarConverter::ScalarConverter(const ScalarConverter& other) {}
+ScalarConverter::ScalarConverter(const ScalarConverter& other) {
+	(void)other;
+}
 
 // assignment operator overload
 ScalarConverter& ScalarConverter::operator=(const ScalarConverter& other) {
@@ -41,61 +54,109 @@ ScalarConverter::~ScalarConverter() {}
 
 // ---------- other methods ----------------------------------------------------
 
-void ScalarConverter::convert(std::string input) {
 
-	std::string trimmed = trim(input);
-	t_type type = ScalarConverter::getType(trimmed);
-
-	if (type == 0)
-		ScalarConverter::convert_literal(trimmed, type);
-	else if (type == NONDISP_CHAR || type == PRINTBL_CHAR)
-		ScalarConverter::convert_char(trimmed, type);
-	else if (type == INT || type == INT_OVERF)
-		ScalarConverter::convert_int(trimmed, type);
-	else if (type == FLOAT)
-		ScalarConverter::convert_float(trimmed, type);
-	else if (type == DOUBLE)
-		ScalarConverter::convert_double(trimmed, type);
-}
-
-t_type ScalarConverter::getType(const std::string& input)
+static t_type getType(const std::string& input)
 {
 	t_type type;
 	type = CONTINUE;
 
 	if (!type) { type = is_pseudo_literal(input); }
-	if (!type) { type = is_char(input);}
-	if (!type) { type = is_int(input);}
-	if (!type) { type = is_float(input);}
-	if (!type) { type = is_double(input);}
+	if (!type) { type = is_char(input); }
+	if (!type) { type = is_int(input); }
+	if (!type) { type = is_float(input); }
+	if (!type) { type = is_double(input); }
 	if (!type) { type = INVALID; }
 	
 	return type;
 }
 
-// ---------- exceptions -------------------------------------------------------
 
-const char *ScalarConverter::ScalarConverterException::what() const throw() {
-	return "generic ScalarConverter error";
+void ScalarConverter::convert(std::string input) {
+
+	std::string trimmed = trim(input);
+	t_type type = getType(trimmed);
+
+	if (type == PSEUDO_LITERAL_F || type == PSEUDO_LITERAL_D)
+		convert_literal(trimmed, type);
+	else if (type == NONDISP_CHAR || type == PRINTBL_CHAR)
+		convert_char(trimmed, type);
+	else if (type == INT || type == INT_OVERF)
+		convert_int(trimmed, type);
+	else if (type == FLOAT)
+		convert_float(trimmed, type);
+	else if (type == DOUBLE)
+		convert_double(trimmed, type);
 }
+
+
 
 
 // ---------- static methods ---------------------------------------------------
 
-void ScalarConverter::convert_char(const std::string& input, t_type type)
+static void	convert_literal(const std::string& input, t_type type)
 {
+	(void)type;
+	std::cout << "char:\timpossible\n"; 
+	std::cout << "int:\timpossible\n";		
+
+	if(input == "inff")
+		std::cout << "float:\t" << "inff";
+	if(input == "+inff")
+		std::cout << "float:\t" << "+inff";
+	if(input == "-inff")
+		std::cout << "float:\t" << "-inff";
+
+	if(input == "nanf")
+		std::cout << "float:\t" << "nanf";
+	if(input == "+nanf")
+		std::cout << "float:\t" << "+nanf";
+	if(input == "-nanf")
+		std::cout << "float:\t" << "-nanf";
+
+	char *end = NULL;
+	const char *str = input.c_str();
+	float valuef = std::strtod(str, &end);
+	std::cout << "\t\t(" << valuef << ')' << std::endl;
+
+	if(input == "inff")
+		std::cout << "double:\t" << "inf";
+	else if(input == "+inff")
+		std::cout << "double:\t" << "+inf";
+	else if(input == "-inff")
+		std::cout << "double:\t" << "-inf";
+
+	else if(input == "nanf")
+		std::cout << "double:\t" << "nan";
+	else if(input == "+nanf")
+		std::cout << "double:\t" << "+nan";
+	else if(input == "-nanf")
+		std::cout << "double:\t" << "-nan";
+
+	double valued = std::strtod(str, &end);
+	std::cout << "\t\t(" << valued << ')' << std::endl;
+
+}
+
+static void	convert_char(const std::string& input, t_type type)
+{
+	(void)input; (void)type;
+	//TODO
+
+}
+
+static void	convert_int(const std::string& input, t_type type)
+{
+	(void)input; (void)type;
 	//TODO
 }
-void ScalarConverter::convert_int(const std::string& input, t_type type)
+static void convert_float(const std::string& input, t_type type)
 {
+	(void)input; (void)type;
 	//TODO
 }
-void ScalarConverter::convert_float(const std::string& input, t_type type)
+static void convert_double(const std::string& input, t_type type)
 {
-	//TODO
-}
-void ScalarConverter::convert_double(const std::string& input, t_type type)
-{
+	(void)input; (void)type;
 	//TODO
 }
 
@@ -250,7 +311,7 @@ static std::string trim(std::string input)
 {
 	std::string trimmed = "";
 
-	for(int a = 0; a < input.length(); a++)
+	for(size_t a = 0; a < input.length(); a++)
 		if(!std::isspace(input[a])) trimmed += input[a];
 
 	return trimmed;

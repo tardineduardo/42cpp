@@ -1,16 +1,10 @@
-NAME	= bureaucrats03
+NAME	= scalar
 
 CC		= g++
-CFLAGS  = -std=c++98 -Wall -Wextra -Werror -I.
+CFLAGS  = -std=c++98 -g -Wall -Wextra -Werror -I.
 
-SRCS	= main.cpp \
-		  Bureaucrat.cpp \
-		  AForm.cpp \
-		  ShrubberyCreationForm.cpp \
-		  RobotomyRequestForm.cpp \
-		  PresidentialPardonForm.cpp \
-		  Intern.cpp \
-		  messages.cpp
+SRCS	=	main.cpp \
+			ScalarConverter.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 
