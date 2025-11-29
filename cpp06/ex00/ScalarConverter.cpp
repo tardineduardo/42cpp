@@ -153,49 +153,94 @@ static t_type is_int(const std::string& input)
 
 	char *end = NULL;
 	const char *str = input.c_str();
+
+	errno = 0;
 	long value = std::strtol(str, &end, 10);
 
 	if(end == str)
 		return CONTINUE;
 
-	if(end != NULL)
-			
-	for(int a = 0; a < input.length(); a++)
-		if(!isdigit(input[a]))
-			return CONTINUE;
-	int value = std::atoll(input.c_str());
+	if(*end != 0)
+		return CONTINUE;
+
+	if(value == LONG_MAX && errno == ERANGE)
+		return INT_OVERF;
+
+	if(value == LONG_MIN && errno == ERANGE)
+		return INT_UNDRF;
+
+	if(value > INT_MAX)
+		return INT_OVERF;	
+	
+	if(value < INT_MIN)
+		return INT_UNDRF;
+	
 	return INT;
 }
 
-//input was trimmed already - trailind spaces at end and start
-static t_type is_float(const std::string& input)
-{
-	if(input.empty())
-		return CONTINUE;
-	if(input[input.length() - 1] != 'f')
-		return CONTINUE;
-	char *end = NULL;
-	const char *cstr = input.c_str();
-	std::strtod(cstr, &end);
-	if (cstr == end)
-		return CONTINUE;
-    if (end[0] == 'f' && end[1] == '\0')
-		return FLOAT;
-	return CONTINUE;
-}
-
-static t_type is_double(const std::string& input)
+t_type is_float(const std::string& input)
 {
 	if (input.empty())
 		return CONTINUE;
-	char *end = NULL;
-	const char *cstr = input.c_str();
-	std::strtod(cstr, &end);
-	if (cstr == end)
+
+	if(input[input.length() - 1] != 'f')
 		return CONTINUE;
-	if (end[0] == '\0')
-		return DOUBLE;
-	return CONTINUE;	
+
+	const char *str = input.c_str();
+	char *end = NULL;
+
+	errno = 0;
+	double value = std::strtod(str, &end);
+
+	if (end == str)
+		return CONTINUE;
+
+	if (end[0] != 'f' || end[1] != '\0')
+		return CONTINUE;
+
+	if (errno == ERANGE && (value == HUGE_VAL || value == -HUGE_VAL))
+		return FLOAT_OVERF;
+
+	double abs_val = std::fabs(value);
+	double f_max   = std::numeric_limits<float>::max();
+	double f_min   = std::numeric_limits<float>::min();
+
+	if (abs_val == 0.0 && errno == 0)
+    	return FLOAT;
+
+	if (abs_val > f_max)
+    	return FLOAT_OVERF;
+
+	if (abs_val < f_min)
+    	return FLOAT_UNDRF;
+
+	return FLOAT;
+}
+
+t_type is_double(const std::string& input)
+{
+	if (input.empty())
+		return CONTINUE;
+
+	const char *str = input.c_str();
+	char *end = NULL;
+
+	errno = 0;
+	double value = std::strtod(str, &end);
+
+	if (end == str)
+		return CONTINUE;
+
+	if (*end != '\0')
+		return CONTINUE;
+
+	if (errno == ERANGE && (value == HUGE_VAL || value == -HUGE_VAL))
+		return DOUBLE_OVERF;
+
+	if (value == 0.0 && errno == ERANGE)
+		return DOUBLE_UNDRF;
+
+	return DOUBLE;
 }
 
 
@@ -207,13 +252,7 @@ static std::string trim(std::string input)
 
 	for(int a = 0; a < input.length(); a++)
 		if(!std::isspace(input[a])) trimmed += input[a];
-	
 
 	return trimmed;
 }
-
-
-
-
-
 

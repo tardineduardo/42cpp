@@ -17,7 +17,10 @@
 # include <cstdlib>
 # include <cctype>
 # include <cerrno> 
+# include <climits>
 # include <cstdlib>
+# include <limits>
+# include <cmath>
 
 
 typedef enum e_type {
@@ -28,10 +31,13 @@ typedef enum e_type {
 	NONDISP_CHAR,
 	INT,
 	INT_OVERF,
+	INT_UNDRF,	
 	FLOAT,
 	FLOAT_OVERF,
+	FLOAT_UNDRF,
 	DOUBLE,
 	DOUBLE_OVERF,
+	DOUBLE_UNDRF,
 	INVALID
 } t_type;
 
