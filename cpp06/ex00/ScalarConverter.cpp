@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 14:13:57 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/29 21:27:15 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/29 23:09:32 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ static void	convert_literal(const std::string& input, t_type type)
 
 	char *end = NULL;
 	const char *str = input.c_str();
+	errno = 0;
 	float valuef = std::strtod(str, &end);
 	std::cout << "\t\t(" << valuef << ')' << std::endl;
 
@@ -144,32 +145,62 @@ static void	convert_char(const std::string& input, t_type type)
 
 static void	convert_int(const std::string& input, t_type type)
 {
-	char *end = NULL;
 	const char *str = input.c_str();
-	long value_long = std::strtol(str, &end, 10);
-	int value = static_cast<int>(value_long);
 
-	std::cout << "char:\t" << "impossible" << std::endl;
+	errno = 0;
+	char *end = NULL;
+	long value_long = std::strtol(str, &end, 10);
+	int value_int = static_cast<int>(value_long);
+	unsigned char c = static_cast<unsigned char>(value_int);	
+
+	if(value_int < 0 || value_int > 127 || type == INT_OVERF || type == INT_UNDRF)
+		std::cout << "char:\t" << "impossible" << std::endl;
+	else if(!std::isprint(c))
+		std::cout << "char:\t" << "non displayable" << std::endl;
+	else
+		std::cout << "char:\t\'" << c << '\'' << std::endl;
+
 
 	if(type == INT)
-		std::cout << "int:\t" << value << std::endl;	
+		std::cout << "int:\t" << value_int << std::endl;	
 	else if(type == INT_OVERF)
 		std::cout << "int:\t" << "overflow" << std::endl;
 	else if(type == INT_UNDRF)
 		std::cout << "int:\t" << "underflow" << std::endl;
 
-	float value_float = static_cast<float>(value_long);
-	std::cout << "float:\t" << value_float << ".0f" << std::endl;	
 
-	double value_double = static_cast<double>(value_long);
-	std::cout << "float:\t" << value_double << std::endl;	
+	end = NULL;
+	errno = 0;
+	double value_double = std::strtod(str, &end);
+	double abs_val = std::fabs(value_double);
+	double f_max   = std::numeric_limits<float>::max();
+	double f_min   = std::numeric_limits<float>::min();
+	float value_float = static_cast<float>(value_double);
 
+	if (abs_val == 0.0 && errno == 0)
+		std::cout << "float:\t" << value_int << ".0f" << std::endl;	
+	else if (abs_val > f_max)
+		std::cout << "float:\t" << "overflow" << std::endl;
+	else if (abs_val < f_min)
+		std::cout << "float:\t" << "underflow" << std::endl;
+	else if (type == INT_OVERF || type == INT_UNDRF)
+		std::cout << "float:\t" << value_float << std::endl;			
+	else
+		std::cout << "float:\t" << value_int << ".0f" << std::endl;	
+		
 
-
-//TO DO DOUBLE
-
-
+	if (abs_val == 0.0 && errno == 0)
+		std::cout << "double:\t" << value_int << ".0" << std::endl;	
+	else if (value_double == 0.0 && errno == ERANGE)
+		std::cout << "double:\t" << "underflow" << std::endl;
+	else if (errno == ERANGE && (value_double == HUGE_VAL || value_double == -HUGE_VAL))
+		std::cout << "double:\t" << "overflow" << std::endl;
+	else if (type == INT_OVERF || type == INT_UNDRF)
+		std::cout << "double:\t" << value_double << std::endl;
+	else
+		std::cout << "double:\t" << value_int << ".0" << std::endl;	
 }
+
 static void convert_float(const std::string& input, t_type type)
 {
 	(void)input; (void)type;
