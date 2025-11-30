@@ -75,11 +75,11 @@ void ScalarConverter::convert(std::string input) {
 		convert_literal(trimmed, type);
 	else if (type == NONDISP_CHAR || type == PRINTBL_CHAR)
 		convert_char(trimmed, type);
-	else if (type == INT || type == INT_OVERF)
+	else if (type == INT || type == INT_OVERF || type == INT_UNDRF)
 		convert_int(trimmed, type);
-	else if (type == FLOAT)
+	else if (type == FLOAT || type == FLOAT_OVERF || type == FLOAT_UNDRF)
 		convert_float(trimmed, type);
-	else if (type == DOUBLE)
+	else if (type == DOUBLE || type == DOUBLE_OVERF || type == DOUBLE_UNDRF)
 		convert_double(trimmed, type);
 }
 
@@ -174,7 +174,7 @@ static void	convert_int(const std::string& input, t_type type)
 	double value_double = std::strtod(str, &end);
 	double abs_val = std::fabs(value_double);
 	double f_max   = std::numeric_limits<float>::max();
-	double f_min   = std::numeric_limits<float>::min();
+	double f_min   = std::numeric_limits<float>::denorm_min();
 	float value_float = static_cast<float>(value_double);
 
 	if (abs_val == 0.0 && errno == 0)
@@ -203,13 +203,94 @@ static void	convert_int(const std::string& input, t_type type)
 
 static void convert_float(const std::string& input, t_type type)
 {
-	(void)input; (void)type;
-	//TODO
+	const char *str = input.c_str();
+	char *end = NULL;
+	double value_double = std::strtod(str, &end);
+	float value_float = static_cast<float>(value_double);
+	(void)value_float;
+	//char
+	std::cout << "char:\t" << "impossible" << std::endl;
+
+	//int
+	if(!std::isfinite(value_double))
+		std::cout << "int:\t" << "impossible" << std::endl;
+	else if(value_double < std::numeric_limits<int>::min())
+		std::cout << "int:\t" << "underflow" << std::endl;
+	else if(value_double > std::numeric_limits<int>::max())
+		std::cout << "int:\t" << "overflow" << std::endl;
+	else {
+		int value_int = static_cast<int>(value_double);
+		std::cout << "int:\t" << value_int << std::endl;}
+
+	//float
+	if(type == FLOAT_OVERF)
+		std::cout << "float:\t" << "overflow" << std::endl;
+	else if(type == FLOAT_UNDRF)
+		std::cout << "float:\t" << "underflow" << std::endl;
+	else
+		std::cout << "float:\t" << input << std::endl;
+
+	//double
+	std::string dstr = input;
+	dstr.erase(dstr.size() - 1);
+	std::cout << "double:\t" << dstr << std::endl;
+
 }
+
+
 static void convert_double(const std::string& input, t_type type)
 {
-	(void)input; (void)type;
-	//TODO
+	const char *str = input.c_str();
+	char *end = NULL;
+
+	double value_double = std::strtod(str, &end);
+
+	// char
+	std::cout << "char:\t" << "impossible" << std::endl;
+
+	// int
+	if (!std::isfinite(value_double))
+		std::cout << "int:\t" << "impossible" << std::endl;
+	else if (value_double < std::numeric_limits<int>::min())
+		std::cout << "int:\t" << "underflow" << std::endl;
+	else if (value_double > std::numeric_limits<int>::max())
+		std::cout << "int:\t" << "overflow" << std::endl;
+	else
+	{
+		int value_int = static_cast<int>(value_double);
+		std::cout << "int:\t" << value_int << std::endl;
+	}
+
+	// float
+	double abs_val = std::fabs(value_double);
+	double f_max = std::numeric_limits<float>::max();
+	double f_min = std::numeric_limits<float>::denorm_min();
+
+	if (type == DOUBLE_OVERF)
+		std::cout << "float:\t" << "overflow" << std::endl;
+	else if (type == DOUBLE_UNDRF)
+		std::cout << "float:\t" << "underflow" << std::endl;
+	else if (!std::isfinite(value_double))
+		std::cout << "float:\t" << "impossible" << std::endl;
+	else if (abs_val > f_max)
+		std::cout << "float:\t" << "overflow" << std::endl;
+	else if (abs_val < f_min && abs_val != 0.0)
+		std::cout << "float:\t" << "underflow" << std::endl;
+	else
+	{
+		float value_float = static_cast<float>(value_double);
+			(void)value_float;
+
+		std::cout << "float:\t" << input << "f" << std::endl;
+	}
+
+	// double
+	if (type == DOUBLE_OVERF)
+		std::cout << "double:\t" << "overflow" << std::endl;
+	else if (type == DOUBLE_UNDRF)
+		std::cout << "double:\t" << "underflow" << std::endl;
+	else
+		std::cout << "double:\t" << input << std::endl;
 }
 
 
@@ -316,7 +397,7 @@ t_type is_float(const std::string& input)
 
 	double abs_val = std::fabs(value);
 	double f_max   = std::numeric_limits<float>::max();
-	double f_min   = std::numeric_limits<float>::min();
+	double f_min   = std::numeric_limits<float>::denorm_min();
 
 	if (abs_val == 0.0 && errno == 0)
     	return FLOAT;
@@ -368,4 +449,3 @@ static std::string trim(std::string input)
 
 	return trimmed;
 }
-
