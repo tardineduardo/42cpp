@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 14:13:57 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/29 20:15:43 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/11/29 21:27:15 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,10 +26,6 @@ static void			convert_char(const std::string& input, t_type type);
 static void			convert_int(const std::string& input, t_type type);
 static void			convert_float(const std::string& input, t_type type);
 static void			convert_double(const std::string& input, t_type type);
-
-
-
-
 
 
 // ---------- canonical methods (PRIVATE!) -------------------------------------
@@ -53,7 +49,6 @@ ScalarConverter::~ScalarConverter() {}
 
 
 // ---------- other methods ----------------------------------------------------
-
 
 static t_type getType(const std::string& input)
 {
@@ -87,8 +82,6 @@ void ScalarConverter::convert(std::string input) {
 	else if (type == DOUBLE)
 		convert_double(trimmed, type);
 }
-
-
 
 
 // ---------- static methods ---------------------------------------------------
@@ -134,20 +127,48 @@ static void	convert_literal(const std::string& input, t_type type)
 
 	double valued = std::strtod(str, &end);
 	std::cout << "\t\t(" << valued << ')' << std::endl;
-
 }
 
 static void	convert_char(const std::string& input, t_type type)
 {
-	(void)input; (void)type;
-	//TODO
-
+	 const char *c = input.c_str();
+	
+	if(type == PRINTBL_CHAR)
+		std::cout << "char:\t\'" << *c << '\'' << std::endl;
+	else if(type == NONDISP_CHAR)
+		std::cout << "char: non displayable" << std::endl;
+	std::cout << "int:\t" << static_cast<int>(*c) << std::endl;
+	std::cout << "float:\t" << static_cast<float>(*c) << ".0f" << std::endl;
+	std::cout << "double:\t" << static_cast<double>(*c) << ".0" << std::endl;	
 }
 
 static void	convert_int(const std::string& input, t_type type)
 {
-	(void)input; (void)type;
-	//TODO
+	char *end = NULL;
+	const char *str = input.c_str();
+	long value_long = std::strtol(str, &end, 10);
+	int value = static_cast<int>(value_long);
+
+	std::cout << "char:\t" << "impossible" << std::endl;
+
+	if(type == INT)
+		std::cout << "int:\t" << value << std::endl;	
+	else if(type == INT_OVERF)
+		std::cout << "int:\t" << "overflow" << std::endl;
+	else if(type == INT_UNDRF)
+		std::cout << "int:\t" << "underflow" << std::endl;
+
+	float value_float = static_cast<float>(value_long);
+	std::cout << "float:\t" << value_float << ".0f" << std::endl;	
+
+	double value_double = static_cast<double>(value_long);
+	std::cout << "float:\t" << value_double << std::endl;	
+
+
+
+//TO DO DOUBLE
+
+
 }
 static void convert_float(const std::string& input, t_type type)
 {
