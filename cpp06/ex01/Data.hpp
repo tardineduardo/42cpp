@@ -3,7 +3,13 @@
 
 struct Data
 {
-	void *ptr;
+	int				a;
+	int				b;
+	double			c;
+	char			d;
+	const char		*e;
+	std::string		f;
+	std::string		g[4];
 };
 
 #endif

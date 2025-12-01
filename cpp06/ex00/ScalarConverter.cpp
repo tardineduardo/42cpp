@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 14:13:57 by eduribei          #+#    #+#             */
-/*   Updated: 2025/11/29 23:09:32 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/12/01 15:02:28 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -145,7 +145,7 @@ static void	convert_char(const std::string& input, t_type type)
 	if(type == PRINTBL_CHAR)
 		std::cout << "char:\t\'" << *c << '\'' << std::endl;
 	else if(type == NONDISP_CHAR)
-		std::cout << "char: non displayable" << std::endl;
+		std::cout << "char:\tnon displayable" << std::endl;
 	std::cout << "int:\t" << static_cast<int>(*c) << std::endl;
 	std::cout << "float:\t" << static_cast<float>(*c) << ".0f" << std::endl;
 	std::cout << "double:\t" << static_cast<double>(*c) << ".0" << std::endl;	
