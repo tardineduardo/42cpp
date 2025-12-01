@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 14:13:57 by eduribei          #+#    #+#             */
-/*   Updated: 2025/12/01 17:51:44 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/12/03 19:51:58 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ static t_type		is_int(const std::string& input);
 static t_type		is_float(const std::string& input);
 static t_type		is_double(const std::string& input);
 
-static void			convert_literal(const std::string& rawinput, t_type type);
+static void	convert_literal(const std::string& rawinput, std::string results[])
 static void			convert_char(const std::string& rawinput, t_type type);
 static void			convert_int(const std::string& rawinput, t_type type);
 static void			convert_float(const std::string& rawinput, t_type type);
@@ -67,10 +67,16 @@ static t_type getType(const std::string& input)
 	return type;
 }
 
+
 void ScalarConverter::convert(std::string input) {
 
+	std::string results[4];
 	std::string trimmed = trim(input);
 	t_type type = getType(trimmed);
+
+
+
+
 
 	if (type == PSEUDO_LITERAL_F || type == PSEUDO_LITERAL_D)
 		convert_literal(trimmed, type);
@@ -89,77 +95,54 @@ void ScalarConverter::convert(std::string input) {
 
 // ---------- static methods ---------------------------------------------------
 
-static void	convert_literal(const std::string& rawinput, t_type type)
+static void	convert_literal(const std::string& rawinput, std::string results[])
 {
-	(void)type;
+	std::stringstream os;
+
+	static const std::string literal[] = {
+		"-inff", "+inff", "inff", 
+		"-nanf", "+nanf", "nanf",
+		"-inf", "+inf", "inf",		
+ 		"-nan", "+nan", "nan"
+	};
+
 	std::string inputlow;
 	for(size_t a = 0; a < rawinput.size(); a++)
 		inputlow += std::tolower(rawinput[a]);
 
-	std::cout << "char:\timpossible\n"; 
-	std::cout << "int:\timpossible\n";
+	static size_t sizef = sizeof(literal)/sizeof(literal[0]);
 
-	if(inputlow == "inff")
-		std::cout << "float:\t" << "inff";
-	if(inputlow == "+inff")
-		std::cout << "float:\t" << "+inff";
-	if(inputlow == "-inff")
-		std::cout << "float:\t" << "-inff";
-	if(inputlow == "inf")
-		std::cout << "float:\t" << "inff";
-	if(inputlow == "+inf")
-		std::cout << "float:\t" << "+inff";
-	if(inputlow == "-inf")
-		std::cout << "float:\t" << "-inff";
-
-	if(inputlow == "nanf")
-		std::cout << "float:\t" << "nanf";
-	if(inputlow == "+nanf")
-		std::cout << "float:\t" << "+nanf";
-	if(inputlow == "-nanf")
-		std::cout << "float:\t" << "-nanf";
-	if(inputlow == "nan")
-		std::cout << "float:\t" << "nanf";
-	if(inputlow == "+nan")
-		std::cout << "float:\t" << "+nanf";
-	if(inputlow == "-nan")
-		std::cout << "float:\t" << "-nanf";
-
-	char *end = NULL;
-	const char *str = inputlow.c_str();
-	errno = 0;
-	float valuef = std::strtod(str, &end);
-	std::cout << "\t\t(" << valuef << ')' << std::endl;
-
-	if(inputlow == "inff")
-		std::cout << "double:\t" << "inf";
-	else if(inputlow == "+inff")
-		std::cout << "double:\t" << "+inf";
-	else if(inputlow == "-inff")
-		std::cout << "double:\t" << "-inf";
-	if(inputlow == "inf")
-		std::cout << "double:\t" << "inf";
-	else if(inputlow == "+inf")
-		std::cout << "double:\t" << "+inf";
-	else if(inputlow == "-inf")
-		std::cout << "double:\t" << "-inf";
+	for(size_t a = 0; a < sizef; a++) {
+		if (literal[a] == inputlow)
+		{
+			if(has_plus(inputlow))
+				std::string trimm = 
 
 
-	else if(inputlow == "nanf")
-		std::cout << "double:\t" << "nan";
-	else if(inputlow == "+nanf")
-		std::cout << "double:\t" << "+nan";
-	else if(inputlow == "-nanf")
-		std::cout << "double:\t" << "-nan";
-	else if(inputlow == "nan")
-		std::cout << "double:\t" << "nan";
-	else if(inputlow == "+nan")
-		std::cout << "double:\t" << "+nan";
-	else if(inputlow == "-nan")
-		std::cout << "double:\t" << "-nan";
+			
+			os.str(std::string());
+			os.clear();
+			os << "float: " << literal[a] << std::endl;
+			os >> results[3];
 
-	double valued = std::strtod(str, &end);
-	std::cout << "\t\t(" << valued << ')' << std::endl;
+			os.str(std::string());
+			os.clear();
+			os << "float: " << literal[a] << std::endl;
+			os >> results[3];
+		}
+		break;
+	}
+
+	os.str(std::string());
+	os.clear();
+	os << "char:\timpossible\n";
+	os >> results[0];
+
+	os.str(std::string());
+	os.clear();
+	os << "int:\timpossible\n";
+	os >> results[0];
+
 }
 
 static void	convert_char(const std::string& rawinput, t_type type)
@@ -342,7 +325,7 @@ static void convert_double(const std::string& rawinput, t_type type)
 		std::string fstr = input;
 		if(has_e(input))
 			fstr.erase(fstr.size() - 1);
-		std::cout << "float:\t" << std::setprecision(std::numeric_limits<float>::digits10) << value_float << std::endl;
+		std::cout << "float:\t" << std::setprecision(1000) << value_float << std::endl;
 	//	std::cout << "float:\t" << input << std::endl;
 	}
 
@@ -352,7 +335,7 @@ static void convert_double(const std::string& rawinput, t_type type)
 	else if (type == DOUBLE_UNDRF)
 		std::cout << "double:\t" << "underflow" << std::endl;
 	else{
-		std::cout << "double:\t" << std::setprecision(std::numeric_limits<double>::digits10) << value_double << std::endl;
+		std::cout << "double:\t" << std::setprecision(1000) << value_double << std::endl;
 //		std::cout << "double:\t" << input << std::endl;
 	}
 }
@@ -366,11 +349,7 @@ static t_type is_pseudo_literal(const std::string& input)
 	for(size_t a = 0; a < input.size(); a++)
 		inputlow += std::tolower(input[a]);
 
-	static const std::string f_literal[] = {
-		"-inff", "+inff", "nanf", "inff"};
 
-	static const std::string d_literal[] = {
-		"-inf", "+inf", "nan", "inf"};
 
 	static size_t sizef = sizeof(f_literal)/sizeof(f_literal[0]);
 	static size_t sized = sizeof(d_literal)/sizeof(d_literal[0]);	
@@ -532,6 +511,16 @@ static bool has_e(std::string s)
 }
 
 static bool has_plus(std::string s)
+{
+	for (size_t i = 0; i < s.length(); i++)
+	{
+		if (s[i] == '+')
+			return true;
+	}
+	return false;
+}
+
+static bool remove_plus(std::string s)
 {
 	for (size_t i = 0; i < s.length(); i++)
 	{
