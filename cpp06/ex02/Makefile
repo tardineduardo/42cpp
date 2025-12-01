@@ -1,7 +1,7 @@
 NAME	= realtype
 
 CC		= g++
-CFLAGS  = -std=c++98 -Wall -Wextra -Werror -I.
+CFLAGS  = -std=c++98 -Wall -g -Wextra -Werror -I.
 
 SRCS	=	main.cpp \
 			Base.cpp \

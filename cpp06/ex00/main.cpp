@@ -6,11 +6,24 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/14 19:22:06 by eduribei          #+#    #+#             */
-/*   Updated: 2025/12/01 14:59:01 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/12/01 16:28:18 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 # include "ScalarConverter.hpp"
+
+# define RED	"\001\033[31m\002"
+# define GRN	"\001\033[32m\002"
+# define YEL	"\001\033[33m\002"
+# define BLU	"\001\033[34m\002"
+# define MAG	"\001\033[35m\002"
+# define CYN	"\001\033[36m\002"
+# define WHT	"\001\033[37m\002"
+# define BRED	"\001\033[1;31m\002"
+# define BGRN	"\001\033[1;32m\002"
+# define BYEL	"\001\033[1;33m\002"
+# define BBLU	"\001\033[1;34m\002"
+# define RST	"\001\033[0m\002"
 
 
 int main(int argc, char *argv[])
@@ -31,28 +44,28 @@ int main(int argc, char *argv[])
 		};
 
 		Case cases[] = {
-			// basic / weird
+			// basic error
 			{"", "empty string"},
-			{" ", "single space"},
+			{" ", "single"},
 			{"   42", "leading spaces"},
-			{"42   ", "trailing spaces (if you trim or not)"},
-			{"\t42", "tab then number"},
-			{"+", "single plus"},
-			{"-", "single minus"},
-			{".", "single dot"},
-			{"f", "single f"},
-			{"++1", "invalid: double plus"},
-			{"--1", "invalid: double minus"},
-			{"4.2.1", "invalid: multiple dots"},
+			{"42   ", "trailing spaces"},
+			{"\t42", "tab"},
+			{"+", "plus"},
+			{"-", "minus"},
+			{".", "dot"},
+			{"f", "f"},
+			{"++1", "double plus"},
+			{"--1", "double minus"},
+			{"4.2.1", "multiple dots"},
 
 			// chars
-			{"a", "printable char (letter)"},
-			{"Z", "printable char (letter)"},
+			{"a", "printable char"},
+			{"Z", "printable char"},
 			{"0", "digit as char"},
-			{"~", "boundary printable ascii"},
-			{"\x7f", "DEL non-displayable char (if you treat as char)"},
+			{"~", "printable ascii"},
+			{"\x7f", "DEL non-displayable char"},
 
-			// ints (normal)
+			// ints 
 			{"42", "simple int"},
 			{"+42", "int with plus"},
 			{"-42", "negative int"},
@@ -62,13 +75,13 @@ int main(int argc, char *argv[])
 			{"2147483647", "INT_MAX"},
 			{"-2147483648", "INT_MIN"},
 
-			// ints (overflow-ish, using long long range)
+			// ints
 			{"2222222222222222222", "big number"},
 			{"3333333333333333333333333333333333333333333333333", "very big number"},
-			{"9999999999999999999999999", "huge positive overflow"},
-			{"-9999999999999999999999999", "huge negative overflow"},
+			{"9999999999999999999999999", "positive overflow"},
+			{"-9999999999999999999999999", "negative overflow"},
 
-			// floats with 'f'
+			// 'f'
 			{"0f", "zero float"},
 			{"4.2f", "simple float"},
 			{"+4.2f", "float with plus"},
@@ -81,7 +94,7 @@ int main(int argc, char *argv[])
 			{"inff", "invalid: missing sign or nan prefix (depends on your rules)"},
 			{"42ff", "invalid: double f"},
 
-			// doubles (no 'f')
+			// doubles
 			{"4.2", "simple double"},
 			{"+4.2", "double with plus"},
 			{"-4.2", "negative double"},
@@ -98,7 +111,7 @@ int main(int argc, char *argv[])
 			{"+inff", "positive infinity float"},
 			{"-inff", "negative infinity float"},
 
-			// junk / mixed
+			// error
 			{"42a", "number followed by letter"},
 			{"a42", "letter then number"},
 			{"1.2f3", "junk after valid float"},
@@ -110,8 +123,10 @@ int main(int argc, char *argv[])
 		for(size_t a = 0; a < sizeof(cases)/sizeof(cases[0]); a++)
 		{
 			count++;
-			std::cout << "Test " << count << "----------------------------------\n"; 	
-			std::cout << "Input: \"" << cases[a].input << "\"" << std::endl;
+			std::cout << GRN "Test " << count << "----------------------------------\n" RST; 	
+			std::cout << GRN "Input: \"" BLU << cases[a].input << GRN "\"" RST << std::endl;
+			std::cout << std::endl;
+
 			ScalarConverter::convert(cases[a].input);
 			std::cout << std::endl;
 

@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 14:13:59 by eduribei          #+#    #+#             */
-/*   Updated: 2025/12/01 14:40:22 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/12/01 17:16:08 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 # define SCALARCONVERTER_HPP
 # include <string>
 # include <iostream>
-//# include <cstdlib>
+# include <iomanip> 
 # include <cctype>
 # include <cerrno> 
 # include <climits>
