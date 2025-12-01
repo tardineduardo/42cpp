@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 14:13:57 by eduribei          #+#    #+#             */
-/*   Updated: 2025/12/01 17:51:44 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/12/01 19:00:44 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -342,7 +342,7 @@ static void convert_double(const std::string& rawinput, t_type type)
 		std::string fstr = input;
 		if(has_e(input))
 			fstr.erase(fstr.size() - 1);
-		std::cout << "float:\t" << std::setprecision(std::numeric_limits<float>::digits10) << value_float << std::endl;
+		std::cout << "float:\t" << std::setprecision(1000) << value_float << std::endl;
 	//	std::cout << "float:\t" << input << std::endl;
 	}
 
@@ -352,7 +352,7 @@ static void convert_double(const std::string& rawinput, t_type type)
 	else if (type == DOUBLE_UNDRF)
 		std::cout << "double:\t" << "underflow" << std::endl;
 	else{
-		std::cout << "double:\t" << std::setprecision(std::numeric_limits<double>::digits10) << value_double << std::endl;
+		std::cout << "double:\t" << std::setprecision(1000) << value_double << std::endl;
 //		std::cout << "double:\t" << input << std::endl;
 	}
 }
