@@ -81,6 +81,10 @@ void ScalarConverter::convert(std::string input) {
 		convert_float(trimmed, type);
 	else if (type == DOUBLE || type == DOUBLE_OVERF || type == DOUBLE_UNDRF)
 		convert_double(trimmed, type);
+	else
+		std::cout << "invalid input\n";
+
+	
 }
 
 
@@ -89,41 +93,45 @@ void ScalarConverter::convert(std::string input) {
 static void	convert_literal(const std::string& input, t_type type)
 {
 	(void)type;
+	std::string inputlow;
+	for(size_t a = 0; a < input.size(); a++)
+		inputlow += std::tolower(input[a]);
+
 	std::cout << "char:\timpossible\n"; 
 	std::cout << "int:\timpossible\n";		
 
-	if(input == "inff")
+	if(inputlow == "inff")
 		std::cout << "float:\t" << "inff";
-	if(input == "+inff")
+	if(inputlow == "+inff")
 		std::cout << "float:\t" << "+inff";
-	if(input == "-inff")
+	if(inputlow == "-inff")
 		std::cout << "float:\t" << "-inff";
 
-	if(input == "nanf")
+	if(inputlow == "nanf")
 		std::cout << "float:\t" << "nanf";
-	if(input == "+nanf")
+	if(inputlow == "+nanf")
 		std::cout << "float:\t" << "+nanf";
-	if(input == "-nanf")
+	if(inputlow == "-nanf")
 		std::cout << "float:\t" << "-nanf";
 
 	char *end = NULL;
-	const char *str = input.c_str();
+	const char *str = inputlow.c_str();
 	errno = 0;
 	float valuef = std::strtod(str, &end);
 	std::cout << "\t\t(" << valuef << ')' << std::endl;
 
-	if(input == "inff")
+	if(inputlow == "inff")
 		std::cout << "double:\t" << "inf";
-	else if(input == "+inff")
+	else if(inputlow == "+inff")
 		std::cout << "double:\t" << "+inf";
-	else if(input == "-inff")
+	else if(inputlow == "-inff")
 		std::cout << "double:\t" << "-inf";
 
-	else if(input == "nanf")
+	else if(inputlow == "nanf")
 		std::cout << "double:\t" << "nan";
-	else if(input == "+nanf")
+	else if(inputlow == "+nanf")
 		std::cout << "double:\t" << "+nan";
-	else if(input == "-nanf")
+	else if(inputlow == "-nanf")
 		std::cout << "double:\t" << "-nan";
 
 	double valued = std::strtod(str, &end);
@@ -175,7 +183,7 @@ static void	convert_int(const std::string& input, t_type type)
 	double abs_val = std::fabs(value_double);
 	double f_max   = std::numeric_limits<float>::max();
 	double f_min   = std::numeric_limits<float>::denorm_min();
-	float value_float = static_cast<float>(value_double);
+	// float value_float = static_cast<float>(value_double);
 
 	if (abs_val == 0.0 && errno == 0)
 		std::cout << "float:\t" << value_int << ".0f" << std::endl;	
@@ -183,10 +191,8 @@ static void	convert_int(const std::string& input, t_type type)
 		std::cout << "float:\t" << "overflow" << std::endl;
 	else if (abs_val < f_min)
 		std::cout << "float:\t" << "underflow" << std::endl;
-	else if (type == INT_OVERF || type == INT_UNDRF)
-		std::cout << "float:\t" << value_float << std::endl;			
 	else
-		std::cout << "float:\t" << value_int << ".0f" << std::endl;	
+		std::cout << "float:\t" << input << ".0f" << std::endl;	
 		
 
 	if (abs_val == 0.0 && errno == 0)
@@ -195,10 +201,8 @@ static void	convert_int(const std::string& input, t_type type)
 		std::cout << "double:\t" << "underflow" << std::endl;
 	else if (errno == ERANGE && (value_double == HUGE_VAL || value_double == -HUGE_VAL))
 		std::cout << "double:\t" << "overflow" << std::endl;
-	else if (type == INT_OVERF || type == INT_UNDRF)
-		std::cout << "double:\t" << value_double << std::endl;
 	else
-		std::cout << "double:\t" << value_int << ".0" << std::endl;	
+		std::cout << "double:\t" << input << ".0" << std::endl;	
 }
 
 static void convert_float(const std::string& input, t_type type)
@@ -206,10 +210,26 @@ static void convert_float(const std::string& input, t_type type)
 	const char *str = input.c_str();
 	char *end = NULL;
 	double value_double = std::strtod(str, &end);
-	float value_float = static_cast<float>(value_double);
-	(void)value_float;
+//	float value_float = static_cast<float>(value_double);
+	int value_int;
+	unsigned char c;	
+
 	//char
-	std::cout << "char:\t" << "impossible" << std::endl;
+	if(value_double < std::numeric_limits<int>::min())
+		std::cout << "int:\t" << "underflow" << std::endl;
+	else if(value_double > std::numeric_limits<int>::max())
+		std::cout << "int:\t" << "overflow" << std::endl;
+	else {
+		value_int = static_cast<int>(value_double);
+    	c = static_cast<unsigned char>(value_int);
+
+	    if(c > 127 || std::isdigit(c))
+			std::cout << "char:\t" << "impossible" << std::endl;
+		else if (!std::isprint(c))
+			std::cout << "char:\t" << "non displayable" << std::endl;
+		else
+			std::cout << "char:\t\'" << c << '\'' << std::endl;
+	}
 
 	//int
 	if(!std::isfinite(value_double))
@@ -240,13 +260,28 @@ static void convert_float(const std::string& input, t_type type)
 
 static void convert_double(const std::string& input, t_type type)
 {
+	int value_int;
+	unsigned char c;	
 	const char *str = input.c_str();
 	char *end = NULL;
 
 	double value_double = std::strtod(str, &end);
 
-	// char
-	std::cout << "char:\t" << "impossible" << std::endl;
+	//char
+	if(value_double < std::numeric_limits<int>::min())
+		std::cout << "int:\t" << "underflow" << std::endl;
+	else if(value_double > std::numeric_limits<int>::max())
+		std::cout << "int:\t" << "overflow" << std::endl;
+	else {
+		value_int = static_cast<int>(value_double);
+    	c = static_cast<unsigned char>(value_int);
+	    if(c > 127 || std::isdigit(c))
+			std::cout << "char:\t" << "impossible" << std::endl;
+		else if (!std::isprint(c))
+			std::cout << "char:\t" << "non displayable" << std::endl;
+		else
+			std::cout << "char:\t\'" << c << '\'' << std::endl;
+	}
 
 	// int
 	if (!std::isfinite(value_double))
@@ -298,6 +333,10 @@ static void convert_double(const std::string& input, t_type type)
 
 static t_type is_pseudo_literal(const std::string& input)
 {
+	std::string inputlow;
+	for(size_t a = 0; a < input.size(); a++)
+		inputlow += std::tolower(input[a]);
+
 	static const std::string f_literal[] = {
 		"-inff", "+inff", "nanf", "inff"};
 
@@ -308,11 +347,11 @@ static t_type is_pseudo_literal(const std::string& input)
 	static size_t sized = sizeof(d_literal)/sizeof(d_literal[0]);	
 
 	for(size_t a = 0; a < sizef; a++)
-		if (f_literal[a] == input)
+		if (f_literal[a] == inputlow)
 			return PSEUDO_LITERAL_F;
 
 	for(size_t a = 0; a < sized; a++)
-		if (d_literal[a] == input)
+		if (d_literal[a] == inputlow)
 			return PSEUDO_LITERAL_D;
 
 	return CONTINUE;
@@ -378,6 +417,9 @@ t_type is_float(const std::string& input)
 		return CONTINUE;
 
 	if(input[input.length() - 1] != 'f')
+		return CONTINUE;
+
+	if(!isdigit(input[input.length() - 2]))
 		return CONTINUE;
 
 	const char *str = input.c_str();
