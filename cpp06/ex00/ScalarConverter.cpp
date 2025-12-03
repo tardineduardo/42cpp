@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 14:13:57 by eduribei          #+#    #+#             */
-/*   Updated: 2025/12/03 19:51:58 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/12/03 20:23:46 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -512,11 +512,8 @@ static bool has_e(std::string s)
 
 static bool has_plus(std::string s)
 {
-	for (size_t i = 0; i < s.length(); i++)
-	{
-		if (s[i] == '+')
-			return true;
-	}
+	if (s[0] == '+')
+		return true;
 	return false;
 }
 
