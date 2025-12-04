@@ -52,20 +52,6 @@ ScalarConverter::~ScalarConverter() {}
 
 // ---------- other methods ----------------------------------------------------
 
-static t_type getType(const std::string& input)
-{
-	t_type type;
-	type = CONTINUE;
-
-	if (!type) { type = is_pseudo_literal(input); }
-	if (!type) { type = is_char(input); }
-	if (!type) { type = is_int(input); }
-	if (!type) { type = is_float(input); }
-	if (!type) { type = is_double(input); }
-	if (!type) { type = INVALID; }
-	
-	return type;
-}
 
 
 void ScalarConverter::convert(std::string input) {
@@ -74,22 +60,15 @@ void ScalarConverter::convert(std::string input) {
 	std::string trimmed = trim(input);
 	t_type type = getType(trimmed);
 
+	convert_literal(trimmed, type);
+	convert_char(trimmed, type);
+	convert_int(trimmed, type);
+	convert_float(trimmed, type);
+	convert_double(trimmed, type);
 
+	//if all results are false,
+	invalid
 
-
-
-	if (type == PSEUDO_LITERAL_F || type == PSEUDO_LITERAL_D)
-		convert_literal(trimmed, type);
-	else if (type == NONDISP_CHAR || type == PRINTBL_CHAR)
-		convert_char(trimmed, type);
-	else if (type == INT || type == INT_OVERF || type == INT_UNDRF)
-		convert_int(trimmed, type);
-	else if (type == FLOAT || type == FLOAT_OVERF || type == FLOAT_UNDRF)
-		convert_float(trimmed, type);
-	else if (type == DOUBLE || type == DOUBLE_OVERF || type == DOUBLE_UNDRF)
-		convert_double(trimmed, type);
-	else
-		std::cout << "invalid input\n";
 }
 
 
@@ -116,18 +95,16 @@ static void	convert_literal(const std::string& rawinput, std::string results[])
 		if (literal[a] == inputlow)
 		{
 			if(has_plus(inputlow))
-				std::string trimm = 
-
-
+				remove_plus(inputlow);
 			
 			os.str(std::string());
 			os.clear();
-			os << "float: " << literal[a] << std::endl;
+			os << "float: " << inputlow << std::endl;
 			os >> results[3];
 
 			os.str(std::string());
 			os.clear();
-			os << "float: " << literal[a] << std::endl;
+			os << "float: " << inputlow << std::endl;
 			os >> results[3];
 		}
 		break;
@@ -141,9 +118,26 @@ static void	convert_literal(const std::string& rawinput, std::string results[])
 	os.str(std::string());
 	os.clear();
 	os << "int:\timpossible\n";
-	os >> results[0];
+	os >> results[1];
 
 }
+
+///////continue here
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 static void	convert_char(const std::string& rawinput, t_type type)
 {
@@ -517,12 +511,7 @@ static bool has_plus(std::string s)
 	return false;
 }
 
-static bool remove_plus(std::string s)
+static void remove_plus(std::string& s)
 {
-	for (size_t i = 0; i < s.length(); i++)
-	{
-		if (s[i] == '+')
-			return true;
-	}
-	return false;
+	s.erase(0, 1);
 }
