@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 14:13:57 by eduribei          #+#    #+#             */
-/*   Updated: 2025/12/03 20:23:46 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/12/05 19:19:17 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,8 @@ ScalarConverter::~ScalarConverter() {}
 
 
 
-void ScalarConverter::convert(std::string input) {
+void ScalarConverter::convert(std::string input)
+{
 
 	std::string results[4];
 	std::string trimmed = trim(input);
