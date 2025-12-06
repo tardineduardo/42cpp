@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 14:13:57 by eduribei          #+#    #+#             */
-/*   Updated: 2025/12/06 16:58:28 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/12/06 17:24:54 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,8 @@ static void			remove_f_char(std::string& input);
 // static t_type		is_float(const std::string& input);
 // static t_type		is_double(const std::string& input);
 
-static void	convert_literal(const std::string& rawinput, std::string results[], bool &contn, bool &inval);
-// static void			convert_char(const std::string& rawinput, t_type type);
+static void			convert_literal(const std::string& input, std::string results[], bool &contn);
+static void			convert_char(const std::string& input, std::string results[], bool &contn, bool &inval);
 // static void			convert_int(const std::string& rawinput, t_type type);
 // static void			convert_float(const std::string& rawinput, t_type type);
 // static void			convert_double(const std::string& rawinput, t_type type);
@@ -62,8 +62,8 @@ void ScalarConverter::convert(std::string input)
 	bool inval = false;
 	// t_type type = getType(trimmed);
 
-	if(contn) convert_literal(trimmed, results, contn, inval);
-	// else if(&next) convert_char(trimmed, results);
+	if(contn) convert_literal(trimmed, results, contn);
+	if(contn) convert_char(trimmed, results, contn, inval);
 	// else if(&next) convert_int(trimmed, results);
 	// else if(&next) convert_float(trimmed, results);
 	// else if(&next) convert_double(trimmed, results);
@@ -80,7 +80,7 @@ void ScalarConverter::convert(std::string input)
 
 // ---------- static methods ---------------------------------------------------
 
-static void	convert_literal(const std::string& rawinput, std::string results[], bool &contn, bool &inval)
+static void	convert_literal(const std::string& input, std::string results[], bool &contn)
 {
 	std::stringstream os;
 
@@ -92,8 +92,8 @@ static void	convert_literal(const std::string& rawinput, std::string results[], 
 	};
 
 	std::string inputlow;
-	for(size_t a = 0; a < rawinput.size(); a++)
-		inputlow += std::tolower(rawinput[a]);
+	for(size_t a = 0; a < input.size(); a++)
+		inputlow += std::tolower(input[a]);
 
 	static size_t sizef = sizeof(literal)/sizeof(literal[0]);
 
@@ -114,32 +114,68 @@ static void	convert_literal(const std::string& rawinput, std::string results[], 
 			remove_f_char(inputlow);
 			os << "double:\t" << inputlow << std::endl;
 			std::getline(os, results[3]);
+
+			os.str(std::string());
+			os.clear();
+			os << "char:\timpossible\n";
+			std::getline(os, results[0]);
+
+			os.str(std::string());
+			os.clear();
+			os << "int:\timpossible\n";
+			std::getline(os, results[1]);
+	
+			contn = false;
 			break;
 		}
 	}
-	
-	if (a == sizef)
-	{
-		contn = false;
-		inval = true;
-		return;
-	}
-
-	os.str(std::string());
-	os.clear();
-	os << "char:\timpossible\n";
-	std::getline(os, results[0]);
-
-	os.str(std::string());
-	os.clear();
-	os << "int:\timpossible\n";
-	std::getline(os, results[1]);
-
-	contn = false;
-	inval = false;	
 }
 
-///////continue here
+static void	convert_char(const std::string& input, std::string results[], bool &contn, bool &inval)
+{
+	unsigned char c = static_cast<unsigned char>(input[0]);
+
+	if(input.size() != 1 || c > 127 || std::isdigit(c))
+		{inval = true; return;}
+	
+	if (std::isprint(c))
+	{
+		std::stringstream os;
+		os << "char:\t\'" << c << '\'' << std::endl;
+		std::getline(os, results[0]);
+	}
+	else
+	{
+		std::stringstream os;
+		os << "char:\tnon displayable" << std::endl;
+		std::getline(os, results[0]);
+	}
+
+	int value_int = static_cast<int>(c);
+	int value_float = static_cast<float>(c);
+	int value_double = static_cast<double>(c);	
+	
+	{
+		std::stringstream os;
+		os << "int:\t" << value_int << std::endl;
+		std::getline(os, results[1]);
+	}
+
+	{
+		std::stringstream os;
+		os << "float:\t" << value_float << ".0f" << std::endl;
+		std::getline(os, results[2]);
+	}
+
+	{
+		std::stringstream os;
+		os << "double:\t" << value_double << ".0" << std::endl;
+		std::getline(os, results[3]);
+	}
+
+	contn = false;
+	inval = false;
+}
 
 
 
