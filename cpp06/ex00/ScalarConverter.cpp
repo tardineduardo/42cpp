@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 14:13:57 by eduribei          #+#    #+#             */
-/*   Updated: 2025/12/06 17:24:54 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/12/06 17:27:37 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,39 +139,29 @@ static void	convert_char(const std::string& input, std::string results[], bool &
 		{inval = true; return;}
 	
 	if (std::isprint(c))
-	{
-		std::stringstream os;
+		{std::stringstream os;
 		os << "char:\t\'" << c << '\'' << std::endl;
-		std::getline(os, results[0]);
-	}
+		std::getline(os, results[0]); }
 	else
-	{
-		std::stringstream os;
+		{std::stringstream os;
 		os << "char:\tnon displayable" << std::endl;
-		std::getline(os, results[0]);
-	}
+		std::getline(os, results[0]); }
 
 	int value_int = static_cast<int>(c);
 	int value_float = static_cast<float>(c);
 	int value_double = static_cast<double>(c);	
 	
-	{
-		std::stringstream os;
-		os << "int:\t" << value_int << std::endl;
-		std::getline(os, results[1]);
-	}
+	{std::stringstream os;
+	 os << "int:\t" << value_int << std::endl;
+	 std::getline(os, results[1]); }
 
-	{
-		std::stringstream os;
-		os << "float:\t" << value_float << ".0f" << std::endl;
-		std::getline(os, results[2]);
-	}
+	{std::stringstream os;
+	 os << "float:\t" << value_float << ".0f" << std::endl;
+	 std::getline(os, results[2]); }
 
-	{
-		std::stringstream os;
-		os << "double:\t" << value_double << ".0" << std::endl;
-		std::getline(os, results[3]);
-	}
+	{std::stringstream os;
+	 os << "double:\t" << value_double << ".0" << std::endl;
+	 std::getline(os, results[3]); }
 
 	contn = false;
 	inval = false;
