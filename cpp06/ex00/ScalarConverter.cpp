@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 14:13:57 by eduribei          #+#    #+#             */
-/*   Updated: 2025/12/06 23:29:05 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/12/06 23:46:59 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -209,19 +209,21 @@ static void	convert_int(const std::string& input, std::string results[], bool &c
 			return;
 		}
 
-		if (abs_val == 0.0 && errno == ERANGE)
-		{
-			{std::stringstream os;
-	 		 os << "float:\toverflow" << std::endl;
-	         std::getline(os, results[2]); }
 
-			{std::stringstream os;
-	 		 os << "double:\t0.0" << std::endl;
-	         std::getline(os, results[3]); }			 
+//		is this useless for int? 
+		// if (abs_val == 0.0 && errno == ERANGE)
+		// {
+		// 	{std::stringstream os;
+	 	// 	 os << "float:\toverflow" << std::endl;
+	    //      std::getline(os, results[2]); }
+
+		// 	{std::stringstream os;
+	 	// 	 os << "double:\t0.0" << std::endl;
+	    //      std::getline(os, results[3]); }			 
 			
-			contn = false;
-			return;
-		}
+		// 	contn = false;
+		// 	return;
+		// }
 
 		if (abs_val > f_max || abs_val < f_min) 
 		{
@@ -326,20 +328,52 @@ static void	convert_float(const std::string& input, std::string results[], bool 
 	double f_min   = std::numeric_limits<float>::denorm_min();
 
 	if (abs_val == 0.0 && errno == 0)
-    	return FLOAT;
+	{
+		{std::stringstream os;
+			os << "char:\tnon displayable" << std::endl;
+			std::getline(os, results[0]); }
 
-	if (abs_val > f_max)
-    	return FLOAT_OVERF;
+		{std::stringstream os;
+			os << "int:\t0" << std::endl;
+			std::getline(os, results[1]); }
 
-	if (abs_val < f_min)
-    	return FLOAT_UNDRF;
+		{std::stringstream os;
+			os << "float:\t0.0f" << std::endl;
+			std::getline(os, results[2]); }
 
-	return FLOAT;
+		{std::stringstream os;
+			os << "double:\t0.0" << std::endl;
+			std::getline(os, results[3]); }			 
+		
+		contn = false;
+		return;
+	}
 
+	if (abs_val == 0.0 && errno == ERANGE)
+	{
+		{std::stringstream os;
+			os << "char:\timpossible" << std::endl;
+			std::getline(os, results[0]); }
 
+		{std::stringstream os;
+			os << "int:\t0" << std::endl;
+			std::getline(os, results[1]); }
 
+		///////////////////////////////////////////////////////////////////////
+		std::cout << "o que fazer com isso?????";
+		{std::stringstream os;
+			os << "float:\toverflow" << std::endl;
+			std::getline(os, results[2]); }
 
+		{std::stringstream os;
+			os << "double:\t0.0" << std::endl;
+			std::getline(os, results[3]); }			 
+		
+		contn = false;
+		return;
+	}
 
+/////////////////////////////////////////////////////////////////////////////
 
 
 
