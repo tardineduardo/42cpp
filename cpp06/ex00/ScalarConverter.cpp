@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/11/23 14:13:57 by eduribei          #+#    #+#             */
-/*   Updated: 2025/12/06 17:27:37 by eduribei         ###   ########.fr       */
+/*   Updated: 2025/12/06 23:02:27 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,6 @@ static void			remove_f_char(std::string& input);
 
 
 // static t_type		getType(const std::string& input);
-
 // static t_type		is_pseudo_literal(const std::string& input);
 // static t_type		is_char(const std::string& input);
 // static t_type		is_int(const std::string& input);
@@ -28,7 +27,7 @@ static void			remove_f_char(std::string& input);
 
 static void			convert_literal(const std::string& input, std::string results[], bool &contn);
 static void			convert_char(const std::string& input, std::string results[], bool &contn, bool &inval);
-// static void			convert_int(const std::string& rawinput, t_type type);
+static void			convert_int(const std::string& input, std::string results[], bool &contn, bool &inval);
 // static void			convert_float(const std::string& rawinput, t_type type);
 // static void			convert_double(const std::string& rawinput, t_type type);
 
@@ -56,6 +55,8 @@ ScalarConverter::~ScalarConverter() {}
 
 void ScalarConverter::convert(std::string input)
 {
+	if (input.empty())
+		return;
 	std::string results[4];
 	std::string trimmed = trim(input);
 	bool contn = true;
@@ -64,7 +65,7 @@ void ScalarConverter::convert(std::string input)
 
 	if(contn) convert_literal(trimmed, results, contn);
 	if(contn) convert_char(trimmed, results, contn, inval);
-	// else if(&next) convert_int(trimmed, results);
+	if(contn) convert_int(trimmed, results, contn, inval);
 	// else if(&next) convert_float(trimmed, results);
 	// else if(&next) convert_double(trimmed, results);
 	
@@ -136,7 +137,7 @@ static void	convert_char(const std::string& input, std::string results[], bool &
 	unsigned char c = static_cast<unsigned char>(input[0]);
 
 	if(input.size() != 1 || c > 127 || std::isdigit(c))
-		{inval = true; return;}
+		return;
 	
 	if (std::isprint(c))
 		{std::stringstream os;
@@ -148,8 +149,8 @@ static void	convert_char(const std::string& input, std::string results[], bool &
 		std::getline(os, results[0]); }
 
 	int value_int = static_cast<int>(c);
-	int value_float = static_cast<float>(c);
-	int value_double = static_cast<double>(c);	
+	float value_float = static_cast<float>(c);
+	double value_double = static_cast<double>(c);	
 	
 	{std::stringstream os;
 	 os << "int:\t" << value_int << std::endl;
@@ -164,9 +165,145 @@ static void	convert_char(const std::string& input, std::string results[], bool &
 	 std::getline(os, results[3]); }
 
 	contn = false;
-	inval = false;
+	(void)inval;
 }
 
+static void	convert_int(const std::string& input, std::string results[], bool &contn, bool &inval)
+{
+	long value_long;
+	const char *str = input.c_str();
+	
+	{char *end = NULL; errno = 0;
+	value_long = std::strtol(str, &end, 10);
+	if(end == str || *end != 0) return;}
+
+	int value_int = static_cast<int>(value_long);
+	int int_min = std::numeric_limits<int>::min();
+	int int_max = std::numeric_limits<int>::max();
+	if (value_long > int_max || value_long < int_min)
+	{
+		{std::stringstream os;
+		os << "char:\t" << "impossible" << std::endl;
+		std::getline(os, results[0]); }
+		{std::stringstream os;
+		os << "int:\t" << "impossible" << std::endl;
+		std::getline(os, results[1]);}
+		
+		char *end = NULL; errno = 0;
+		double value_double = std::strtod(str, &end);
+		double abs_val = std::fabs(value_double);
+		double f_max   = std::numeric_limits<float>::max();
+		double f_min   = std::numeric_limits<float>::denorm_min();
+
+	 	if (abs_val == 0.0 && errno == 0)
+		{
+			{std::stringstream os;
+	 		 os << "float:\t0.0f" << std::endl;
+	         std::getline(os, results[2]); }
+
+			{std::stringstream os;
+	 		 os << "double:\t0.0" << std::endl;
+	         std::getline(os, results[3]); }			 
+			
+			contn = false;
+			return;
+		}
+
+		if (abs_val == 0.0 && errno == ERANGE)
+		{
+			{std::stringstream os;
+	 		 os << "float:\toverflow" << std::endl;
+	         std::getline(os, results[2]); }
+
+			{std::stringstream os;
+	 		 os << "double:\t0.0" << std::endl;
+	         std::getline(os, results[3]); }			 
+			
+			contn = false;
+			return;
+		}
+
+		if (abs_val > f_max || abs_val < f_min) 
+		{
+			float value_float;
+			{char *end = NULL; errno = 0;
+			value_float = std::strtod(str, &end);}
+
+			{std::stringstream os;
+		     os << "float:\t" << std::setprecision(1000) << value_float << std::endl;
+			 std::getline(os, results[2]); }
+
+			{std::stringstream os;
+		 	 os << "double:\t" << std::setprecision(1000) << value_double << std::endl;
+	         std::getline(os, results[3]); }			 
+			
+			contn = false;
+			return;
+		}
+
+		std::cout << "aaaaaa\n";
+
+		float value_float;
+		{char *end = NULL;
+		value_float = std::strtod(str, &end);}
+
+		double value_double2;
+		{char *end = NULL;
+		value_double2 = std::strtod(str, &end);}		
+
+		{std::stringstream os;
+		 os << "float:\t" << std::setprecision(1000) << value_float << std::endl;
+		 std::getline(os, results[2]); }
+
+		{std::stringstream os;
+		 os << "double:\t" << std::setprecision(1000) << value_double2 << std::endl;
+		 std::getline(os, results[3]); }
+			
+		contn = false;
+		return;
+	}
+
+	float value_float;
+	{char *end = NULL;
+	value_float = std::strtod(str, &end);}
+
+	double value_double;
+	{char *end = NULL;
+	value_double = std::strtod(str, &end);}
+
+	if (value_int >= 0 && value_int <= 127)
+	{
+		unsigned char c = static_cast<unsigned char>(value_int);
+		if (isprint(c))
+			{std::stringstream os;
+			 os << "char:\t\'" << c << '\'' <<std::endl;
+			 std::getline(os, results[0]);}
+		else
+			{std::stringstream os;
+			 os << "char:\tnon displayable" << std::endl;
+			 std::getline(os, results[0]);}
+
+	}
+	else
+		{std::stringstream os;
+		 os << "char:\timpossible" << std::endl;
+		 std::getline(os, results[0]); }
+
+	{std::stringstream os;
+	 os << "int:\t" << value_int << std::endl;
+	 std::getline(os, results[1]); }
+
+	{std::stringstream os;
+	 os << "float:\t" << std::setprecision(1000) << value_float << std::endl;
+	 std::getline(os, results[2]); }
+
+	{std::stringstream os;
+	 os << "double:\t" << std::setprecision(1000) << value_double << std::endl;
+	 std::getline(os, results[3]); }
+
+	contn = false;
+	(void)inval;
+}
 
 
 
