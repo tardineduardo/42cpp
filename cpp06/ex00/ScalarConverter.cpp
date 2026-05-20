@@ -26,8 +26,6 @@ struct Values
 	double			f_de_min;
 	int				i_max;
 	int				i_min;	
-
-
 };
 
 static std::string	trim(std::string input);
