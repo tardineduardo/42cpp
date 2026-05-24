@@ -1,10 +1,10 @@
-NAME	= template
+NAME	= iter
 
 CC		= g++
-CFLAGS  = -std=c++98 -g -Wall -Wextra -Werror -I.
+CFLAGS  = -std=c++98 -g -Wall -Wextra -Werror -I. -Wpedantic -Wshadow
 
 SRCS	=	main.cpp \
- 			iter.hpp
+			tests.cpp \
 
 OBJS	= $(SRCS:.cpp=.o)
 
