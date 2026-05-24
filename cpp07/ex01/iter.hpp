@@ -6,22 +6,45 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 19:00:30 by eduribei          #+#    #+#             */
-/*   Updated: 2026/05/20 21:02:10 by eduribei         ###   ########.fr       */
+/*   Updated: 2026/05/23 17:32:58 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-template <typename T1>
-void iter(T1 *array, size_t len, void(*func)(T1))
+#include <iostream>
+
+
+// template <typename T1>
+// void iter(T1& array, int len, void(*func)(T1))
+// {
+// 	for (int i = 0; i < len; i++)
+// 	{
+// 		func(array[i]);
+// 	}
+// }
+
+
+void iter_int(int array[], const int len, void(*func)(int&))
 {
 	for (int i = 0; i < len; i++)
 	{
-		func(array[i])
+		func(array[i]);
 	}
 }
 
+
+void iter_str(std::string array[], const int len, void(*func)(std::string&))
+{
+	for (int i = 0; i < len; i++)
+	{
+		func(array[i]);
+	}
+}
+
+
+
 // template <typename T1>
 // void iter(const T1 *array, size_t len, void(*func)(T1))
-// {
+// {.+
 // 	for (int i = 0; i < len; i++)
 // 	{
 // 		func(array[i])
