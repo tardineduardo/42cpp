@@ -1,10 +1,10 @@
-NAME	= template
+NAME	= array
 
 CC		= g++
-CFLAGS  = -std=c++98 -g -Wall -Wextra -Werror -I.
+CFLAGS  = -std=c++98 -g -Wall -Wextra -Werror -I. -Wpedantic -Wshadow
 
 SRCS	=	main.cpp \
- 			whatever.hpp
+ 			array.cpp
 
 OBJS	= $(SRCS:.cpp=.o)
 
