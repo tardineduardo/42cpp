@@ -17,7 +17,7 @@
 
 Arrayint::Arrayint()
 {
-	_array = new int[0];
+	_array = NULL;
 	_size = 0;
 }
 
@@ -28,7 +28,7 @@ Arrayint::~Arrayint()
 
 Arrayint::Arrayint(const Arrayint& other)
 {
-	
+	(void)other;
 //Construction by copy and assignment operator. In both cases, modifying either
 //the original array or its copy after copying musn’t affect the other array.
 }
@@ -36,8 +36,8 @@ Arrayint::Arrayint(const Arrayint& other)
 
 Arrayint& Arrayint::operator=(const Arrayint& other)
 {
-
-
+	(void)other;
+	return *this;
 //Construction by copy and assignment operator. In both cases, modifying either
 //the original array or its copy after copying musn’t affect the other array.
 }
@@ -49,4 +49,10 @@ Arrayint::Arrayint(const unsigned int& n)
 {
 	_array = new int[n];
 	_size = n; 
+}
+
+
+int Arrayint::get_index(const int& i)
+{
+	return _array[i];
 }

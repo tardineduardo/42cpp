@@ -26,6 +26,10 @@ class Arrayint
         Arrayint(const Arrayint& other);
         Arrayint& operator=(const Arrayint& other);
         Arrayint(const unsigned int& n);
+
+        int get_index(const int& i);
+
+
 };
 
 

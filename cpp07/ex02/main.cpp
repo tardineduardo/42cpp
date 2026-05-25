@@ -11,14 +11,26 @@
 /* ************************************************************************** */
 
 #include <iostream>
-//#include "Array.hpp"
+#include "Array.hpp"
+#include "iter.hpp"
 
-int main( void )
+
+int main(void)
 {
     double *a = new double();
-
     std::cout << a << std::endl;
     std::cout << *a << std::endl;
 
+    Arrayint test(10);
+    for (int i = 0; i < 10; i++)
+    {
+        std::cout << test.get_index(i) << ", ";
+    }
+
+
+    
+
+
 }
+
 
