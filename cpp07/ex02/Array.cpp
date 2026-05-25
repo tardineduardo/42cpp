@@ -45,12 +45,19 @@ Arrayint& Arrayint::operator=(const Arrayint& other)
 
 // other methods ---------------------------------------------------------------
 
+
+
 Arrayint::Arrayint(const unsigned int& n)
 {
 	_array = new int[n];
 	_size = n; 
 }
 
+// now do for writing
+int Arrayint::operator[](const int& index)
+{
+	return _array[index];
+}
 
 int Arrayint::index(const int& i)
 {

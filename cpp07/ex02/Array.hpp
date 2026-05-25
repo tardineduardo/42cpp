@@ -23,10 +23,11 @@ class Arrayint
 
         Arrayint();
         ~Arrayint();
-        Arrayint(const Arrayint& other);
         Arrayint& operator=(const Arrayint& other);
         Arrayint(const unsigned int& n);
 
+        Arrayint(const Arrayint& other);
+        int operator[](const int& index);
         int index(const int& i);
         int size();
 

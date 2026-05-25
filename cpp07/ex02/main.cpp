@@ -26,7 +26,7 @@ int main(void)
     Arrayint test1(10);
     for (int i = 0; i < 900000; i++)
     {
-        std::cout << test1.index(i) << ", ";
+        std::cout << test1[i] << ", ";
     }
     std::cout << std::endl << std::endl;
 
