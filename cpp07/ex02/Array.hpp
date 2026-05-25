@@ -27,7 +27,8 @@ class Arrayint
         Arrayint& operator=(const Arrayint& other);
         Arrayint(const unsigned int& n);
 
-        int get_index(const int& i);
+        int index(const int& i);
+        int size();
 
 
 };

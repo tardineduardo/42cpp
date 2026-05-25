@@ -52,7 +52,12 @@ Arrayint::Arrayint(const unsigned int& n)
 }
 
 
-int Arrayint::get_index(const int& i)
+int Arrayint::index(const int& i)
 {
 	return _array[i];
+}
+
+int Arrayint::size()
+{
+	return _size;
 }

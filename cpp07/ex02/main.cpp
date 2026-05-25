@@ -21,14 +21,25 @@ int main(void)
     std::cout << a << std::endl;
     std::cout << *a << std::endl;
 
-    Arrayint test(10);
-    for (int i = 0; i < 10; i++)
+    std::cout << std::endl << std::endl;
+
+    Arrayint test1(10);
+    for (int i = 0; i < 900000; i++)
     {
-        std::cout << test.get_index(i) << ", ";
+        std::cout << test1.index(i) << ", ";
     }
+    std::cout << std::endl << std::endl;
 
+    std::cout << sizeof(int) << std::endl;
 
-    
+    // Arrayint test2;
+    // for (int i = 0; i < 100; i++)
+    // {
+    //     std::cout << test2.index(i) << ", ";
+
+    // }
+
+    std::cout << std::endl << std::endl;
 
 
 }
