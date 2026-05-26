@@ -62,21 +62,22 @@ const char* Arrayint::EmptyArrayException::what() const throw() {
 }
 
 
-// now do for writing
-int Arrayint::operator[](const int& index)
+// EXPLICAR O QUE ACONTECE -> L & R VALUE. Precisa receber uma copia,
+// precisar retornar uma referencia.
+int& Arrayint::operator[](unsigned int index)
 {
 	if (_size == 0)
 		throw EmptyArrayException();
-	if (index >= _size || index < 0)
+	if (index >= _size)
 		throw OutOfBoundsException();		 
 	return _array[index];
 }
 
-int Arrayint::operator[](int& index)
+const int& Arrayint::operator[](unsigned int index) const
 {
 	if (_size == 0)
 		throw EmptyArrayException();
-	if (index >= _size || index < 0)
+	if (index >= _size)
 		throw OutOfBoundsException();		 
 	return _array[index];
 }

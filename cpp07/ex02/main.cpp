@@ -23,15 +23,24 @@ int main(void)
 
     std::cout << std::endl << std::endl;
 
-    Arrayint test1(10);
+    Arrayint test1(5);
+
+
+    test1[0] = 0;
+    test1[1] = 1;
+    test1[2] = 2;
+    test1[3] = 3;
+    test1[4] = 4;
 
 
     std::cout << test1[0] << std::endl;
+    std::cout << test1[1] << std::endl;
+    std::cout << test1[2] << std::endl;
+    std::cout << test1[3] << std::endl;
+    std::cout << test1[4] << std::endl;
 
-    int a = 1;
-    test1[0] = a;
 
-    std::cout << test1[9] << std::endl;
+
 
     std::cout << test1(-1) << std::endl;
 

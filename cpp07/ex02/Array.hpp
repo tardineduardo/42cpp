@@ -30,8 +30,8 @@ class Arrayint
         Arrayint(const unsigned int& n);
 
         Arrayint(const Arrayint& other);
-        int operator[](const int& index);
-        int operator[](int& index);
+        const int& operator[](unsigned int index) const;
+        int& operator[](unsigned int index);
 
         int operator()(const int& index);
         int index(const int& i);
