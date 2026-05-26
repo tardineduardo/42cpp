@@ -12,10 +12,13 @@
 
 #ifndef ARRAY_HPP
 #define ARRAY_HPP
+#include <iostream>
+
+#include <exception>
 
 class Arrayint
 {
-    private: 
+    private:
         int *_array;
         int _size;
 
@@ -28,8 +31,17 @@ class Arrayint
 
         Arrayint(const Arrayint& other);
         int operator[](const int& index);
+        int operator[](int& index);
+
+        int operator()(const int& index);
         int index(const int& i);
         int size();
+
+        class OutOfBoundsException : public std::exception {
+            public: const char *what() const throw(); };
+
+        class EmptyArrayException : public std::exception {
+            public: const char *what() const throw(); };        
 
 
 };

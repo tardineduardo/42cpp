@@ -46,18 +46,56 @@ Arrayint& Arrayint::operator=(const Arrayint& other)
 // other methods ---------------------------------------------------------------
 
 
-
 Arrayint::Arrayint(const unsigned int& n)
 {
 	_array = new int[n];
 	_size = n; 
 }
 
+
+const char* Arrayint::OutOfBoundsException::what() const throw() {
+	return "index out of bounds";
+}
+
+const char* Arrayint::EmptyArrayException::what() const throw() {
+	return "empty array.";
+}
+
+
 // now do for writing
 int Arrayint::operator[](const int& index)
 {
+	if (_size == 0)
+		throw EmptyArrayException();
+	if (index >= _size || index < 0)
+		throw OutOfBoundsException();		 
 	return _array[index];
 }
+
+int Arrayint::operator[](int& index)
+{
+	if (_size == 0)
+		throw EmptyArrayException();
+	if (index >= _size || index < 0)
+		throw OutOfBoundsException();		 
+	return _array[index];
+}
+
+
+
+int Arrayint::operator()(const int& index)
+{
+	if (_size == 0)
+		throw EmptyArrayException();
+	else if (index == 0)
+		return _array[0];
+	else if (index >= _size - 1)
+		return _array[index % (_size - 1)];
+	else if (index < 0)
+		return _array[-(index % (_size - 1))];
+	return _array[index];
+}
+
 
 int Arrayint::index(const int& i)
 {
