@@ -10,12 +10,14 @@ class vect2
 		int b;
 
 	public:
+		// canonic methods -----------------------------------------------------
 		vect2();
 		~vect2();
 		vect2(const vect2& other);
 		vect2 operator=(const vect2& other);
 		vect2(const int& x, const int& y);
 
+		// index ---------------------------------------------------------------
 		int& operator[](int index);
 		const int& operator[](int index) const;
 

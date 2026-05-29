@@ -6,7 +6,7 @@
 /*   By: eduribei <eduribei@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2026/05/20 19:00:30 by eduribei          #+#    #+#             */
-/*   Updated: 2026/05/24 20:31:32 by eduribei         ###   ########.fr       */
+/*   Updated: 2026/05/29 18:40:05 by eduribei         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ class Arrayint
 {
     private:
         int *_array;
-        int _size;
+        unsigned int _size;
 
     public:
 
@@ -33,16 +33,16 @@ class Arrayint
         const int& operator[](unsigned int index) const;
         int& operator[](unsigned int index);
 
-        int operator()(const int& index);
+        int operator()(int index);
+        int index(const unsigned int& i);
         int index(const int& i);
-        int size();
+        unsigned int size();
 
         class OutOfBoundsException : public std::exception {
             public: const char *what() const throw(); };
 
         class EmptyArrayException : public std::exception {
             public: const char *what() const throw(); };        
-
 
 };
 
